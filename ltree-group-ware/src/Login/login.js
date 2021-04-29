@@ -1,8 +1,12 @@
+import React from 'react';
 
-
-const Hello = () => {
-    alert("안녕하세요~!");
-
+function useWindowSize() {
+    return (
+        <div></div>
+    );
 }
 
-export default Hello;
+  
+  
+
+export default useWindowSize;
