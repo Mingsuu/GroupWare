@@ -1,7 +1,8 @@
+
 .loginbox {
     background: linear-gradient(rgb(50,134,84),rgb(77,89,147));
     width:100%;
-    height:80vh;
+    height: 80vh;
     margin:auto;
     padding-top:150px;
 }
@@ -12,15 +13,16 @@
     display:block;
     padding-left:10px;
 }
-.idbox {
-    margin-bottom:15px;
-}
+
 .passbox {
-    margin-bottom:40px;
+    margin-top:20px;
+    margin-bottom: 10px;
 }
 .idbox,
 .passbox,
-.loginbtn{
+.loginbtn,
+.findbtn,
+.passbtn{
     border-radius: 6px;
     border:none;
 }
@@ -39,17 +41,26 @@
     font-weight: bold;
     color:gray;
     border:1px solid white;
+    margin-top:40px;
+    display: inline-block;
 }
-.loginbtn:hover {
+.loginbtn:hover,
+.findbtn:hover,
+.passbtn:hover {
     background-color: lightgray;
     color:white;
 }
 .idfind {
     margin-right:80px;
+    margin-top:20px;
 }
 .idfind,
 .passfind {
     font-size:13px;
+}
+a {
+    color:inherit;
+    text-decoration: none;
 }
 .findbox {
     margin-top:15px;
@@ -63,11 +74,39 @@
 }
 
 /* 아이디 찾기 페이지 css */
-.idfindbox {
+.idfindbox,
+.passfindbox {
     width:330px;
     height:40px;
     display:block;
     padding-left:10px;
     border-radius: 6px;
     border:none;
+}
+.findbtn,
+.passbtn {
+    width:339px;
+    height:50px;
+    font-size:18px;
+    font-weight: bold;
+    color:gray;
+    border:1px solid white;
+}
+.loginpage {
+    margin-top:10px;
+    float:right;
+}
+.red {
+    display:block;
+    font-size:15px;
+    font-weight: bold;
+    margin-top:10px;
+    text-align: left;
+}
+.red1 {
+    display: block;
+    font-size:15px;
+    font-weight: bold;
+    margin-top:10px;
+    text-align: left;
 }
