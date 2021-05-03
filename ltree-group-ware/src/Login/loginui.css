@@ -61,3 +61,13 @@
     float:right;
     font-weight: bold;
 }
+
+/* 아이디 찾기 페이지 css */
+.idfindbox {
+    width:330px;
+    height:40px;
+    display:block;
+    padding-left:10px;
+    border-radius: 6px;
+    border:none;
+}

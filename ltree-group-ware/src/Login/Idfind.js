@@ -13,6 +13,7 @@ const Idfind =() => {
                 </div>
                
                 <div className="findbox">
+                    <input className="idfindbox" placeholder="가입하신 이메일을 입력해주세요"></input><br/>
                     <span className="idfind">아이디 찾기</span>
                     <sapn className="passfind">비밀번호 찾기</sapn><br/>
                     <span className="join">회원가입</span>
