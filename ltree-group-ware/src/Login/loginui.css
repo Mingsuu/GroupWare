@@ -1,0 +1,63 @@
+.loginbox {
+    background: linear-gradient(rgb(50,134,84),rgb(77,89,147));
+    width:100%;
+    height:80vh;
+    margin:auto;
+    padding-top:150px;
+}
+.idbox,
+.passbox {
+    width:330px;
+    height:40px;
+    display:block;
+    padding-left:10px;
+}
+.idbox {
+    margin-bottom:15px;
+}
+.passbox {
+    margin-bottom:40px;
+}
+.idbox,
+.passbox,
+.loginbtn{
+    border-radius: 6px;
+    border:none;
+}
+.loginbox1 {
+    display:inline-block;
+    text-align: center;
+}
+.loginlogo {
+    display:inline-block;
+    margin-bottom:10px;
+}
+.loginbtn {
+    width:339px;
+    height:50px;
+    font-size:18px;
+    font-weight: bold;
+    color:gray;
+    border:1px solid white;
+}
+.loginbtn:hover {
+    background-color: lightgray;
+    color:white;
+}
+.idfind {
+    margin-right:80px;
+}
+.idfind,
+.passfind {
+    font-size:13px;
+}
+.findbox {
+    margin-top:15px;
+    color:white;
+    font-size:15px;
+}
+.join {
+    margin-top:10px;
+    float:right;
+    font-weight: bold;
+}
