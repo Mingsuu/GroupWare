@@ -1,22 +1,32 @@
 import React,{ useState, useRef} from 'react';
-import './loginui.css';
+import './Loginui.css';
 import ltree_logo from '../Image/ltree_logo.png';
+import {Link} from 'react-router-dom';
 
 const Passfind =() => {
     const passfindRef = useRef();
     const [passfind, setPassfind] = useState('');
+    const [ididcheck, setIdidcheck] = useState(false);
 
     const passfindalert = () => {
         if(passfind === ''){
-            alert("아이디를 입력해주세요.");
             passfindRef.current.focus();
-            return false;
+            return setIdidcheck(true);
         }
         alert("비밀번호 찾기성공");
     }
 
     const passchange = (e) => {
         setPassfind(e.target.value);
+        if(passfind !== ''){
+            return setIdidcheck(false);
+        }
+    }
+
+    const keypress = (e) => {
+        if(e.key === 'Enter'){
+            passfindalert();
+        }
     }
 
     return(
@@ -27,9 +37,11 @@ const Passfind =() => {
                 </div>
                
                 <div className="findbox">
-                    <input className="passfindbox" placeholder="가입하신 아이디를 입력해주세요." value={passfind} ref={passfindRef} onChange={passchange}></input><br/>
+                    <input className="passfindbox" placeholder="가입하신 아이디를 입력해주세요." value={passfind} ref={passfindRef} onChange={passchange} onKeyPress={keypress}></input><br/>
+                    {ididcheck && <span className="red2" style={{color : 'tomato'}}>아이디를 입력해주세요.</span>}
                     <button className="passbtn" onClick={passfindalert}>비밀번호 찾기</button><br/>
-                    <span className="loginpage">로그인</span>
+                    <Link to="/Idfind"><span className="idfind1">아이디 찾기</span></Link>
+                    <Link to="/"><span className="loginpage">로그인</span></Link>
                 </div>
             </div>
         </div>

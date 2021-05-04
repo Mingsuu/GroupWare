@@ -1,9 +1,9 @@
 import React, { useState,useRef } from 'react';
-import './loginui.css';
+import './Loginui.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import { Route,Link,Switch} from 'react-router-dom';
 import Idfind from './Idfind';
-import Passfind from './passfind';
+import Passfind from './Passfind';
 
 const Loginpage = () => {
     const idRef = useRef();
@@ -28,18 +28,18 @@ const Loginpage = () => {
     
     const idtext = (e) => {
         setIdbox(e.target.value)
-        if(idbox === ''){
-            // setIdcheck(true);
+        if(idbox !== ''){
+            return setIdcheck(false);
         }
-        return setIdcheck(false);
+        
         
     }
     const passtext = (e) => {
         setPassbox(e.target.value)
-        if(passbox === ''){
-        // setPcheck(true);
+        if(passbox !== ''){
+            return setPcheck(false);
         }
-        return setPcheck(false)
+        
     }
     const keypress = (e) => {
         if(e.key === 'Enter'){
@@ -75,8 +75,8 @@ const Loginpage = () => {
                 {pcheck && <span className="red1" style={{color : 'tomato'}}>비밀번호를 입력해주세요.</span>}
                 <button className="loginbtn" type="button" onClick={loginalert}>로 그 인</button>
                 <div className="findbox">
-                    <Link to="/idfind"><span className="idfind">아이디 찾기</span></Link>
-                    <Link to="/passwordfind"><sapn className="passfind">비밀번호 찾기</sapn></Link><br/>
+                    <Link to="/Idfind"><span className="idfind">아이디 찾기</span></Link>
+                    <Link to="/Passwordfind"><sapn className="passfind">비밀번호 찾기</sapn></Link><br/>
                     <span className="join">회원가입</span>
                 </div>
             </div>

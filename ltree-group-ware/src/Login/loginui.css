@@ -55,7 +55,8 @@
     margin-top:20px;
 }
 .idfind,
-.passfind {
+.passfind,
+.idfind1 {
     font-size:13px;
 }
 a {
@@ -91,22 +92,28 @@ a {
     font-weight: bold;
     color:gray;
     border:1px solid white;
+    margin-bottom: 10px;
+}
+.idfind1 {
+    margin-left: 40px;
 }
 .loginpage {
     margin-top:10px;
     float:right;
 }
-.red {
+.red,
+.red1 {
     display:block;
     font-size:15px;
     font-weight: bold;
     margin-top:10px;
     text-align: left;
 }
-.red1 {
+.red2 {
     display: block;
     font-size:15px;
     font-weight: bold;
-    margin-top:10px;
+    margin-top:-10px;
     text-align: left;
+    margin-bottom: 15px;
 }
