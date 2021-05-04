@@ -8,7 +8,7 @@ const Home = () => {
 
             {/* TOP */}
             <div className="top">
-                <div className="index-user">asda</div>
+                <div className="index-user">관리자</div>
                 <img className="topimg" src={ltree_logo} />
                 <div className="index-login"></div>
             </div>
