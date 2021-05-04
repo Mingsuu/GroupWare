@@ -14,6 +14,7 @@ import Notice from './Notice/Notice'
 function App() {
   return (
       <div className="App">
+        <Notice/>
       </div>
 
   );

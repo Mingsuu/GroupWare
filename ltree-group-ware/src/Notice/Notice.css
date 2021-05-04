@@ -35,7 +35,7 @@
     display: block;
     width:1100px;
     padding-left: 20px;
-    color:white;
+    color:black;
 }
 .mid-leftbox {
     outline: 1px solid #9F9F9F;
@@ -67,10 +67,10 @@
 }
 
 .noticebox {
-    outline: 1px solid #9F9F9F;
     width: 1180px;
     height: 530px;
-    background-color:rgb(50,134,84);
+    background-color:white;
+    border:none;
     right: 20%;
     display: inline-block;
     margin-left: -300px;
@@ -93,7 +93,7 @@
 
 }
 .notice-board tr, td ,th {
-    border:1px solid white;
+    border:1px solid black;
     border-collapse:collapse;
     background-color: white;
     color:black;
