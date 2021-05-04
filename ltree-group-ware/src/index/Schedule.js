@@ -3,7 +3,7 @@ import './Home.css';
 import ltree_logo from '../Image/ltree_logo.png';
 
 const Schedule = () => {
-    const [value, onchange] = useState(new Date());
+    
     return (
 
         <div className="container">
@@ -11,7 +11,7 @@ const Schedule = () => {
             {/* TOP */}
             <div className="top">
                 <div className="index-user">관리자</div>
-                <img className="topimg" src={ltree_logo} />
+                <img className="topimg" src={ltree_logo} alt='logo' />
                 <div className="index-login"></div>
             </div>
 

@@ -67,7 +67,7 @@ const Loginpage = () => {
             </Switch>
             <div className="loginbox1">
                 <div className="loginlogo">
-                    <img src={ltree_logo} width='250' height='165'/>
+                    <img src={ltree_logo} alt='logo' width='250' height='165'/>
                 </div>
                 <input id="id" className="idbox" placeholder="사용자 계정" value={idbox} onChange={idtext} ref={idRef} onKeyPress={keypress}></input>
                 {idcheck && <span className="red" style={{color : 'tomato'}}>아이디를 입력해주세요.</span>}
