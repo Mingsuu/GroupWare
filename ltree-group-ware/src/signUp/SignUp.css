@@ -1,7 +1,7 @@
 .signup {
     background: linear-gradient(rgb(50,134,84),rgb(77,89,147));
     width:100%;
-    height:80vh;
+    height:82vh;
     margin:auto;
     padding-top:150px;
 }
@@ -14,11 +14,10 @@
 .is {
     width: 450px;
     display:inline-block;
-    
 }
 
 .loginlogo1 {
-    margin-bottom:10px;
+    
     display: block;
 }
 .joinbox{
@@ -35,6 +34,7 @@
     float:right;
     height: 30px;
     width: 100px;
+    border-radius: 10px;
 }
 
 input {
@@ -47,17 +47,29 @@ input {
 
 .X {
     font-size: 1.5rem;
-    line-height: 1rem;
     font-weight: 600;
-    float: left;
-    vertical-align: middle;
     color: #e64980;
+    float: left;
    }
 
 .✓ {
     font-size: 1.2rem;
-    line-height: 1rem;
     color: #3bc9db;
     font-weight: 800;
+    float: left;
    }
+
+   .pass-show {
+    position: absolute;
+    margin-left: 280px;
+    margin-top: 4px;
+    cursor: pointer;
+  }
+
+  .sign-up-button{
+      width: 208px;
+      height: 31px;
+      border-radius: 10px;
+      margin-left: 58px;
+  }
 
