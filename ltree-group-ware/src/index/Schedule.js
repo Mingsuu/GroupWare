@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Home.css';
 import ltree_logo from '../Image/ltree_logo.png';
 
