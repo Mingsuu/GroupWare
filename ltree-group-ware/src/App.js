@@ -7,6 +7,7 @@ import Passfind from './Login/Passfind';
 import { BrowserRouter,Route,Link,Switch } from 'react-router-dom';
 import Home from './index/Home';
 import Schedule from './index/Schedule';
+import Notice from './Notice/Notice'
 
 
 

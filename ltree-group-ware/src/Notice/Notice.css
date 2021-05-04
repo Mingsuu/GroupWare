@@ -1,0 +1,153 @@
+
+.top {
+    display: block;
+    margin-bottom: 20px;
+    border: 1px solid #bcbcbc;
+    text-align: left;
+    background: rgb(50,134,84);
+    height:130px;
+}
+
+.index-login {
+    text-align: right;
+}
+.index-user {
+    position: absolute;
+    left: 90%;
+    margin-top: 40px;
+    font-size: 30px;
+    color:white;
+}
+.topimg {
+    width: 200px; 
+    height: 120px;
+    margin-left:15px;
+    margin-top:10px;
+}
+.mid {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.ntitle{
+    text-align: left;
+    display: block;
+    width:1100px;
+    padding-left: 20px;
+    color:white;
+}
+.mid-leftbox {
+    outline: 1px solid #9F9F9F;
+    width: 250px;
+    height: 100%;
+    background-color: rgb(50,134,84);
+    float: left;
+}
+.mid-leftbox1 {
+    width: 235px;
+    height: 515px;
+    margin-left: 7px;
+    margin-top:-7px;
+    background-color: white;
+}
+.mid-left ul li {
+    font-size: 30px;
+}
+.mid-left ul li {
+    text-align: left;
+}
+.mid-right {
+    position: absolute;
+    top: 0px;
+    left: 600px;
+    width: 380px;
+    height: 500px;
+    
+}
+
+.noticebox {
+    outline: 1px solid #9F9F9F;
+    width: 1180px;
+    height: 530px;
+    background-color:rgb(50,134,84);
+    right: 20%;
+    display: inline-block;
+    margin-left: -300px;
+}
+
+.board {
+    position: absolute;
+    outline: 1px solid #9F9F9F;
+    width: 380px;
+    height: 250px;
+    background-color: #FFE400;
+    left: 115%;
+}
+.notice-boardbox {
+    display:inline-block;
+    width: 950px;
+    height: 400px;
+    color:white;
+    padding-top: 20px;
+
+}
+.notice-board tr, td ,th {
+    border:1px solid white;
+    border-collapse:collapse;
+    background-color: white;
+    color:black;
+    border-radius: 1px;
+}
+.boardbottom{
+    vertical-align: bottom;
+    margin-top: 15px;
+}
+
+.check {
+    position: absolute;
+    outline: 1px solid #9F9F9F;
+    width: 380px;
+    height: 250px;
+    background-color: tomato;
+    left: 115%;
+    top: 55%;
+}
+
+.bottom {
+    top: auto;
+    background-color:lightgrey;
+    vertical-align: bottom;
+     
+}
+.container {
+    height:71vh;
+}
+
+.notice-board-no {
+    width: 150px;
+    height: 30px;
+    background-color: white;
+    color:black;
+}
+
+.notice-board-title {
+    width: 400px;
+    background-color: white;
+    color:black;
+}
+.notice-board-writer {
+    width: 150px;
+    background-color: white;
+    color:black;
+}
+.notice-board-dateCreated {
+    width: 200px;
+    background-color: white;
+    color:black;
+}
+.notice-board-views {
+    width: 70px;
+    background-color: white;
+    color:black;
+}
