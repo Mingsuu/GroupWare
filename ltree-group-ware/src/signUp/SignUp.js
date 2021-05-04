@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ltree_logo from '../Image/ltree_logo.png';
 import './SignUp.css';
+import {Link} from 'react-router-dom';
 
 function SignUp() {
 
@@ -118,7 +119,7 @@ function SignUp() {
             </div>
 
             <div>
-                <button className='sign-up-button' onClick={audit}>회원가입</button>
+                <Link to="/"><button className='sign-up-button' onClick={audit}>회원가입</button></Link>
             </div>
 
         </div>
