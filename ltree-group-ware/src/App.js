@@ -3,7 +3,6 @@ import React from 'react';
 import './App.css';
 import Loginpage from './Login/Login';
 import SignUp from './signUp/SignUp';
-import Loginpage from './Login/Login';
 import Idfind from './Login/Idfind';
 import Passfind from './Login/Passfind';
 import { BrowserRouter,Route,Link,Switch } from 'react-router-dom';
