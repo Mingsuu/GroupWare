@@ -77,7 +77,7 @@ const Loginpage = () => {
                 <div className="findbox">
                     <Link to="/Idfind"><span className="idfind">아이디 찾기</span></Link>
                     <Link to="/Passwordfind"><sapn className="passfind">비밀번호 찾기</sapn></Link><br/>
-                    <Link to="/SingUp"><span className="join">회원가입</span></Link>
+                    <Link to="/SignUp"><span className="join">회원가입</span></Link>
                 </div>
             </div>
         </div>

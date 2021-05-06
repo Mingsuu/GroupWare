@@ -33,7 +33,7 @@ const Passfind =() => {
         <div className="loginbox">
             <div className="loginbox1">
                 <div className="loginlogo">
-                    <img src={ltree_logo} width='250' height='165'/>
+                    <img src={ltree_logo} width='250' height='165' alt='logo'/>
                 </div>
                
                 <div className="findbox">

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ltree_logo from '../Image/ltree_logo.png';
 import './SignUp.css';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 function SignUp() {
 
@@ -73,6 +74,8 @@ function SignUp() {
         pc.current.type == 'password' ? pc.current.type = 'text' : pc.current.type = 'password';
     }
 
+    
+
     useEffect(() => {
         if (passCheck == '') {
             setPassMessage('');
@@ -98,7 +101,7 @@ function SignUp() {
                 <input className='uName' onChange={changeValue} value={userInfo.uName} ref={name} /></div>
                 <div className='is'><span className="joinbox">아이디 : &ensp;</span>
                 <input className='id' onChange={changeValue} value={userInfo.id} ref={id} />
-                <button className="jung">중복체크</button></div> 
+                <button className="jung" onClick={search}>중복체크</button></div> 
                 <div className='is'><span className="joinbox">비밀번호 : &ensp;</span>
                 <input className='pass' onChange={changeValue} value={userInfo.pass} ref={pass} type="password" />
                 <div className='pass-show' onClick = {showPass}>👁‍🗨</div></div>
