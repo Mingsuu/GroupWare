@@ -1,6 +1,7 @@
 import React from 'react';
 import './Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
+import ltree_logo1 from '../Image/ltree.jpg';
 const Home = () => {
     return (
 
@@ -14,7 +15,7 @@ const Home = () => {
             </div>
 
             {/* MID */}
-            <div className="mid">
+            <div className="midbox">
 
                 {/* MID-LEFT */}
                 <div className="mid-leftbox">
@@ -22,7 +23,6 @@ const Home = () => {
                         <ul>
                             <li className="Menu">공지사항</li>
                             <li className="Menu">업무 게시판</li>
-                            <li className="Menu">일정표</li>
                             <li className="Menu">직원 조회</li>
                         </ul>
                     </div>
@@ -92,14 +92,15 @@ const Home = () => {
                                         <td>124</td>
                                     </tr>
                                     <div className="boardbottom">
-                                        <select>
+                                        <select className="optionbox">
                                             <option value="">--선택--</option>
                                             <option value="">제목</option>
                                             <option value="">내용</option>
                                             <option value="">작성자</option>
                                         </select>
-                                        <input type="text"></input>
-                                        <button>검색</button>
+                                        <input className="searchtext" type="text"></input>
+                                        <button className="searchbox" >검색</button>
+                                        <button className="notice_writebtn">글쓰기</button>
                                     </div>
                                 </table>
                             </form>
@@ -109,9 +110,9 @@ const Home = () => {
             </div>
 
             {/* BOTTOM */}
-            <div className="bottom">
+            {/* <div className="bottom">
                 <h1>copyright 2021 ltree</h1>
-            </div>
+            </div> */}
 
         </div>
     );
