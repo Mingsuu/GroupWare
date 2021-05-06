@@ -92,6 +92,7 @@
     height: 400px;
     color:white;
     padding-top: 20px;
+    margin-left: 100px;
 
 }
 .notice-board tr, td ,th {
@@ -101,6 +102,7 @@
     color:black;
     border-radius: 1px;
     height: 30px;
+    text-align: center;
 }
 .boardbottom{
     vertical-align: bottom;
@@ -167,7 +169,7 @@
 .optionbox {
     height: 21px;
     margin-right: 5px;
-    margin-left: 30px;
+    margin-left: 300px;
 }
 .searchbox {
     height: 28px;

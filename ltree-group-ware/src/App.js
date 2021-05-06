@@ -58,18 +58,39 @@ const App = () => {
   };
 
   return (
-    <div>
-      <input onChange={handleChange} />
-      <button onClick={submitId}>Submit</button>
+    // <div>
+    //   <input onChange={handleChange} />
+    //   <button onClick={submitId}>Submit</button>
 
-      <h2>데이터가져오기</h2>
-      <p>{data.map(n => {
-        return (
-          <p>{n.name}</p>
-        );
-      })}</p>
-      <button onClick={onCall}>가져오기</button>
-    </div>
+    //   <h2>데이터가져오기</h2>
+    //   <p>{data.map(n => {
+    //     return (
+    //       <p>{n.name}</p>
+    //     );
+    //   })}</p>
+    //   <button onClick={onCall}>가져오기</button>
+    // </div>
+    <BrowserRouter>
+      <div className="App">
+        {/* <Noticewrite/> */}
+      <Switch>
+          <Route path="/" component={Loginpage} exact/>
+          <Route path="/idfind" component={Idfind} exact/>
+          <Route path="/passwordfind" component={Passfind} exact/>
+          <Route path="/SingUp" component={SignUp} exact/>
+          <Route
+              // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
+              render={({ location }) => (
+              <div>
+                  <p>{location.pathname}</p>
+                  <h2>이 페이지는 존재하지 않습니다.</h2>
+                  
+              </div>
+              )}
+          />
+      </Switch>
+      </div>
+    </BrowserRouter>
   )
 }
 

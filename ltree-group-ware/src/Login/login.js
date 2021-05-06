@@ -12,8 +12,9 @@ const Loginpage = () => {
     const [passbox, setPassbox] = useState('');
     const [idcheck, setIdcheck] = useState(false);
     const [pcheck, setPcheck] = useState(false);
+  
 
-    const loginalert = () => {
+    const loginalert = (json) => {
         if(idbox === ''){
             idRef.current.focus();
             setPcheck(false);
@@ -22,8 +23,12 @@ const Loginpage = () => {
             setIdcheck(false);
             passRef.current.focus();
             return setPcheck(true);
+        }else if(json[0].ming === 1){
+            alert("로그인 성공");
+        }else{
+            alert("가입된 정보가 없습니다.");
         }
-        alert("로그인 성공");
+        
     }
     
     const idtext = (e) => {
@@ -47,6 +52,23 @@ const Loginpage = () => {
         }
     }
 
+    const Login = () => {
+        const post = {id:idbox,pass:passbox}
+        
+        fetch("http://localhost:3001/Login", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(post),
+        })
+          .then((res) => res.json())
+          .then((json) => {
+            console.log(json[0].ming);
+            loginalert(json);
+          });
+    
+      };
 
 
     return (
@@ -73,7 +95,7 @@ const Loginpage = () => {
                 {idcheck && <span className="red" style={{color : 'tomato'}}>아이디를 입력해주세요.</span>}
                 <input id="pass" className="passbox" type="password" placeholder="비밀번호" value={passbox} onChange={passtext} ref={passRef} onKeyPress={keypress}></input>
                 {pcheck && <span className="red1" style={{color : 'tomato'}}>비밀번호를 입력해주세요.</span>}
-                <button className="loginbtn" type="button" onClick={loginalert}>로 그 인</button>
+                <button className="loginbtn" type="button" onClick={Login}>로 그 인</button>
                 <div className="findbox">
                     <Link to="/Idfind"><span className="idfind">아이디 찾기</span></Link>
                     <Link to="/Passwordfind"><sapn className="passfind">비밀번호 찾기</sapn></Link><br/>
