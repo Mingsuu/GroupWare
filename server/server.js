@@ -19,32 +19,26 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.post("/idplz", (req,res)=>{
-    const test = req.body.test;
-    // console.log(req.body);
-    connection.query("INSERT INTO test values (?)",[test],
+app.post("/signUp", (req,res)=>{
+    const user = req.body;
+    
+    connection.query("INSERT INTO USERS(reg_ID, userEMAIL, userID, userPWD, userNAME, userADDR, userTELL, userSSN, userDATE)"
+    +" values (?,?,?,?,?,?,?,?,?)"
+    ,[user.id, user.email, user.id, user.pass, user.uName, user.addr, user.tell, user.ssn, user.comeIn],
     function(err,rows,fields){
         if(err){
             console.log("실패");
-            // console.log(err);
+             console.log(err);
+             connection.rollback();
         }else{
             console.log("성공");
-            // console.log(rows);
-        };
+             console.log(rows);
+             connection.commit();
+        }
+        
     });
 });
 
-app.post("/callbody", (req,res)=>{
-    connection.query("select * from test",
-    function(err,rows,fields){
-        if(err){
-            console.log("불러오기 실패");
-        }else{
-            console.log("불러오기 성공");
-            res.send(rows);
-        }
-    })
-})
 
 
 app.listen(port, ()=>{
