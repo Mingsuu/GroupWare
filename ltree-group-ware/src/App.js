@@ -13,7 +13,7 @@ import Noticewrite from './Notice/Notice write'
 
 const App = () => {
 
-  const [data, setData] = useState([{ name: "" }]);
+  const [data, setData] = useState([{ name: "" }]); //안녕
   const [nameTest, setNameTest] = useState();
 
   const handleChange = (e) => {
