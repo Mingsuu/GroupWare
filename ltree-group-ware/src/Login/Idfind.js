@@ -1,7 +1,6 @@
 import React,{ useState, useRef} from 'react';
 import './Loginui.css';
 import ltree_logo from '../Image/ltree_logo.png';
-import Loginpage from './Login';
 import {Link} from 'react-router-dom';
 
 const Idfind =() => {

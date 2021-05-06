@@ -22,7 +22,7 @@ function App() {
           <Route path="/" component={Loginpage} exact/>
           <Route path="/idfind" component={Idfind} exact/>
           <Route path="/passwordfind" component={Passfind} exact/>
-          <Route path="/SingUp" component={SignUp} exact/>
+          <Route path="/SignUp" component={SignUp} exact/>
           <Route
               // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
               render={({ location }) => (
