@@ -24,11 +24,13 @@
     margin-left:15px;
     margin-top:10px;
 }
-.mid {
+.midbox {
     margin-top: 20px;
     width: 100%;
-    height: 100%;
+    height: 79.5vh;
     position: relative;
+    background-image: url(../Image/ltree.jpg);
+    background-size: cover;
 }
 .ntitle{
     text-align: left;
@@ -69,7 +71,7 @@
 .noticebox {
     width: 1180px;
     height: 530px;
-    background-color:white;
+    background-color:none;
     border:none;
     right: 20%;
     display: inline-block;
@@ -151,4 +153,50 @@
     width: 70px;
     background-color: white;
     color:black;
+}
+.notice_writebtn {
+    float:right;
+    margin-right: 20px;
+    width: 70px;
+    height: 30px;
+    font-weight: bold;
+}
+.searchtext {
+    margin-right: 5px;
+}
+.optionbox {
+    height: 21px;
+    margin-right: 5px;
+    margin-left: 30px;
+}
+.searchbox {
+    height: 28px;
+    width: 60px;
+    font-weight: bold;
+}
+.notice_writebtn,
+.searchtext,
+.optionbox,
+.searchbox {
+    border-radius: 3px;
+    border: 1px solid lightgray;
+}
+.notice_writebtn:hover,
+.searchbox:hover {
+    background-color: gray;
+    color:white;
+}
+/*공지사항 글쓰기 css*/
+.wtitle,
+.wtitlebox {
+    display: inline-block;
+    float:left;
+}
+.wtitle {
+    border: 1px solid red;
+    width: 100px;
+    margin-left: 200px;
+}
+.wtitlebox {
+    margin-left: 100px;
 }
