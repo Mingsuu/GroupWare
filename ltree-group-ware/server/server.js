@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
     host : "localhost",
     user : "root", //mysql의 id
     password : "1111", //mysql의 password
-    database : "groupware", //사용할 데이터베이스 각자 바꿔서 사용해요
+    database : "groupware", //사용할 데이터베이스 각자 바꿔서 사용해요!!
 });
 
 
