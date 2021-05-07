@@ -164,6 +164,3 @@ app.post('/idCheck', (req,res)=>{
 app.listen(port, ()=>{
     console.log(`Connect at http://localhost:${port}`);
 })
-
-
-
