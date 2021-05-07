@@ -108,6 +108,10 @@ app.post("/Notice", (req,res)=>{
             console.log("불러오기 성공");
             res.send(rows);
             console.log(rows);
+        }
+    })
+});
+
 
 // 회원가입 sql쿼리
 app.post("/signUp", (req,res)=>{
