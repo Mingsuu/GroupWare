@@ -1,7 +1,6 @@
 import React from 'react';
 import './Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
-import ltree_logo1 from '../Image/ltree.jpg';
 const Home = () => {
     return (
 

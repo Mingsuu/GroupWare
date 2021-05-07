@@ -76,7 +76,7 @@ const Loginpage = () => {
                 <button className="loginbtn" type="button" onClick={loginalert}>로 그 인</button>
                 <div className="findbox">
                     <Link to="/Idfind"><span className="idfind">아이디 찾기</span></Link>
-                    <Link to="/Passwordfind"><sapn className="passfind">비밀번호 찾기</sapn></Link><br/>
+                    <Link to="/Passwordfind"><span className="passfind">비밀번호 찾기</span></Link><br/>
                     <Link to="/SignUp"><span className="join">회원가입</span></Link>
                 </div>
             </div>

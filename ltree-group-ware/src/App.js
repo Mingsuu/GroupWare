@@ -15,8 +15,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <Link to="/Idfind"><span className="Idfind">아이디 찾기</span></Link>
-        <Link to="/Passwordfind"><sapn className="Passfind">비밀번호 찾기</sapn></Link><br/> */}
       
       <Switch>
           <Route path="/" component={Loginpage} exact/>

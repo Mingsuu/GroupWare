@@ -1,7 +1,6 @@
 import React from 'react';
 import './Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
-import ltree_logo1 from '../Image/ltree.jpg';
 const Home = () => {
     return (
 
@@ -10,7 +9,7 @@ const Home = () => {
             {/* TOP */}
             <div className="top">
                 <div className="index-user">관리자</div>
-                <img className="topimg" src={ltree_logo} />
+                <img className="topimg" src={ltree_logo} alt='logo' />
                 <div className="index-login"></div>
             </div>
 
