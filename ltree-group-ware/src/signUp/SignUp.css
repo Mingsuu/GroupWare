@@ -14,6 +14,7 @@
 .is {
     width: 450px;
     display:inline-block;
+    overflow: hidden;
 }
 
 .loginlogo1 {
@@ -29,12 +30,6 @@
     float:left;
     color: white;
     font-size: 13pt;
-}
-.jung {
-    float:right;
-    height: 30px;
-    width: 100px;
-    border-radius: 10px;
 }
 
 .signup input {

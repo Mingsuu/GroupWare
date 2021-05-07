@@ -16,11 +16,11 @@ var connection = mysql.createConnection({
     database : "groupware", //사용할 데이터베이스 각자 바꿔서 사용해요!!
 });
 
-connection.connect();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+
 
 
 /* 로그인 하기 */
@@ -108,9 +108,49 @@ app.post("/Notice", (req,res)=>{
             console.log("불러오기 성공");
             res.send(rows);
             console.log(rows);
+
+// 회원가입 sql쿼리
+app.post("/signUp", (req,res)=>{
+    const user = req.body;
+    
+    connection.query("INSERT INTO USERS(reg_ID, userEMAIL, userID, userPWD, userNAME, userADDR, userTELL, userSSN, userDATE)"
+    +" values (?,?,?,?,?,?,?,?,?)"
+    ,[user.id, user.email, user.id, user.pass, user.uName, user.addr, user.tell, user.ssn, user.comeIn],
+    function(err,rows,fields){
+        if(err){
+            console.log("회원가입 실패");
+             console.log(err);
+             connection.rollback();
+        }else{
+            console.log("회원가입 성공");
+             console.log(rows);
+             connection.commit();
         }
-    })
-})
+        
+    });
+});
+
+//아이디 중복체크 쿼리
+app.post('/idCheck', (req,res)=>{
+    const user = req.body;
+    
+    connection.query("SELECT userID FROM USERS WHERE userID = (?)", [user.id],
+    function(err,rows,fields){
+        if(err){
+            console.log("아이디 중복체크 실패");
+             console.log(err);
+             connection.rollback();
+        }else{
+            console.log("아이디 중복체크 성공");
+             console.log(rows);
+             res.send(rows);
+             connection.commit();
+
+        }
+        
+    });
+});
+
 
 
 
