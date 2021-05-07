@@ -18,10 +18,14 @@ const Passfind =() => {
         }else if(tellfind === ''){
             tellfindRef.current.focus();
             return setTfcheck(true);
+        }else if(json.length > 0){
+            alert("가입하신 비밀번호는 "+ json[0].userPWD + " 입니다.");
+            setPassfind('');
+            setTellfind('');
+        }else {
+            alert("해당 아이디에 대한 비밀번호가 존재하지 않습니다.");
         }
-        alert("가입하신 비밀번호는 "+ json[0].userPWD + " 입니다.");
-        setPassfind('');
-        setTellfind('');
+        
     }
 
     const passchange = (e) => {

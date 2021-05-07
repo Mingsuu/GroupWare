@@ -13,6 +13,7 @@ const Idfind =() => {
     const [snncheck,setSnncheck] = useState(false);
 
     const idfindalert = (json) => {
+        // console.log("idfind="+json[0].userID);
         if(namebox === ''){
             nameRef.current.focus();
             setSnncheck(false);
@@ -21,12 +22,13 @@ const Idfind =() => {
             setNamecheck(false)
             snnRef.current.focus();
             return setSnncheck(true);
-        }else if(json[0].userID !== ''){
+        }else if(json.length > 0){
             alert("가입하신 아이디는 "+ json[0].userID +" 입니다.");
             setNamebox('');
             setSnnbox('');
         }else{
             alert("가입하신 아이디가 존재하지 않습니다.");
+            
         }
         
     }
@@ -78,7 +80,7 @@ const Idfind =() => {
                 </div>
                
                 <div className="findbox">
-                    <input className="idfindbox" placeholder="가입하신 이름을 입력해주세요." value={namebox} ref={nameRef} onChange={namechange} onKeyPress={keypress}></input><br/>
+                    <input className="idfindbox" placeholder="가입하신 이름을 입력해주세요." value={namebox} ref={nameRef} onChange={namechange}></input><br/>
                     {namecheck && <span className="red2" style={{color : 'tomato'}}>이름을 입력해주세요.</span>}
                     <input className="idfindbox" placeholder="가입하신 주민번호를 ( - 포함 ) 입력해주세요." type="password" 
                         onKeyPress={keypress} onChange={snnchange} ref={snnRef}  value={snnbox}></input><br/>

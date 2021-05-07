@@ -3,7 +3,7 @@ import './Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
 import {Link} from 'react-router-dom';
-const Home = () => {
+const Home = ({history}) => {
 
 const [wtitle, setWtitle] = useState('');
 const [wcontent,setWcontent] = useState('');
@@ -39,7 +39,9 @@ const noticecheck = (e) => {
         setWdate('');
         setWtitle('');
         setWcontent('');
+
     }
+    history.push("/Notice");
 }
 
 

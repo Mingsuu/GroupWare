@@ -83,7 +83,7 @@ app.post("/AddNotice", (req,res)=>{
     const wtitle = req.body.wt;
     const wcontent = req.body.wc;
     const wdate = req.body.wd;
-    connection.query("insert into Notice values(?, ?, ?)",[wdate,wtitle,wcontent],
+    connection.query("insert into Notice values(No1,?, ?, ?)",[wdate,wtitle,wcontent],
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");
@@ -99,7 +99,7 @@ app.post("/AddNotice", (req,res)=>{
 
 /*공지사항 select문 */
 app.post("/Notice", (req,res)=>{
-    connection.query("select date_format(today,'%Y-%m-%d') as ndate,ntitle,ncontent from Notice",
+    connection.query("select No1,date_format(today,'%Y-%m-%d') as ndate,ntitle,ncontent from Notice",
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");

@@ -1,13 +1,21 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import './Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
 import {Link} from 'react-router-dom';
 const Home = () => {
+    const [mytable,setMytable] = useState([{ntitle:'',ndate:''}]);
 
-    const noticemap = (json) => {
+    // const noticemap = (ice) => {
+    //     console.log("mapfirts"+ice);
         
-    }
+    //          console.log("No1"+ice.No1);
+    //          console.log("ntitle" +ice.ntitle);
+    //          console.log("ndate"+ice.ndate);
+            
+    //         )
+        
+    // };
 
     useEffect (()=>{
         fetch("http://localhost:3001/Notice", {
@@ -19,10 +27,10 @@ const Home = () => {
             })
             .then((res) => res.json())
             .then((json) => {
-                console.log(json);
-                noticemap(json);
+                console.log("test = " + json);
+                setMytable(json);
             });
-    })
+    },[])
     
 
 
@@ -58,6 +66,7 @@ const Home = () => {
                         <div>
                             <form>
                                 <table className="notice-boardbox">
+                                    <thead>
                                     <tr>
                                         <th className="notice-board-no">번호</th>
                                         <th className="notice-board-title">제목</th>
@@ -65,55 +74,21 @@ const Home = () => {
                                         <th className="notice-board-dateCreated">작성일</th>
                                         <th className="notice-board-views">조회수</th>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>앨트리 업무관련 공지사항 입니다.</td>
-                                        <td>대표</td>
-                                        <td>2021.05.04</td>
-                                        <td>124</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>앨트리 업무관련 공지사항 입니다.</td>
-                                        <td>대표</td>
-                                        <td>2021.05.04</td>
-                                        <td>124</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>앨트리 업무관련 공지사항 입니다.</td>
-                                        <td>대표</td>
-                                        <td>2021.05.04</td>
-                                        <td>124</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>앨트리 업무관련 공지사항 입니다.</td>
-                                        <td>대표</td>
-                                        <td>2021.05.04</td>
-                                        <td>124</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>앨트리 업무관련 공지사항 입니다.</td>
-                                        <td>대표</td>
-                                        <td>2021.05.04</td>
-                                        <td>124</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>앨트리 업무관련 공지사항 입니다.</td>
-                                        <td>대표</td>
-                                        <td>2021.05.04</td>
-                                        <td>124</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>앨트리 업무관련 공지사항 입니다.</td>
-                                        <td>대표</td>
-                                        <td>2021.05.04</td>
-                                        <td>124</td>
-                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {mytable.map((ice)=>{
+                                            return(
+                                                <tr key={ice.No1}>
+                                                    <td>{ice.No1}</td>
+                                                    <td>{ice.ntitle}</td>
+                                                    <td>대표</td>
+                                                    <td>{ice.ndate}</td>
+                                                    <td>124</td>
+                                                </tr>
+                                            )
+                                        })} 
+                                    </tbody>
+                                    </table>
                                     <div className="boardbottom">
                                         <select className="optionbox">
                                             <option value="">--선택--</option>
@@ -125,7 +100,8 @@ const Home = () => {
                                         <button className="searchbox" >검색</button>
                                         <Link to="/Noticewrite"><button className="notice_writebtn">글쓰기</button></Link>
                                     </div>
-                                </table>
+                                   
+                                
                             </form>
                         </div>
                     </div>

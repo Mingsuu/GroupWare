@@ -9,6 +9,7 @@ import { BrowserRouter,Route,Link,Switch } from 'react-router-dom';
 import Home from './index/Home';
 import Schedule from './index/Schedule';
 import Notice from './Notice/Notice'
+import NoticeWrite from './Notice/Notice write';
 
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
         <Link to="/Passwordfind"><sapn className="Passfind">비밀번호 찾기</sapn></Link><br/> */}
       
       <Switch>
+        <Route path="/NoticeWrite" component={NoticeWrite} exact />
+          <Route path="/Notice" component={Notice} exact />
           <Route path="/" component={Loginpage} exact/>
           <Route path="/idfind" component={Idfind} exact/>
           <Route path="/passwordfind" component={Passfind} exact/>
