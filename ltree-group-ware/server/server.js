@@ -23,21 +23,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-// app.post("/idplz", (req,res)=>{
-//     const test = req.body.test;
-//     // console.log(req.body);
-//     connection.query("INSERT INTO test values (?)",[test],
-//     function(err,rows,fields){
-//         if(err){
-//             console.log("실패");
-//             // console.log(err);
-//         }else{
-//             console.log("성공");
-//             // console.log(rows);
-//         };
-//     });
-// });
-
+/* 로그인 하기 */
 app.post("/Login", (req,res)=>{
     const id = req.body.id;
     const pass = req.body.pass;
@@ -56,6 +42,88 @@ app.post("/Login", (req,res)=>{
 })
 
 
+/*아이디 찾기 */
+app.post("/Findid", (req,res)=>{
+    const nbox = req.body.nbox;
+    const sbox = req.body.sbox;
+    connection.query("select userID from USERS where userNAME=(?) and userSSN=(?)",[nbox,sbox],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+            console.log(nbox,sbox);
+        }
+    })
+})
+
+/*비밀번호 찾기 */
+app.post("/Findpass", (req,res)=>{
+    const pfbox = req.body.pfbox;
+    const tfbox = req.body.tfbox;
+    connection.query("select userPWD from USERS where USERID =(?) and userTELL =(?)",[pfbox,tfbox],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+            console.log(pfbox,tfbox);
+        }
+    })
+})
+
+/*공지사항 insert문 */
+app.post("/AddNotice", (req,res)=>{
+    const wtitle = req.body.wt;
+    const wcontent = req.body.wc;
+    const wdate = req.body.wd;
+    connection.query("insert into Notice values(?, ?, ?)",[wdate,wtitle,wcontent],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+            console.log(wdate,wtitle,wcontent);
+        }
+    })
+})
+
+/*공지사항 select문 */
+app.post("/Notice", (req,res)=>{
+    connection.query("select date_format(today,'%Y-%m-%d') as ndate,ntitle,ncontent from Notice",
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+})
+
+
+
+
+
+
+
+
+
+
 app.listen(port, ()=>{
     console.log(`Connect at http://localhost:${port}`);
 })
+
+
+

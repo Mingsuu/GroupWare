@@ -1,8 +1,31 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import './Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
+import {Link} from 'react-router-dom';
 const Home = () => {
+
+    const noticemap = (json) => {
+        
+    }
+
+    useEffect (()=>{
+        fetch("http://localhost:3001/Notice", {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(),
+            })
+            .then((res) => res.json())
+            .then((json) => {
+                console.log(json);
+                noticemap(json);
+            });
+    })
+    
+
+
     return (
 
         <div className="container">
@@ -100,7 +123,7 @@ const Home = () => {
                                         </select>
                                         <input className="searchtext" type="text"></input>
                                         <button className="searchbox" >검색</button>
-                                        <button className="notice_writebtn">글쓰기</button>
+                                        <Link to="/Noticewrite"><button className="notice_writebtn">글쓰기</button></Link>
                                     </div>
                                 </table>
                             </form>

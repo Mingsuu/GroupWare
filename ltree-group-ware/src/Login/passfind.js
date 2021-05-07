@@ -5,15 +5,23 @@ import {Link} from 'react-router-dom';
 
 const Passfind =() => {
     const passfindRef = useRef();
+    const tellfindRef = useRef();
     const [passfind, setPassfind] = useState('');
+    const [tellfind, setTellfind] = useState('');
     const [ididcheck, setIdidcheck] = useState(false);
+    const [tfcheck, setTfcheck] = useState(false);
 
-    const passfindalert = () => {
+    const passfindalert = (json) => {
         if(passfind === ''){
             passfindRef.current.focus();
             return setIdidcheck(true);
+        }else if(tellfind === ''){
+            tellfindRef.current.focus();
+            return setTfcheck(true);
         }
-        alert("비밀번호 찾기성공");
+        alert("가입하신 비밀번호는 "+ json[0].userPWD + " 입니다.");
+        setPassfind('');
+        setTellfind('');
     }
 
     const passchange = (e) => {
@@ -22,12 +30,36 @@ const Passfind =() => {
             return setIdidcheck(false);
         }
     }
+    const tellchange = (e) => {
+        setTellfind(e.target.value);
+        if(tellfind !== ''){
+            return setTfcheck(false);
+        }
+    }
 
     const keypress = (e) => {
         if(e.key === 'Enter'){
-            passfindalert();
+            findpass();
         }
     }
+
+    const findpass = () => {
+        const post = {pfbox:passfind,tfbox:tellfind}
+        
+        fetch("http://localhost:3001/Findpass", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(post),
+        })
+          .then((res) => res.json())
+          .then((json) => {
+            console.log(json[0]);
+            passfindalert(json);
+          });
+      };
+
 
     return(
         <div className="loginbox">
@@ -39,7 +71,9 @@ const Passfind =() => {
                 <div className="findbox">
                     <input className="passfindbox" placeholder="가입하신 아이디를 입력해주세요." value={passfind} ref={passfindRef} onChange={passchange} onKeyPress={keypress}></input><br/>
                     {ididcheck && <span className="red2" style={{color : 'tomato'}}>아이디를 입력해주세요.</span>}
-                    <button className="passbtn" onClick={passfindalert}>비밀번호 찾기</button><br/>
+                    <input className="passfindbox" placeholder="가입하신 전화번호를 입력해주세요." value={tellfind} ref={tellfindRef} onChange={tellchange} onKeyPress={keypress}></input><br/>
+                    {tfcheck && <span className="red2" style={{color : 'tomato'}}>전화번호를 입력해주세요.</span>}
+                    <button className="passbtn" onClick={findpass}>비밀번호 찾기</button><br/>
                     <Link to="/Idfind"><span className="idfind1">아이디 찾기</span></Link>
                     <Link to="/"><span className="loginpage">로그인</span></Link>
                 </div>

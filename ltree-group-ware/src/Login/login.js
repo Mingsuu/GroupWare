@@ -67,16 +67,15 @@ const Loginpage = () => {
             console.log(json[0].ming);
             loginalert(json);
           });
-    
       };
 
 
     return (
         
         <div className="loginbox">
-            <Switch>
+            {/* <Switch>
                 <Route path="/idfind" component={Idfind} exact/>
-                <Route path="/passwordfind" component={Passfind} exact/>
+                <Route path="/passwordfind" component={Passfind} exact/> */}
                 {/* <Route
                     // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
                     render={({ location }) => (
@@ -86,7 +85,7 @@ const Loginpage = () => {
                     </div>
                     )}
                 /> */}
-            </Switch>
+            {/* </Switch> */}
             <div className="loginbox1">
                 <div className="loginlogo">
                     <img src={ltree_logo} alt='logo' width='250' height='165'/>
