@@ -2,10 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ltree_logo from '../Image/ltree_logo.png';
 import './SignUp.css';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-function SignUp() {
+function SignUp({ history }) {
 
     const [userInfo, setUserInfo] = useState({
         reg_id: '',
@@ -29,6 +27,7 @@ function SignUp() {
     const [passCheck, setPassCheck] = useState('');
     const [passMessage, setPassMessage] = useState('');
     const [pnp, setPnp] = useState('');
+    const [idCheck, setIdCheck] = useState('');
 
     const name = useRef();
     const id = useRef();
@@ -45,7 +44,7 @@ function SignUp() {
         const { value, className } = e.target;
         setUserInfo({
             ...userInfo,
-            [className]: String(value)
+            [className]: value
         });
     }
 
@@ -62,19 +61,26 @@ function SignUp() {
         userInfo.addr == '' ? (condition++, addr.current.focus()) : condition--;
         userInfo.comeIn == '' ? (condition++, comeIn.current.focus()) : condition--;
 
-        if (condition == -9) {
-            fetch("http://localhost:3001/signUp", {
-                method: "post",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(userInfo),
-            })
-                .then((res) => res.json())
-                .then((json) => {
-                    console.log(json)
-                });
-            alert('회원가입에 성공하였습니다.');
+
+        if (condition == -9 && idCheck) {
+            if (confirm('회원가입을 하시겠습니까?')) {
+                fetch("http://localhost:3001/signUp", {
+                    method: "post",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(userInfo),
+                })
+                    .then((res) => res.json())
+                    .then((json) => {
+                        console.log(json)
+                    });
+                alert('회원가입에 성공하였습니다.');
+            } else {
+                history.push('/')
+            }
+        } else {
+            alert('빈칸을 다 채워주십시오.');
         }
     }
 
@@ -85,7 +91,34 @@ function SignUp() {
         pc.current.type == 'password' ? pc.current.type = 'text' : pc.current.type = 'password';
     }
 
+    const idDuplicateCheck = () => {
+        if (!userInfo.id == '') {
+            fetch("http://localhost:3001/idCheck", {
+                method: "post",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(userInfo),
+            })
+                .then((res) => res.json())
+                .then((json) => {
+                    if(json.length > 0) {
+                        setIdCheck('rename');
+                        id.current.focus();
+                    }else {
+                        setIdCheck('ok');
+                    } 
+                });
+        }
+    }
 
+    useEffect(() => {
+        if(idCheck == 'ok') {
+            alert('사용가능한 아이디입니다.');
+        }else if(idCheck == 'rename') {
+            alert('이미 존재하는 아이디입니다.');
+        }
+    },[idCheck]);
 
     useEffect(() => {
         if (passCheck == '') {
@@ -111,8 +144,7 @@ function SignUp() {
                 <div className='is'><span className="joinbox">이름 : &ensp;</span>
                     <input className='uName' onChange={changeValue} value={userInfo.uName} ref={name} /></div>
                 <div className='is'><span className="joinbox">아이디 : &ensp;</span>
-                    <input className='id' onChange={changeValue} value={userInfo.id} ref={id} />
-                    <button className="jung" >중복체크</button></div>
+                    <input className='id' onChange={changeValue} value={userInfo.id} ref={id} onBlur={idDuplicateCheck} /></div>
                 <div className='is'><span className="joinbox">비밀번호 : &ensp;</span>
                     <input className='pass' onChange={changeValue} value={userInfo.pass} ref={pass} type="password" />
                     <div className='pass-show' onClick={showPass}>👁‍🗨</div></div>
@@ -133,7 +165,7 @@ function SignUp() {
             </div>
 
             <div>
-                <Link to="/"><button className='sign-up-button' onClick={audit}>회원가입</button></Link>
+                <button className='sign-up-button' onClick={audit}>회원가입</button>
             </div>
 
         </div>
