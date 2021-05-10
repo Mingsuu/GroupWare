@@ -290,3 +290,51 @@
     height:100%;
 
 }
+.pagebtn {
+    list-style: none;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+.pagebtn1 {
+    width: 30px;
+    height: 30px;
+}
+.pagebtn1:hover {
+    background-color: white;
+}
+.pagebtn1:visited {
+    background-color: black;
+}
+.listbox{
+    margin-left: 100px;
+    width: 980px;
+}
+.no1 {
+    width: 40px;
+}
+.no2 {
+    width: 500px;
+}
+.no3 {
+    width: 93px;
+}
+.no4 {
+    width: 220px;
+}
+.no5 {
+    width: 100px;
+}
+.pagebtnbox,
+.pagebtnbigbox{
+    display: inline-block;
+}
+.pagebtnbigbox{
+    margin-left: 70px;
+}
+.wirtebtn{
+    height: 29px;
+    float: right;
+    margin-top:10px;
+    margin-right: 100px;
+}
