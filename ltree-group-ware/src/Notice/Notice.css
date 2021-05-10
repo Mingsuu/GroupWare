@@ -275,3 +275,18 @@
     opacity: 0.5;
     margin-left: 20px;
 }
+.pagination {
+    list-style: none;
+    width:300px;
+}
+.pagination li {
+    display: inline-block;
+    border:1px solid black;
+    width:30px;
+    height: 30px;
+}
+.page-link {
+    width:100%;
+    height:100%;
+
+}
