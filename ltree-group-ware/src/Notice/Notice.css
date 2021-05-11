@@ -1,12 +1,4 @@
 
-.top {
-    display: block;
-    margin-bottom: 20px;
-    border: 1px solid #bcbcbc;
-    text-align: left;
-    background: rgb(50,134,84);
-    height:130px;
-}
 
 .index-login {
     text-align: right;
@@ -25,7 +17,6 @@
     margin-top:10px;
 }
 .midbox {
-    margin-top: 20px;
     width: 100%;
     height: 79.5vh;
     position: relative;
@@ -221,7 +212,7 @@
 .wdatebox,
 .wcontent,
 .wcontentbox {
-    display: inline-block;
+    display: block;
     float:left;
 }
 .wtitle,

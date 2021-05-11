@@ -1,16 +1,14 @@
 import React, { useState,useRef } from 'react';
-import './Loginui.css';
+import './loginui.css';
 import ltree_logo from '../Image/ltree_logo.png';
-import { Route,Link,Switch} from 'react-router-dom';
-import Idfind from './Idfind';
-import Passfind from './Passfind';
+import {Link} from 'react-router-dom';
+
 
 const Loginpage = () => {
     const idRef = useRef();
     const passRef = useRef();
     const [idbox, setIdbox] = useState('');
     const [passbox, setPassbox] = useState('');
-    const [jsonbox, setJsonbox] = useState([]);
     const [idcheck, setIdcheck] = useState(false);
     const [pcheck, setPcheck] = useState(false);
   
@@ -68,7 +66,6 @@ const Loginpage = () => {
           .then((json) => {
             console.log(json[0].ming);
             loginalert(json);
-            setJsonbox(json);
           });
       };
 
