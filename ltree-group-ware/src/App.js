@@ -9,6 +9,7 @@ import { BrowserRouter,Route,Link,Switch } from 'react-router-dom';
 import Home from './index/Home';
 import Schedule from './index/Schedule';
 import Notice from './Notice/Notice'
+import UserMenagement from './userMenagement/UserMenagement';
 
 
 function App() {
@@ -18,9 +19,11 @@ function App() {
       
       <Switch>
           <Route path="/" component={Loginpage} exact/>
+          <Route path='/home' component={Home}/>
           <Route path="/idfind" component={Idfind} exact/>
           <Route path="/passwordfind" component={Passfind} exact/>
           <Route path="/SignUp" component={SignUp} exact/>
+          <Route path='/UserMenagement' component={UserMenagement}/>
           <Route
               // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
               render={({ location }) => (
