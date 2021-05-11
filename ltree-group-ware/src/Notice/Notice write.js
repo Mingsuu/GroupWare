@@ -1,70 +1,7 @@
 import React,{useState, useRef} from 'react';
 import './Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
-import ltree_logo1 from '../Image/ltree.jpg';
-import {Link} from 'react-router-dom';
-const Home = ({history}) => {
-
-const [wtitle, setWtitle] = useState('');
-const [wcontent,setWcontent] = useState('');
-const [wdate, setWdate] = useState('');
-const wdatelef = useRef();
-const wtitlelef = useRef();
-const wcontentlef = useRef();
-
-const titlechange = (e)=> {
-    setWtitle(e.target.value);
-}
-
-const contentchange = (e) => {
-    setWcontent(e.target.value);
-}
-
-const wdatechange = (e) => {
-    setWdate(e.target.value);
-}
-
-const noticecheck = (e) => {
-    e.preventDefault();
-    if(wdate === ''){
-        alert("작성일을 선택해 주세요.");
-    }else if(wtitle === '') {
-        alert("제목을 입력해 주세요.");
-        wtitlelef.current.focus();
-    }else if(wcontent === ''){
-        alert("내용을 입력해 주세요.");
-        wcontentlef.current.focus();
-    }else{
-        insertNotice();
-        setWdate('');
-        setWtitle('');
-        setWcontent('');
-
-    }
-    history.push("/Notice");
-}
-
-
-const insertNotice = () => {
-    const post = {wt:wtitle,wc:wcontent,wd:wdate}
-    
-    fetch("http://localhost:3001/AddNotice", {
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(post),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        
-      });
-
-  };
-
-
-
+const Home = () => {
     return (
 
         <div className="container">
@@ -72,7 +9,7 @@ const insertNotice = () => {
             {/* TOP */}
             <div className="top">
                 <div className="index-user">관리자</div>
-                <img className="topimg" src={ltree_logo} />
+                <img className="topimg" src={ltree_logo} alt='logo' />
                 <div className="index-login"></div>
             </div>
 

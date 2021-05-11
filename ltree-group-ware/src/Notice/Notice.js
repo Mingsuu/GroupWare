@@ -46,6 +46,8 @@ const Notice = () => {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
 
+
+
     return (
 
         <div className="container">

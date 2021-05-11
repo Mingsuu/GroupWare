@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import './Home.css';
 import ltree_logo from '../Image/ltree_logo.png';
+import { Link } from 'react-router-dom';
+
 const Home = () => {
+
     return (
 
         <div className="container">
@@ -19,10 +22,10 @@ const Home = () => {
                 {/* MID-LEFT */}
                 <div className="mid-left">
                     <ul>
-                        <li className="Menu">공지사항</li>
-                        <li className="Menu">업무 게시판</li>
-                        <li className="Menu">일정표</li>
-                        <li className="Menu">직원 조회</li>
+                        <Link ><li>공지사항</li></Link>
+                        <Link><li>업무 게시판</li></Link>
+                        <Link><li>일정표</li></Link>
+                        <Link to='/UserMenagement'><li>직원 조회</li></Link>
                     </ul>
                 </div>
 

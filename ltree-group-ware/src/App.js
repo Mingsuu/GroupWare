@@ -9,23 +9,23 @@ import { BrowserRouter,Route,Link,Switch } from 'react-router-dom';
 import Home from './index/Home';
 import Schedule from './index/Schedule';
 import Notice from './Notice/Notice'
-import NoticeWrite from './Notice/Notice write';
+import UserMenagement from './userMenagement/UserMenagement';
 
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <Link to="/Idfind"><span className="Idfind">아이디 찾기</span></Link>
-        <Link to="/Passwordfind"><sapn className="Passfind">비밀번호 찾기</sapn></Link><br/> */}
       
       <Switch>
         <Route path="/NoticeWrite" component={NoticeWrite} exact />
           <Route path="/Notice" component={Notice} exact />
           <Route path="/" component={Loginpage} exact/>
+          <Route path='/home' component={Home}/>
           <Route path="/idfind" component={Idfind} exact/>
           <Route path="/passwordfind" component={Passfind} exact/>
           <Route path="/SignUp" component={SignUp} exact/>
+          <Route path='/UserMenagement' component={UserMenagement}/>
           <Route
               // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
               render={({ location }) => (
