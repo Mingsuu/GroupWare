@@ -10,6 +10,7 @@ import Home from './index/Home';
 import Schedule from './index/Schedule';
 import Notice from './Notice/Notice'
 import UserMenagement from './userMenagement/UserMenagement';
+import NoticeWrite from './Notice/Notice write';
 
 
 function App() {
