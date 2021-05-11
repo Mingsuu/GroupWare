@@ -173,6 +173,74 @@ app.post("/u-mgnt", (req, res) => {
 });
 
 
+/*업무 게시판 select문 */
+app.post("/Board", (req,res)=>{
+    connection.query("select No1,date_format(todate,'%Y-%m-%d') as bdate,btitle,bcontent from Board",
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+/*업무 게시판 insert문 */
+app.post("/AddBoard", (req,res)=>{
+    const btitle = req.body.bt;
+    const bcontent = req.body.bc;
+    const bdate = req.body.bd;
+
+    connection.query("insert into Board values(No1, ? , ? , ?)",[bdate,btitle,bcontent],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+
+/*업무 게시판 constents select문 */
+app.post("/Boardcontent", (req,res)=>{
+    const numbox = req.body.num;
+    connection.query("select No1,date_format(todate,'%Y-%m-%d') as bdate,btitle,bcontent from Board where No1 = ? ",[numbox],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+/*업무 게시판 수정 select 문 */
+// app.post("/AddBoard", (req,res)=>{
+
+//     connection.query("insert into Board values(No1, ? , ? , ?)",[bdate,btitle,bcontent],
+//     function(err,rows,fields){
+//         if(err){
+//             console.log("불러오기 실패");
+//             console.log("error" +err);
+//         }else{
+//             console.log("불러오기 성공");
+//             res.send(rows);
+//             console.log(rows);
+//         }
+//     })
+// });
+
+
 
 
 app.listen(port, () => {

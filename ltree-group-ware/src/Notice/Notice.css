@@ -2,7 +2,6 @@
 .top {
     display: block;
     margin-bottom: 20px;
-    border: 1px solid #bcbcbc;
     text-align: left;
     background: rgb(50,134,84);
     height:130px;
@@ -40,7 +39,6 @@
     color:black;
 }
 .mid-leftbox {
-    outline: 1px solid #9F9F9F;
     width: 250px;
     height: 100%;
     background-color: rgb(50,134,84);
@@ -80,7 +78,6 @@
 
 .board {
     position: absolute;
-    outline: 1px solid #9F9F9F;
     width: 380px;
     height: 250px;
     background-color: #FFE400;
@@ -96,7 +93,6 @@
 
 }
 .notice-board tr, td ,th {
-    border:1px solid black;
     border-collapse:collapse;
     background-color: white;
     color:black;
@@ -111,7 +107,6 @@
 
 .check {
     position: absolute;
-    outline: 1px solid #9F9F9F;
     width: 380px;
     height: 250px;
     background-color: tomato;
@@ -180,7 +175,6 @@
 .optionbox,
 .searchbox {
     border-radius: 3px;
-    border: 1px solid lightgray;
 }
 .notice_writebtn:hover,
 .searchbox:hover {
@@ -207,7 +201,6 @@
     width: 70px;
     height: 30px;
     border-radius: 4px;
-    border: 1px solid lightgray;
     font-weight: bold;
 }
 .divbox1 button:hover {
@@ -238,7 +231,6 @@
     margin-left: 50px;
     height: 30px;
     border-radius: 6px;
-    border: 1px solid lightgray;
 }
 .wtitlebox {
     margin-left: 50px;
@@ -246,7 +238,6 @@
     height: 30px;
     border-radius: 6px;
     padding-left: 5px;
-    border: 1px solid lightgray;
 }
 .wcontentbox{
     margin-left: 50px;
@@ -255,7 +246,6 @@
     border-radius: 6px;
     padding-left: 5px;
     padding-top: 5px;
-    border: 1px solid lightgray;
     font-size:15px;
 }
 .wcontent {
@@ -271,17 +261,17 @@
     margin:0px;
     width: 742px;
     margin-bottom: 10px;
-    border:1px solid white;
     opacity: 0.5;
     margin-left: 20px;
 }
+
+/*Notice pageing*/
 .pagination {
     list-style: none;
     width:300px;
 }
 .pagination li {
     display: inline-block;
-    border:1px solid black;
     width:30px;
     height: 30px;
 }
@@ -315,6 +305,7 @@
 }
 .no2 {
     width: 500px;
+    padding-top:5px;
 }
 .no3 {
     width: 93px;
@@ -337,4 +328,74 @@
     float: right;
     margin-top:10px;
     margin-right: 100px;
+}
+
+/*Boardcontent*/
+
+.boardbox{
+    display: inline-block;
+    margin-left: 60px;
+    width:1000px;
+    background-color: white;
+}
+.boardtitlebox{
+    display: inline-block;
+    width: 1000px;
+    background-color: white;
+}
+.boardbar{
+    background-color:black;
+    margin:0px;
+    margin-bottom: 10px;
+}
+.boardtitle,
+.boardnum,
+.boardname,
+.boarddate{
+    height: 30px;
+    float: left;
+    padding-top: 4px;
+}
+.boardnum{
+    margin-right: 7px;
+    width: 40px;
+}
+.boardtitle{
+    width:600px;
+    text-align: left;
+}
+.boardname{
+    width:180px;
+}
+.boarddate{
+    width: 100px;
+}
+.boardup{
+    width:50px;
+    float: right;
+    padding-top: 4px;
+}
+.boardneyoung{
+    display: inline-block;
+    height: 350px;
+    background-color: white;
+}
+.neyoung{
+    float: left;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.btnbox{
+    width: 1000px;
+    margin-left: 62px;
+    display: inline-block;
+}
+.btnbox button {
+    float: right;
+    margin-left: 10px;
+    margin-top:10px;
+}
+.bvar{
+    border:1px solid red;
+    display: inline-block;
 }

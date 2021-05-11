@@ -11,15 +11,20 @@ import Schedule from './index/Schedule';
 import Notice from './Notice/Notice'
 import UserMenagement from './userMenagement/UserMenagement';
 import NoticeWrite from './Notice/Notice write';
-
+import Board from './Board/Board';
+import BoardWrite from './Board/Boardwirte';
+import Boardcontent from './Board/Boardcontent';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
       
-      <Switch>
-        <Route path="/NoticeWrite" component={NoticeWrite} exact />
+      <Switch> 
+          <Route path="/Boardcontent/:No1" component={Boardcontent} exact/>
+          <Route path="/BoardWrite" component={BoardWrite} exact />
+          <Route path="/Board" component={Board} exact />
+          <Route path="/NoticeWrite" component={NoticeWrite} exact />
           <Route path="/Notice" component={Notice} exact />
           <Route path="/" component={Loginpage} exact/>
           <Route path='/home' component={Home}/>
