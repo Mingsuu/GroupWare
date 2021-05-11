@@ -4,7 +4,6 @@ import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
 import { Link } from 'react-router-dom';
 import Pagination from './Pagination';
-import { paginate } from './Paginate';
 import Posts from './Posts'
 
 const Notice = () => {
