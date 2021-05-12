@@ -4,15 +4,15 @@ import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
 import { Link } from 'react-router-dom';
 
-const Boardcontent = ({ history, location, match }) => {
+const NoticeContent = ({ history, location, match }) => {
 
     const [no1, setNo1] = useState();
     
     /* 상세 페이지 정보 뿌리기*/
     useEffect(() => {
-        console.log("No1="+match.params.No1);
+        console.log("No11="+match.params.No1);
             const post = {num:match.params.No1};
-            fetch("http://localhost:3001/Boardcontent", {
+            fetch("http://localhost:3001/NoticeContent", {
                 method: "post",
                 headers: {
                     "content-type": "application/json",
@@ -27,9 +27,9 @@ const Boardcontent = ({ history, location, match }) => {
     }, []);
     
     /* 클릭한 페이지 삭제 */
-    const insertBoard = () => {
+    const Noticedelete = () => {
         const post = {no1:match.params.No1}
-        fetch("http://localhost:3001/DeleteBoard", {
+        fetch("http://localhost:3001/DeleteNotice", {
           method: "post",
           headers: {
             "content-type": "application/json",
@@ -41,7 +41,7 @@ const Boardcontent = ({ history, location, match }) => {
             console.log("boardUpdate="+json);
            
           });
-          history.push("/Board");
+          history.push("/Notice");
       };
 
 
@@ -77,27 +77,27 @@ const Boardcontent = ({ history, location, match }) => {
                     <div className="noticebox">
                         { no1 ? (
                             <>
-                        <h1 className="ntitle">업무 게시판</h1>
+                        <h1 className="ntitle">공지사항</h1>
                         <div>
                             <div className="boardbox">
                                 <div className="boardtitlebox">
                                     <span className="boardnum">{no1[0].No1}</span>
-                                    <span className="boardtitle">{no1[0].btitle}</span>
+                                    <span className="boardtitle">{no1[0].ntitle}</span>
                                     <span className="boardname">작성자 : 박민수</span>
-                                    <span className="boarddate">{no1[0].bdate}</span>
+                                    <span className="boarddate">{no1[0].ndate}</span>
                                     <span className="boardup">11</span>
                                 </div>
                                 <hr className="boardbar" />
                                 <div className="boardneyoung">
                                     <div className="neyoung">
-                                        <pre><span>{no1[0].bcontent}</span></pre>
+                                        <pre><span>{no1[0].ncontent}</span></pre>
                                     </div>
                                 </div>
                             </div>
                             <div className="btnbox">
-                                <Link to="/Board"><button>목록으로</button></Link>
-                                    <button onClick={insertBoard}>삭제</button>
-                                <Link to={`/BoardUpdate/${no1[0].No1}`}><button>수정</button></Link>
+                                <Link to="/Notice"><button>목록으로</button></Link>
+                                    <button onClick={Noticedelete}>삭제</button>
+                                <Link to={`/NoticeUpdate/${no1[0].No1}`}><button>수정</button></Link>
                             </div>
                         </div>
                         </>
@@ -109,4 +109,4 @@ const Boardcontent = ({ history, location, match }) => {
         </div>
     )
 };
-export default Boardcontent;
+export default NoticeContent;

@@ -14,6 +14,9 @@ import NoticeWrite from './Notice/Notice write';
 import Board from './Board/Board';
 import BoardWrite from './Board/Boardwirte';
 import Boardcontent from './Board/Boardcontent';
+import BoardUpdate from './Board/Boardupdate';
+import NoticeContent from './Notice/NoticeContent';
+import NoticeUpdate from './Notice/NoticeUpdate';
 
 function App() {
   return (
@@ -22,8 +25,11 @@ function App() {
       
       <Switch> 
           <Route path="/Boardcontent/:No1" component={Boardcontent} exact/>
+          <Route path="/Boardupdate/:No1" component={BoardUpdate} exact/>
           <Route path="/BoardWrite" component={BoardWrite} exact />
           <Route path="/Board" component={Board} exact />
+          <Route path="/NoticeUpdate/:No1" component={NoticeUpdate} exact />
+          <Route path="/NoticeContent/:No1" component={NoticeContent} exact/>
           <Route path="/NoticeWrite" component={NoticeWrite} exact />
           <Route path="/Notice" component={Notice} exact />
           <Route path="/" component={Loginpage} exact/>

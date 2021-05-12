@@ -264,6 +264,9 @@
     opacity: 0.5;
     margin-left: 20px;
 }
+.topmenu{
+    margin-left: 1px;
+}
 
 /*Notice pageing*/
 .pagination {
@@ -378,12 +381,17 @@
 .boardneyoung{
     display: inline-block;
     height: 350px;
+    width: 1000px;
     background-color: white;
 }
 .neyoung{
     float: left;
     padding-left: 40px;
     padding-right: 40px;
+    width: 900px;
+    height: 350px;
+    text-align: left;
+    font-size: 17px;
 }
 .btnbox{
     width: 1000px;
