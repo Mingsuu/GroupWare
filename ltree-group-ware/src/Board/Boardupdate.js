@@ -29,9 +29,7 @@ const bdatechange = (e) => {
 
 const updatecheck = (e) => {
     e.preventDefault();
-    if(bdate === ''){
-        alert("작성일을 선택해 주세요.");
-    }else if(btitle === '') {
+    if(btitle === '') {
         alert("제목을 입력해 주세요.");
         btitlelef.current.focus();
     }else if(bcontent === ''){
@@ -71,8 +69,8 @@ useEffect(() => {
 
 /*수정하는 값  update 하기*/
 const insertBoard = () => {
-    const post = {bt:btitle,bc:bcontent,bd:bdate,no1:match.params.No1}
-    console.log("updatepost=" + post.bt+ "+"+ post.bc+ "+"+post.bd + "+"+ post.no1);
+    const post = {bt:btitle,bc:bcontent,no1:match.params.No1}
+    console.log("updatepost=" + post.bt+ "+"+ post.bc+ "+"+ post.no1);
     fetch("http://localhost:3001/UpdateBoard", {
       method: "post",
       headers: {
@@ -123,10 +121,10 @@ const insertBoard = () => {
                         <h1 className="ntitle">업무 게시판</h1>
                         <div>
                             <form className="formbox">
-                                <div className="divbox">
+                                {/* <div className="divbox">
                                    <div className="wdate">작성일</div>
                                    <input className="wdatebox" type="date" onChange={bdatechange} value={bdate} ref={bdatelef} placeholder={update[0].bdate}></input>
-                               </div>
+                               </div> */}
                                <hr className="bar"/>
                                <div className="divbox">
                                    <div className="wtitle">제목</div>

@@ -17,6 +17,7 @@ const Loginpage = () => {
 
     const loginalert = (jsonbox) => {
         console.log("login="+jsonbox[0].ming);
+        console.log("name="+jsonbox[0].userNAME);
         if(idbox === ''){
             idRef.current.focus();
             setPcheck(false);
@@ -67,11 +68,21 @@ const Loginpage = () => {
           .then((res) => res.json())
           .then((json) => {
             console.log(json[0].ming);
+            console.log("userjson="+json[0].userNAME);
             loginalert(json);
             setJsonbox(json);
+            loginsave(json[0].userNAME);
+            
           });
       };
 
+
+      /* Login데이터 저장하기*/
+      const loginsave = (loginName) => {
+          const loginid = { name: loginName}
+          console.log("이름="+loginid.name);
+          window.localStorage.setItem("loginName", JSON.stringify(loginid.name));
+      }
 
     return (
         
@@ -102,6 +113,7 @@ const Loginpage = () => {
                     <Link to="/Idfind"><span className="idfind">아이디 찾기</span></Link>
                     <Link to="/Passwordfind"><span className="passfind">비밀번호 찾기</span></Link><br/>
                     <Link to="/SignUp"><span className="join">회원가입</span></Link>
+                    <div>{window.localStorage.getItem("loginid")}</div>
                 </div>
             </div>
         </div>

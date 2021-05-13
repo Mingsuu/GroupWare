@@ -28,9 +28,7 @@ const bdatechange = (e) => {
 
 const noticecheck = (e) => {
     e.preventDefault();
-    if(bdate === ''){
-        alert("작성일을 선택해 주세요.");
-    }else if(btitle === '') {
+    if(btitle === '') {
         alert("제목을 입력해 주세요.");
         btitlelef.current.focus();
     }else if(bcontent === ''){
@@ -48,7 +46,7 @@ const noticecheck = (e) => {
 
 
 const insertNotice = () => {
-    const post = {bt:btitle,bc:bcontent,bd:bdate}
+    const post = {bt:btitle,bc:bcontent}
     
     fetch("http://localhost:3001/AddBoard", {
       method: "post",
@@ -100,10 +98,10 @@ const insertNotice = () => {
                         <h1 className="ntitle">업무 게시판</h1>
                         <div>
                             <form className="formbox">
-                                <div className="divbox">
+                                {/* <div className="divbox">
                                    <div className="wdate">작성일</div>
                                    <input className="wdatebox" type="date" onChange={bdatechange} value={bdate} ref={bdatelef}></input>
-                               </div>
+                               </div> */}
                                <hr className="bar"/>
                                <div className="divbox">
                                    <div className="wtitle">제목</div>

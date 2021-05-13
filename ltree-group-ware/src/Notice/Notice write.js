@@ -28,9 +28,7 @@ const wdatechange = (e) => {
 
 const noticecheck = (e) => {
     e.preventDefault();
-    if(wdate === ''){
-        alert("작성일을 선택해 주세요.");
-    }else if(wtitle === '') {
+     if(wtitle === '') {
         alert("제목을 입력해 주세요.");
         wtitlelef.current.focus();
     }else if(wcontent === ''){
@@ -48,7 +46,7 @@ const noticecheck = (e) => {
 
 
 const insertNotice = () => {
-    const post = {wt:wtitle,wc:wcontent,wd:wdate}
+    const post = {wt:wtitle,wc:wcontent}
     
     fetch("http://localhost:3001/AddNotice", {
       method: "post",
@@ -100,10 +98,10 @@ const insertNotice = () => {
                         <h1 className="ntitle">공지사항</h1>
                         <div>
                             <form className="formbox">
-                                <div className="divbox">
+                                {/* <div className="divbox">
                                    <div className="wdate">작성일</div>
                                    <input className="wdatebox" type="date" onChange={wdatechange} value={wdate} ref={wdatelef}></input>
-                               </div>
+                               </div> */}
                                <hr className="bar"/>
                                <div className="divbox">
                                    <div className="wtitle">제목</div>

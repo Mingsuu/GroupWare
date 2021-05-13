@@ -27,7 +27,7 @@ const Boardcontent = ({ history, location, match }) => {
     }, []);
     
     /* 클릭한 페이지 삭제 */
-    const insertBoard = () => {
+    const deleteBoard = () => {
         const post = {no1:match.params.No1}
         fetch("http://localhost:3001/DeleteBoard", {
           method: "post",
@@ -96,7 +96,7 @@ const Boardcontent = ({ history, location, match }) => {
                             </div>
                             <div className="btnbox">
                                 <Link to="/Board"><button>목록으로</button></Link>
-                                    <button onClick={insertBoard}>삭제</button>
+                                    <button onClick={deleteBoard}>삭제</button>
                                 <Link to={`/BoardUpdate/${no1[0].No1}`}><button>수정</button></Link>
                             </div>
                         </div>

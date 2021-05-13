@@ -46,24 +46,6 @@ const Board = () => {
     //화면전환//
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
-    //게시판 클릭시 해당 글 보여주기//
-    // const insertNotice = () => {
-    //     const post = {bt:btitle,bc:bcontent,bd:bdate}
-        
-    //     fetch("http://localhost:3001/AddBoard", {
-    //       method: "post",
-    //       headers: {
-    //         "content-type": "application/json",
-    //       },
-    //       body: JSON.stringify(post),
-    //     })
-    //       .then((res) => res.json())
-    //       .then((json) => {
-    //         console.log(json);
-            
-    //       });
-    
-    //   };
    
 
 

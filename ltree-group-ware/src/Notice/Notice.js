@@ -46,7 +46,16 @@ const Notice = () => {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
 
+    console.log("loginName="+window.localStorage.getItem("loginName"));
 
+    const loginName = window.localStorage.getItem("loginName")
+    const realName = loginName.replace(/\"/gi, "");
+
+    //로그아웃//
+    const logout = ()=>  {
+        window.localStorage.removeItem('key');
+        window.localStorage.clear();
+    };
 
     return (
 
@@ -54,9 +63,13 @@ const Notice = () => {
 
             {/* TOP */}
             <div className="top">
-                <div className="index-user">관리자</div>
-                <img className="topimg" src={ltree_logo} alt='logo' />
-                <div className="index-login"></div>
+                    <div className="Login-User">
+                        <div className="Userim">{realName} 님</div>
+                        <button className="logout" onClick={logout}>로그아웃</button>
+                        <button className="userdata">내정보</button>
+                    </div>
+                    
+                <img className="sujungimg" src={ltree_logo} alt='logo' />
             </div>
 
             {/* MID */}

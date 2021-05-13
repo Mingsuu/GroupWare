@@ -10,18 +10,12 @@
 .index-login {
     text-align: right;
 }
-.index-user {
+.login-user {
     position: absolute;
     left: 90%;
-    margin-top: 40px;
-    font-size: 30px;
+    margin-top: 35px;
+    font-size: 24px;
     color:white;
-}
-.topimg {
-    width: 200px; 
-    height: 120px;
-    margin-left:15px;
-    margin-top:10px;
 }
 .midbox {
     margin-top: 20px;
@@ -406,4 +400,24 @@
 .bvar{
     border:1px solid red;
     display: inline-block;
+}
+/* 오른쪽 위에 로그인 배너*/
+.sujungimg {
+    display: inline-block;
+    margin-left: 20px;
+}
+.Login-User{
+    float: right;
+    margin-top: 30px;
+    margin-right: 50px;
+    width: 200px;
+    text-align: center;
+}
+.Userim{
+    font-size:25px;
+    color:white;
+    margin-bottom: 10px;
+}
+.logout {
+    margin-right: 40px;
 }
