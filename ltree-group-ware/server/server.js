@@ -157,7 +157,7 @@ app.post('/idCheck', (req, res) => {
 //직원조회 쿼리
 app.post("/u-mgnt", (req, res) => {
 
-    connection.query("SELECT userID, userNAME, userRANK, userSSN, userTELL, userADDR, userDATE, userEXIT, exit_DATE FROM USERS",
+    connection.query("SELECT * FROM USERS",
         function (err, rows, fields) {
             if (err) {
                 console.log("직원조회 실패");
