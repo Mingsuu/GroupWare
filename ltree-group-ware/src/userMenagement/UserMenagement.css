@@ -1,0 +1,11 @@
+.u-mgnt .user-detail-link:hover {
+    color: rgb(64, 211, 35);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.detail-tbody input {
+    border: 1px solid white;
+    background-color: transparent
+}
+

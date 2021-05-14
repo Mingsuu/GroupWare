@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import useModal from 'use-react-modal';
+import './UserMenagement.css';
+
 
 
 const UserMenagement = () => {
@@ -10,10 +12,9 @@ const UserMenagement = () => {
     }]);
 
     const [findUser, setFindUser] = useState();
+    const [changedUserValue, setChangedUserValue] = useState();
 
     const [eoc, setEoc] = useState('입사일');
-
-    const [updatebtn, setUpdatebtn] = useState({ btn: '수정하기', ro: true});
 
     const { isOpen, openModal, closeModal, Modal } = useModal();
 
@@ -22,8 +23,8 @@ const UserMenagement = () => {
             if (user.userEXIT == null) {
                 return (
                     <tr key={user.userID}>
-                        <td onClick={selectUser}>{user.userNAME}</td><td>{user.userRANK}</td><td>{user.userTELL}</td>
-                        <td>{user.userADDR}</td><td>{user.userSSN}</td><td>{user.userDATE}</td>
+                        <td onClick={selectUser} className='user-detail-link'>{user.userNAME}</td><td>{user.userRANK}</td><td>{user.userTELL}</td>
+                        <td>{user.userADDR}</td><td>{user.userSSN.split('-')[0]}</td><td>{user.userDATE}</td>
                     </tr>
 
                 );
@@ -32,7 +33,7 @@ const UserMenagement = () => {
             if (user.userEXIT === 'yes') {
                 return (
                     <tr key={user.userID}>
-                        <td onClick={openModal}>{user.userNAME}</td><td>{user.userRANK}</td><td>{user.userTELL}</td>
+                        <td onClick={openModal} className='user-detail-link'>{user.userNAME}</td><td>{user.userRANK}</td><td>{user.userTELL}</td>
                         <td>{user.userADDR}</td><td>{user.userSSN}</td><td>{user.userDATE}</td>
                     </tr>
                 );
@@ -46,25 +47,25 @@ const UserMenagement = () => {
         openModal(e);
     }
     const showDetail = () => {
-
-
+        
         return (
-            <tbody>
+            <tbody className='detail-tbody'>
                 <tr>
                     <td rowSpan='2'>사진</td>
-                    <td>이름 : <input type='text' defaultValue={findUser.userNAME} onchange={changeUserInfo} readOnly={true}/></td>
-                    <td>전화번호 : {findUser.userTELL}</td>
+                    <td>이름 : <input value={findUser.userNAME} onChange={changeUserInfo} className='userNAME' ref={nameRef}/></td>
+                    <td>전화번호 : <input value={findUser.userTELL} onChange={changeUserInfo} className='userTELL' ref={tellRef} /></td>
                 </tr>
                 <tr>
-                    <td>이메일 : {findUser.userEMAIL}</td>
-                    <td>주민번호 : {findUser.userSSN}</td>
+                    <td>이메일 : <input value={findUser.userEMAIL} onChange={changeUserInfo} className='userEMAIL'  ref={emailRef} /></td>
+                    <td>주민번호 : <input value={findUser.userSSN} onChange={changeUserInfo} className='userSSN'  ref={ssnRef}/></td>
                 </tr>
                 <tr>
-                    <td>직급 : {findUser.userRANK}</td>
-                    <td>주소 : {findUser.userADDR}</td>
-                    <td>입사일 : {findUser.userDATE}</td>
+                    <td>직급 : <input value={findUser.userRANK || ''} onChange={changeUserInfo} className='userRANK'  ref={rankRef}/> </td>
+                    <td>주소 : <input value={findUser.userADDR} onChange={changeUserInfo} className='userADDR'  ref={addrRef}/></td>
+                    <td>입사일 : <input value={findUser.userDATE} onChange={changeUserInfo} className='userDATE'  ref={dateRef}/> </td>
                 </tr>
             </tbody>
+            
         )
 
     }
@@ -76,7 +77,7 @@ const UserMenagement = () => {
         setEoc('퇴사일');
     }
 
-    useEffect(() => {
+    const getAllUsers = () => {
         fetch("http://localhost:3001/u-mgnt", {
             method: "post",
             headers: {
@@ -88,19 +89,65 @@ const UserMenagement = () => {
             .then((json) => {
                 setUsers(json);
             });
+    }
+
+    useEffect(() => {
+       getAllUsers();
     }, []);
 
+    const nameRef = useRef();
+    const tellRef = useRef();
+    const emailRef = useRef(); 
+    const ssnRef = useRef();
+    const addrRef = useRef();
+    const dateRef = useRef();
+    const rankRef = useRef();
+
+    useEffect(()=>{
+
+        switch (changedUserValue) {
+            case 'userNAME':
+                nameRef.current.focus();
+                break;
+            case 'userTELL':
+                tellRef.current.focus();
+                break;
+            case 'userEMAIL':
+                emailRef.current.focus();
+                break;
+            case 'userSSN':
+                ssnRef.current.focus();
+                break;
+            case 'userADDR':
+                addrRef.current.focus();
+                break;
+            case 'userRANK':
+                rankRef.current.focus();
+                break;
+            case 'userDATE':
+                dateRef.current.focus();
+                break;
+        
+            default:
+                break;
+        }
+        console.log(findUser)
+    },[findUser, changedUserValue])
+    
     const changeUserInfo = (e) => {
+       
+        const { value, className } = e.target;
         setFindUser({
             ...findUser,
-            [e.target.className] : e.target.value
+            [className]: value
         });
+        setChangedUserValue(''+className);
     }
 
     const updateUser = () => {
 
         fetch("http://localhost:3001/update-user", {
-            method: "update",
+            method: "put",
             headers: {
                 "content-type": "application/json",
             },
@@ -108,8 +155,10 @@ const UserMenagement = () => {
         })
             .then((res) => res.json())
             .then((json) => {
-                setUsers(json);
+                console.log(json);
             });
+        
+            getAllUsers();
     }
 
     return (
@@ -125,6 +174,7 @@ const UserMenagement = () => {
                 </thead>
                 <tbody>
                     {users.map(user => loadUsers(user))}
+                    
                 </tbody>
             </table>
             {isOpen && (
@@ -144,6 +194,7 @@ const UserMenagement = () => {
                         <button onClick={updateUser}>수정하기</button>
                        
                     </div>
+                   
                 </Modal>
             )}
         </div>

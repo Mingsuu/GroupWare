@@ -172,6 +172,25 @@ app.post("/u-mgnt", (req, res) => {
         });
 });
 
+//직원 정보 변경 쿼리
+app.put('/update-user', (req, res) => {
+    const user = req.body;
+    connection.query("UPDATE USERS SET userNAME=(?), userTELL=(?), userEMAIL=(?), userSSN=(?), userADDR=(?), userRANK=(?), update_DATE=NOW() WHERE userID = (?)"
+    , [user.userNAME, user.userTELL, user.userEMAIL, user.userSSN, user.userADDR, user.userRANK, user.userID],
+        function (err, rows, fields) {
+            if (err) {
+                console.log("직원정보 업데이트 실패");
+                console.log(err);
+                connection.rollback();
+            } else {
+                console.log("직원정보 업데이트 성공");
+                console.log(rows);
+                res.send(rows);
+                connection.commit();
+            }
+
+        });
+});
 
 
 
