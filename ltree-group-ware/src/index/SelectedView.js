@@ -1,6 +1,6 @@
 import React from 'react';
 import UserMenagement from '../userMenagement/UserMenagement';
-import Schedule from './Schedule';
+import Calendar from './Calendar';
 import Notice from '../Notice/Notice';
 import DefaultView from './DefaultView';
 import NoticeWrite from '../Notice/Notice write';
@@ -14,7 +14,7 @@ const SelectedView = ({ match }) => {
         case 'board':
             return (<Notice />);
         case 'schedule':
-            return (<Schedule />);
+            return (<Calendar today={new Date()} />);
         case 'users':
             return (<UserMenagement />);
         case 'write':

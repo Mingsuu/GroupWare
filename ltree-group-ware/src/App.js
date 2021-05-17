@@ -7,7 +7,7 @@ import Idfind from './Login/Idfind';
 import Passfind from './Login/passfind';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './index/Home';
-import Schedule from './index/Schedule';
+import Calendar from './index/Calendar';
 import Notice from './Notice/Notice'
 import UserMenagement from './userMenagement/UserMenagement';
 import NoticeWrite from './Notice/Notice write';
@@ -27,7 +27,7 @@ function App() {
           <Route path="/SignUp" component={SignUp} exact />
           <Route path="/notice" component={Notice} exact />
           <Route path='/userMenagement' component={UserMenagement} />
-          <Route path='/schedule' component={Schedule} />
+          <Route path='/calendar' render={() => (<Calendar today={new Date()}/>)} />
           <Route
             // path를 따로 정의하지 않으면 모든 상황에 렌더링됨
             render={({ location }) => (
@@ -41,7 +41,7 @@ function App() {
         </Switch>
       </div>
     </BrowserRouter>
-
+    
   );
 }
 
