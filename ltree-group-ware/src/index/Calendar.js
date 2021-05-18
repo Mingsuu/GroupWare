@@ -1,7 +1,7 @@
+/*eslint-disable*/
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Modal from "./Modal"
-import './Schedule.css';
+import Modali, { useModali } from 'modali';
 
 const Calendar = ({ today, history }) => {
   const scheduleStyle = {
@@ -19,20 +19,85 @@ const Calendar = ({ today, history }) => {
     cursor: "pointer",
   };
 
-  // console.log("리덕스에서 가져온 스케쥴",schedules)
-  //const schedules = useSelector((state) => state.calendar.schedules);
-  const schedules = [
-    { date: "2021-03-25T22:05", desc: "도리 쓰다듬기", completed: false },
-    { date: "2021-03-25T19:17", desc: "캘린더 사용하기", completed: false },
-    { date: "2021-03-26T02:17", desc: "심야 디버깅", completed: false },
+  const writeSchedule = (e) => {
+    setScheduleDtail({
+      ...scheduleDtail,
+      [e.target.className] : e.target.value
+    })
+  }
+  const checkedSchedule = (e) => {
+    setScheduleDtail({
+      ...scheduleDtail,
+      completed : e.target.checked
+    })
+  }
 
-  ];
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 11));
 
-  console.log(today)
+  const [schedules, setSchedules] =useState([{promise:'', title:'', content:'', completed:''}]);
+  const [scheduleDtail, setScheduleDtail] = useState({promise:'', title:'', content:'', completed: false});
+  
+  //console.log('시간:',new Date().toISOString().slice(0, 11)+''+(Number(new Date().toString().slice(19, 21))+5));
+  const [scheduleModal, toggleScheduleModal] = useModali({
+    animated: true,
+    title: '상세 일정',
+    message:
+      <div>
+        <div>
+          <p>이름 : <input onChange={writeSchedule} value={scheduleDtail.title} className='title' /> 
+          <input type='checkbox' onChange={checkedSchedule} /></p>
+        </div>
+        <div>
+          <p>시작일</p>
+          <input type='datetime-local' defaultValue={selectedDate + 'T' + new Date().toString().slice(16, 21)} />
+        </div>
+        <div>
+          <p>종료일</p>
+          <input type='datetime-local'  defaultValue={selectedDate+'T'+new Date().toString().slice(16, 19)+''
+          +((Number(new Date().toString().slice(19, 21))+1) <10 ? '0'+(Number(new Date().toString().slice(19, 21))+1):Number(new Date().toString().slice(19, 21))+1)} />
+        </div>
+        <div>
+          <p>내용</p>
+          <input onChange={writeSchedule} value={scheduleDtail.content} className='content' />
+        </div>
+      </div>,
+    centered: true,
+    buttons: [
+      <Modali.Button
+        label="생성"
+        isStyleDefault
+        onClick={() => console.log(scheduleDtail)}
+      />,
+      <Modali.Button
+        label="삭제"
+        isStyleDestructive
+        onClick={() => toggleScheduleModal()}
+      />,
+      <Modali.Button
+        label="취소"
+        isStyleCancel
+        onClick={() => toggleScheduleModal()}
+      />
+    ],
+  });
+
+
   let thisyear = today.getFullYear();
   let thismonth = today.getMonth();
 
-  useEffect(() => { });
+  useEffect(() => { 
+    fetch("http://localhost:3001/schedule", {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(),
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                setSchedules(json);
+            });
+  },[]);
 
   const monList = [
     "January",
@@ -85,33 +150,34 @@ const Calendar = ({ today, history }) => {
               "-" +
               (day === "" ? '00' + noday++ : day < 10 ? "0" + day : day);
 
-            console.log(thisyear + "-" + (month < 9 ? "0" + (month + 1) : (month + 1)) + "-" + (day === "" ? noday++ + '00' : day < 10 ? "0" + day : day));
+            // console.log(thisyear + "-" + (month < 9 ? "0" + (month + 1) : (month + 1)) + "-" + (day === "" ? noday++ + '00' : day < 10 ? "0" + day : day));
             return (
-              <div key={dateKey}>
+              <div key={dateKey} className={year+'-'+(month < 9 ? "0" + (month + 1) : month + 1)+'-'+(day < 10 ? "0" + day : day)}
+               onClick={(e) =>{setSelectedDate(e.target.className+''); toggleScheduleModal()}}>
                 <span
                   style={{
                     color:
-                      idx == 0 ? "#CE879F" : idx == 6 ? "#CE879F" : "#444078",
+                      idx === 0 ? "#CE879F" : idx === 6 ? "#CE879F" : "#444078",
                   }}
                 >
                   {day}
                 </span>
                 {schedules
-                  .filter((schedule) => schedule.date.substr(0, 10) === dateKey)
+                  .filter((schedule) => schedule.promise.substr(0, 10) === dateKey)
                   .sort()
                   .map((schedule) => {
                     return (
                       <div
                         style={scheduleStyle}
-                        className={schedule.completed + ''}
-                        key={schedule.desc}
-                        onClick={openModal}
+                        className={schedule.title + ''}
+                        key={schedule.title}
+                        onClick={() => {
+                          setScheduleDtail({promise:schedule.promise, title:schedule.title, content:schedule.content, completed:schedule.completed})
+                          toggleScheduleModal();
+                        }}
                       >
-                        {schedule.desc}
-                        <Modal open={isModalOpen} close={closeModal} header='test'>
-                          <p>날짜 :{schedule.date}</p>
-                          <p>할 일 :{schedule.desc}</p>
-                        </Modal>
+                        {schedule.title}
+
                       </div>
                     );
                   })}
@@ -130,17 +196,17 @@ const Calendar = ({ today, history }) => {
       if (calendarDays.length === 0) {
         makeCalendar(thisyear, thismonth);
       }
-      console.log("첫 로딩 시 현재 월 출력", thisyear, thismonth);
+
     },
     { once: true }
   );
 
   const [month, changeMonth] = useState(thismonth);
   const [year, changeYear] = useState(thisyear);
-  const [isModalOpen, setModalState] = useState(false);
+
 
   const nextMonth = () => {
-    if (month != 11) {
+    if (month !== 11) {
       changeMonth((month) => month + 1);
     } else {
       changeMonth((month) => month - 11);
@@ -150,7 +216,7 @@ const Calendar = ({ today, history }) => {
     console.log("next!", year, month, new_month);
   };
   const prevMonth = () => {
-    if (month != 0) {
+    if (month !== 0) {
       changeMonth((month) => month - 1);
     } else {
       changeMonth((month) => month + 11);
@@ -159,55 +225,41 @@ const Calendar = ({ today, history }) => {
     makeCalendar(year, month);
   };
 
-  const openModal = () => {
-    setModalState(true);
-  };
-
-  const closeModal = () => {
-    console.log('close modal')
-    setModalState(false);
-  };
 
   return (
-    
-      <Container>
-        <Header>
-          <button onClick={prevMonth}>◀</button>
-          <span>
-            {monList[month]} {year}
-          </span>
-          <button onClick={nextMonth}>▶</button>
-        </Header>
-        <Days>
-          <Day>
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-          </Day>
 
-          {makeCalendar(year, month)}
-        </Days>
+    <Container>
+      <Header>
+        <button onClick={prevMonth}>◀</button>
+        <span>
+          {monList[month]} {year}
+        </span>
+        <button onClick={nextMonth}>▶</button>
+      </Header>
+      <Days>
+        <Day>
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </Day>
 
-        <FloatBtn1>Finished</FloatBtn1>
-        <FloatBtn2
-          onClick={() => {
-            history.push("/add");
-          }}
-        >
-          Add{/* <img src={btn}/> */}
-        </FloatBtn2>
-      </Container>
-    
+        {makeCalendar(year, month)}
+      </Days>
+
+     
+      <Modali.Modal {...scheduleModal} />
+    </Container>
+
   );
 };
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 50vw;
+  height: 80vh;
   align-items: center;
   /* justify-content:center; */
   flex-direction: column;

@@ -192,6 +192,24 @@ app.put('/update-user', (req, res) => {
         });
 });
 
+//스케쥴 조회 쿼리
+app.post("/schedule", (req, res) => {
+
+    connection.query("SELECT * FROM schedule",
+        function (err, rows, fields) {
+            if (err) {
+                console.log("스케쥴 조회 실패");
+                console.log(err);
+                connection.rollback();
+            } else {
+                console.log("스케쥴 조회 성공");
+                console.log(rows);
+                res.send(rows);
+                connection.commit();
+            }
+        });
+});
+
 
 
 app.listen(port, () => {
