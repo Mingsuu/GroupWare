@@ -84,8 +84,9 @@ const Boardcontent = ({ history, location, match }) => {
                                     <span className="boardnum">{no1[0].No1}</span>
                                     <span className="boardtitle">{no1[0].btitle}</span>
                                     <span className="boardname">작성자 : 박민수</span>
-                                    <span className="boarddate">{no1[0].bdate}</span>
-                                    <span className="boardup">11</span>
+                                    <span className="boarddate">작성날짜: {no1[0].bdate}</span>
+                                    <span className="boardupdate">수정날짜: {no1[0].update1}</span>
+                                    <span className="boardup">{no1[0].click}</span>
                                 </div>
                                 <hr className="boardbar" />
                                 <div className="boardneyoung">

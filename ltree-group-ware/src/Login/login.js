@@ -1,11 +1,12 @@
 import React, { useState,useRef } from 'react';
 import './Loginui.css';
 import ltree_logo from '../Image/ltree_logo.png';
-import { Route,Link,Switch} from 'react-router-dom';
+import { Route,Link,Switch, Router} from 'react-router-dom';
 import Idfind from './Idfind';
 import Passfind from './Passfind';
+import Notice from '../Notice/Notice';
 
-const Loginpage = () => {
+const Loginpage = ({history}) => {
     const idRef = useRef();
     const passRef = useRef();
     const [idbox, setIdbox] = useState('');
@@ -28,6 +29,8 @@ const Loginpage = () => {
             return setPcheck(true);
         }else if(jsonbox[0].ming === 1){
             alert("로그인 성공");
+            loginsave();
+            history.push("/Notice");
         }else{
             alert("가입된 정보가 없습니다.");
         }

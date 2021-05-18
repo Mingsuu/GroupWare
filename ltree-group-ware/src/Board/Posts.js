@@ -2,6 +2,24 @@ import {Link} from 'react-router-dom';
 
 const Posts = ({ posts, loading}) => {
     
+    const ClickAdd = (No1) => {
+        const post = {num:No1}
+        fetch("http://localhost:3001/ClickAdd1", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(post),
+        })
+          .then((res) => res.json())
+          .then((json) => {
+            console.log("NoticeClick="+json);
+            console.log("Number="+No1);
+          });
+      };
+
+
+
 if(loading){
     return <h2>Loading....</h2>
 }
@@ -17,14 +35,14 @@ if(loading){
                 <th className="no5">조회수</th>
             </tr>
         </table>
-        {posts.map(post => (
-            <tr key={post.No1} className="notlist">
+        {posts.map((post,idx) => (
+            <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1)}>
                     <Link to={`/Boardcontent/${post.No1}`}>
-                        <td className="no1" >{post.rownu}</td>
+                        <td className="no1" >{idx + 1}</td>
                         <td className="no2" >{post.btitle}</td>
                         <td className="no3">직원</td>
                         <td className="no4">{post.bdate}</td>
-                        <td className="no5">243</td>
+                        <td className="no5">{post.click}</td>
                     </Link>
             </tr>
         ))}

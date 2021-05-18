@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Pagination from './Pagination';
 import Posts from './Posts'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import Loginbanner from '../Login/Loginbanner';
 
-const Notice = () => {
+const Notice = ({history}) => {
     /*페이징처리 연습 */
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -46,30 +49,49 @@ const Notice = () => {
 
     console.log("loginName="+window.localStorage.getItem("loginName"));
 
-    const loginName = window.localStorage.getItem("loginName")
-    const realName = loginName.replace(/\"/gi, "");
+    // const loginName = window.localStorage.getItem("loginName")
+    // const realName = loginName.replace(/\"/gi, "");
 
-    //로그아웃//
-    const logout = ()=>  {
-        window.localStorage.removeItem('key');
-        window.localStorage.clear();
-    };
+    // //로그아웃 알림창//
+    // const alertbox  = ()=> {
+    //     confirmAlert({
+    //         title: '로그아웃',
+    //         message: '정말로 로그아웃 하시겠습니까?',
+    //         buttons: [
+    //           {
+    //             label: '네',
+    //             onClick: () => {window.localStorage.removeItem('key');
+    //                             window.localStorage.clear();
+    //                             history.push("/");}
+    //           },
+    //           {
+    //             label: '아니요',
+                
+    //           }
+    //         ]
+    //       });
+       
+    // };
+    
+
+
+    
 
     return (
 
         <div className="container">
 
             {/* TOP */}
-            <div className="top">
+            {/* <div className="top">
                     <div className="Login-User">
                         <div className="Userim">{realName} 님</div>
-                        <button className="logout" onClick={logout}>로그아웃</button>
+                        <button className="logout" onClick={alertbox}>로그아웃</button>
                         <button className="userdata">내정보</button>
                     </div>
                     
                 <img className="sujungimg" src={ltree_logo} alt='logo' />
-            </div>
-
+            </div> */}
+            <Loginbanner/>
             {/* MID */}
             <div className="midbox">
 

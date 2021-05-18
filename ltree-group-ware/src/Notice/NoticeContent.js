@@ -3,11 +3,18 @@ import '../Notice/Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
 import { Link } from 'react-router-dom';
+import Posts from './Posts';
+import Loginbanner from '../Login/Loginbanner';
 
 const NoticeContent = ({ history, location, match }) => {
 
     const [no1, setNo1] = useState();
-    
+
+    console.log("boardcontentNo1="+match.params.No1);
+ 
+    let idx = String(match.params.odx);
+    console.log("boardcontentIDX="+idx);
+
     /* 상세 페이지 정보 뿌리기*/
     useEffect(() => {
         console.log("No11="+match.params.No1);
@@ -49,18 +56,14 @@ const NoticeContent = ({ history, location, match }) => {
 
      
 
-    console.log("boardcontentbox="+no1);
+    
 
     return (
 
         <div className="container">
 
             {/* TOP */}
-            <div className="top">
-                <div className="index-user">관리자</div>
-                <img className="topimg" src={ltree_logo} alt='logo' />
-                <div className="index-login"></div>
-            </div>
+            <Loginbanner/>
 
             {/* MID */}
             <div className="midbox">
@@ -85,13 +88,14 @@ const NoticeContent = ({ history, location, match }) => {
                         <div>
                             <div className="boardbox">
                                 <div className="boardtitlebox">
-                                    <span className="boardnum">{no1[0].rownu}</span>
+                                    <span className="boardnum">{match.params.idx +1}</span>
                                     <span className="boardtitle">{no1[0].ntitle}</span>
                                     <span className="boardname">작성자 : 박민수</span>
-                                    <span className="boarddate">{no1[0].ndate}</span>
+                                    <span className="boarddate">작성날짜: {no1[0].ndate}</span>
+                                    <span className="boardupdate">수정날짜: {no1[0].update1}</span>
                                     <span className="boardup">{no1[0].click}</span>
                                 </div>
-                                <hr className="boardbar" />
+                                <hr className="boardbar"/>
                                 <div className="boardneyoung">
                                     <div className="neyoung">
                                         <pre><span>{no1[0].ncontent}</span></pre>
