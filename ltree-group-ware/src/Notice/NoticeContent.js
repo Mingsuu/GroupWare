@@ -89,11 +89,11 @@ const NoticeContent = ({ history, location, match }) => {
                             <div className="boardbox">
                                 <div className="boardtitlebox">
                                     <span className="boardnum">{match.params.idx +1}</span>
-                                    <span className="boardtitle">{no1[0].ntitle}</span>
+                                    <span className="boardtitle">제목 : {no1[0].ntitle}</span>
                                     <span className="boardname">작성자 : 박민수</span>
                                     <span className="boarddate">작성날짜: {no1[0].ndate}</span>
                                     <span className="boardupdate">수정날짜: {no1[0].update1}</span>
-                                    <span className="boardup">{no1[0].click}</span>
+                                    <span className="boardup">H:{no1[0].click}</span>
                                 </div>
                                 <hr className="boardbar"/>
                                 <div className="boardneyoung">
