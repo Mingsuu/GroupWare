@@ -30,8 +30,6 @@ const Notice = () => {
                     setPosts(res);
                     setLoading(false);
                 });
-
-
         };
         fetchPosts();
     }, []);

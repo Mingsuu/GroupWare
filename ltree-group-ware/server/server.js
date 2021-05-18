@@ -98,7 +98,7 @@ app.post("/AddNotice", (req,res)=>{
 
 /*공지사항 select문 */
 app.post("/Notice", (req,res)=>{
-    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,date_format(sysdate1 ,'%Y-%m-%d') as ndate from Notice order by sysdate1 desc) t",
+    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate from Notice order by sysdate1 desc) t",
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");
@@ -279,7 +279,7 @@ app.post("/DeleteBoard", (req,res)=>{
 /*공지사항 constents select문 */
 app.post("/NoticeContent", (req,res)=>{
     const numbox = req.body.num;
-    connection.query("select No1,date_format(sysdate1,'%Y-%m-%d') as ndate,ntitle,ncontent from Notice where No1 = ? ",[numbox],
+    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,ncontent,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate from Notice order by sysdate1 desc) t where No1 = ?",[numbox],
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");
@@ -343,6 +343,24 @@ app.post("/UpdateNotice", (req,res)=>{
             console.log("불러오기 성공");
             res.send(rows);
             console.log(rows);
+        }
+    })
+});
+
+
+/*공지사항 update문 */
+app.post("/ClickAdd", (req,res)=>{
+    const No1 = req.body.num;
+    connection.query("update notice set click= click + 1  where No1=?",[No1],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+            console.log("숫자="+No1);
         }
     })
 });

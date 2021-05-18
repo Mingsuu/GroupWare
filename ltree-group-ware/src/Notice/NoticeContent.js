@@ -26,6 +26,9 @@ const NoticeContent = ({ history, location, match }) => {
                 });
     }, []);
     
+
+
+
     /* 클릭한 페이지 삭제 */
     const Noticedelete = () => {
         const post = {no1:match.params.No1}
@@ -44,6 +47,7 @@ const NoticeContent = ({ history, location, match }) => {
           history.push("/Notice");
       };
 
+     
 
     console.log("boardcontentbox="+no1);
 
@@ -81,11 +85,11 @@ const NoticeContent = ({ history, location, match }) => {
                         <div>
                             <div className="boardbox">
                                 <div className="boardtitlebox">
-                                    <span className="boardnum">{no1[0].No1}</span>
+                                    <span className="boardnum">{no1[0].rownu}</span>
                                     <span className="boardtitle">{no1[0].ntitle}</span>
                                     <span className="boardname">작성자 : 박민수</span>
                                     <span className="boarddate">{no1[0].ndate}</span>
-                                    <span className="boardup">11</span>
+                                    <span className="boardup">{no1[0].click}</span>
                                 </div>
                                 <hr className="boardbar" />
                                 <div className="boardneyoung">

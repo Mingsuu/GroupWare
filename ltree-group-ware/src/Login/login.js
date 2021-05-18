@@ -113,7 +113,7 @@ const Loginpage = () => {
                     <Link to="/Idfind"><span className="idfind">아이디 찾기</span></Link>
                     <Link to="/Passwordfind"><span className="passfind">비밀번호 찾기</span></Link><br/>
                     <Link to="/SignUp"><span className="join">회원가입</span></Link>
-                    <div>{window.localStorage.getItem("loginid")}</div>
+                    <div>{window.localStorage.getItem("loginName")}</div>
                 </div>
             </div>
         </div>

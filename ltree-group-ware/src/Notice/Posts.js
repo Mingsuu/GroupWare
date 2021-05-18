@@ -1,10 +1,31 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import NoticeContent from './NoticeContent';
 
 const Posts = ({ posts, loading}) => {
 if(loading){
     return <h2>Loading....</h2>
 }
+
+
+
+const ClickAdd = (e) => {
+    const post = {num:e.target.key}
+    fetch("http://localhost:3001/ClickAdd", {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(post),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log("NoticeClick="+json);
+        console.log("Number="+e.target.key);
+      });
+  };
+
+
 console.log("databox="+posts);
     return (
         
@@ -23,13 +44,13 @@ console.log("databox="+posts);
 
         {posts.map(post => (
             
-            <tr key={post.No1} className="notlist">
+            <tr key={post.No1} className="notlist" onClick={ClickAdd} >
                 <Link to ={`/NoticeContent/${post.No1}`}>
                     <td className="no1">{post.rownu}</td>
                     <td className="no2">{post.ntitle}</td>
                     <td className="no3">대표</td>
                     <td className="no4">{post.ndate}</td>
-                    <td className="no5">1234</td>
+                    <td className="no5">{post.click}</td>
                 </Link>
             </tr>
         ))}
