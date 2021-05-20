@@ -210,6 +210,46 @@ app.post("/schedule", (req, res) => {
         });
 });
 
+//일정 정보 변경쿼리
+app.put('/update-schedule', (req, res) => {
+    const sch = req.body;
+    connection.query("UPDATE schedule SET s_time=(?), e_time=(?), title=(?), content=(?), completed=(?) WHERE id = (?)"
+    , [sch.s_time, sch.e_time, sch.title, sch.content, sch.completed, sch.id],
+        function (err, rows, fields) {
+            if (err) {
+                console.log("일정 변경 실패");
+                console.log(err);
+                connection.rollback();
+            } else {
+                console.log("일정 변경 성공");
+                console.log(rows);
+                res.send(rows);
+                connection.commit();
+            }
+
+        });
+});
+
+//일정 생성
+app.post('/insert-schedule', (req, res) => {
+    const sch = req.body;
+    connection.query("INSERT INTO schedule VALUES(id, ?, ?, ?, ?, ?)"
+    , [sch.s_time, sch.e_time, sch.title, sch.content, sch.completed],
+        function (err, rows, fields) {
+            if (err) {
+                console.log("일정 생성 실패");
+                console.log(err);
+                connection.rollback();
+            } else {
+                console.log("일정 생성 성공");
+                console.log(rows);
+                res.send(rows);
+                connection.commit();
+            }
+
+        });
+});
+
 
 
 app.listen(port, () => {
