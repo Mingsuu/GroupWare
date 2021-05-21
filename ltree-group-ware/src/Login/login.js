@@ -99,7 +99,7 @@ const Loginpage = ({history}) => {
             return setPcheck(true);
         }else if(jsonbox[0].ming === 1){
             loginsave();
-            history.push("/Notice");
+            history.push("/home");
             
         }else if(jsonbox[0].ming === 0){
             alert("가입된 정보가 없습니다.");

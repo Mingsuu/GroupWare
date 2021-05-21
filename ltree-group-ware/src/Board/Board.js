@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../Notice/Notice.css';
-import ltree_logo from '../Image/ltree_logo.png';
-import ltree_logo1 from '../Image/ltree.jpg';
 import { Link } from 'react-router-dom';
 import Posts from './Posts';
 import Pagination from './Pagination';
 import '../Notice/Notice.css';
-import Loginbanner from '../Login/Loginbanner';
 
 const Board = () => {
     /*페이징처리 연습 */
@@ -51,40 +48,18 @@ const Board = () => {
 
 
     return (
-
-        <div className="container">
-
-            {/* TOP */}
-            <Loginbanner/>
-
-            {/* MID */}
-            <div className="midbox">
-
-                {/* MID-LEFT */}
-                <div className="mid-leftbox">
-                    <div className="mid-leftbox1">
-                        <ul>
-                            <li className="Menu">공지사항</li>
-                            <li className="Menu">업무 게시판</li>
-                            <li className="Menu">직원 조회</li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* MID-RIGHT */}
                 <div className="mid-right">
                     <div className="noticebox">
                         <h1 className="ntitle">업무 게시판</h1>
                         <div>
                             <Posts posts={currentPosts} loading={loading} />
                             <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate} />
-                            <Link to="/BoardWrite"><button className="wirtebtn">글작성</button></Link>
+                            <Link to="/home/boardwrite"><button className="wirtebtn">글작성</button></Link>
                         </div>
                     </div>
 
                 </div>
-            </div>
-        </div>
+   
     );
 };
 export default Board;
