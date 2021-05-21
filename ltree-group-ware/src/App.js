@@ -1,10 +1,10 @@
 /*eslint-disable*/
 import React from 'react';
 import './App.css';
-import Loginpage from './Login/login';
+import Loginpage from './Login/Login';
 import SignUp from './signUp/SignUp';
 import Idfind from './Login/Idfind';
-import Passfind from './Login/passfind';
+import Passfind from './Login/Passfind';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './index/Home';
 import Calendar from './index/Calendar';
