@@ -10,8 +10,7 @@ const NoticeWrite = ({history}) => {
 
 const [wtitle, setWtitle] = useState('');
 const [wcontent,setWcontent] = useState('');
-const [wdate, setWdate] = useState('');
-const wdatelef = useRef();
+
 const wtitlelef = useRef();
 const wcontentlef = useRef();
 
@@ -23,9 +22,6 @@ const contentchange = (e) => {
     setWcontent(e.target.value);
 }
 
-const wdatechange = (e) => {
-    setWdate(e.target.value);
-}
 
 const noticecheck = (e) => {
     e.preventDefault();
@@ -37,7 +33,6 @@ const noticecheck = (e) => {
         wcontentlef.current.focus();
     }else{
         insertNotice();
-        setWdate('');
         setWtitle('');
         setWcontent('');
         history.push("/Notice");

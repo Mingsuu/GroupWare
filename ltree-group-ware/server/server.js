@@ -82,7 +82,15 @@ app.post("/Findpass", (req,res)=>{
 app.post("/AddNotice", (req,res)=>{
     const wtitle = req.body.wt;
     const wcontent = req.body.wc;
-    connection.query("insert into Notice values(No1,NOW(), ?, ?)",[wtitle,wcontent],
+    connection.query("insert"
+                      +"      into"
+                      +"      Notice"
+                      +"  values(No1,"
+                      +"  NOW(),"
+                      +"  NOW(),"
+                      +"  ?,"
+                      +"  ?,"
+                      +"  0)",[wtitle,wcontent],
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");
@@ -269,7 +277,7 @@ app.post("/AddBoard", (req,res)=>{
     const btitle = req.body.bt;
     const bcontent = req.body.bc;
 
-    connection.query("insert into Board values(No1,NOW(),NOW(), ? , ?)",[btitle,bcontent],
+    connection.query("insert into Board values(No1,NOW(),NOW(), ? , ?,0)",[btitle,bcontent],
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");
@@ -356,7 +364,7 @@ app.post("/DeleteBoard", (req,res)=>{
 /*공지사항 constents select문 */
 app.post("/NoticeContent", (req,res)=>{
     const numbox = req.body.num;
-    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,ncontent,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate,date_format(update1 ,'%y-%m-%d-%h-%i') as update1 from Notice order by sysdate1 desc) t where No1 = ?",[numbox],
+    connection.query("select*from(select No1,ntitle,ncontent,click,date_format(sysdate1 ,'%Y-%m-%d')as ndate,date_format(update1 ,'%y-%m-%d-%h-%i') as update1 from Notice order by sysdate1 desc) t where No1 = ?",[numbox],
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");

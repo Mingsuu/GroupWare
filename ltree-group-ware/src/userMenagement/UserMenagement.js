@@ -109,6 +109,7 @@ const UserMenagement = () => {
 
     const loadUsers = (user) => {
         if (eoc === '입사일') {
+            console.log("EXIT="+user.userEXIT);
             if (user.userEXIT == null) {
                 return (
                     <tr key={user.userID}>
@@ -123,7 +124,7 @@ const UserMenagement = () => {
                 return (
                     <tr key={user.userID}>
                         <td onClick={selectUser} className='user-detail-link'>{user.userNAME}</td><td>{user.userRANK}</td><td>{user.userTELL}</td>
-                        <td>{user.userADDR}</td><td>{user.userSSN}</td><td>{user.userDATE}</td>
+                        <td>{user.userADDR}</td><td className="mgnt-exit">{user.userSSN}</td><td>{user.userDATE}</td>
                     </tr>
                 );
             }
@@ -146,13 +147,22 @@ const UserMenagement = () => {
 
     return (
         <div className='u-mgnt'>
-            <h3>직원관리</h3>
-            <button onClick={setLookUp_incumbent}>직원조회</button>
-            <button onClick={setLookUp_retire}>퇴사자 조회</button>
-            <table>
+            <div className="mgnt-title">
+                <h3>직원관리</h3>
+            </div>
+            <div className="mgnt-btnbox">
+                <button onClick={setLookUp_retire}>퇴사자 조회</button>
+                <button onClick={setLookUp_incumbent}>직원조회</button>
+            </div>
+            <table className="mgnt-table">
                 <thead>
                     <tr>
-                        <td>이름</td><td>직급</td><td>전화번호</td><td>주소</td><td>생년월일</td><td>{eoc}</td>
+                        <td className="mgnt-name">이름</td>
+                        <td className="mgnt-rank">직급</td>
+                        <td className="mgnt-call">전화번호</td>
+                        <td className="mgnt-addr">주소</td>
+                        <td className="mgnt-yyyy">생년월일</td>
+                        <td className="mgnt-date">{eoc}</td>
                     </tr>
                 </thead>
                 <tbody>

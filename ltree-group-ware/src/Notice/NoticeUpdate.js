@@ -47,26 +47,51 @@ const updatecheck = (e) => {
 }
 
 /*수정버튼 클릭시 그해당하는 데이터값 select */
-useEffect(() => {
-    console.log("No1="+match.params.No1);
-        const post = {num:match.params.No1};
-        fetch("http://localhost:3001/NoticeUpdate", {
-            method: "post",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(post),
-        })
-            .then((res) => res.json())
-            .then((json) => {
-                setUpdate(json);
-                setNtitle(json[0].ntitle);
-                setNcontent(json[0].ncontent);
-                console.log("ntitle="+ ntitle);
-                console.log("ncontent="+ncontent);
-                console.log("updatejson="+json[0].ntitle);
-            });
-}, []);
+// useEffect(() => {
+//     console.log("No1="+match.params.No1);
+//         const post = {num:match.params.No1};
+//         fetch("http://localhost:3001/NoticeUpdate", {
+//             method: "post",
+//             headers: {
+//                 "content-type": "application/json",
+//             },
+//             body: JSON.stringify(post),
+//         })
+//             .then((res) => res.json())
+//             .then((json) => {
+//                 setUpdate(json);
+//                 setNtitle(json[0].ntitle);
+//                 setNcontent(json[0].ncontent);
+//                 console.log("ntitle="+ ntitle);
+//                 console.log("ncontent="+ncontent);
+//                 console.log("updatejson="+json[0].ntitle);
+//             });
+// }, []);
+
+    /* 상세 페이지 정보 뿌리기*/
+    useEffect(() => {
+        console.log("No11="+match.params.No1);
+            const post = {num:match.params.No1};
+            fetch("http://localhost:3001/NoticeContent", {
+                method: "post",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(post),
+            })
+                .then((res) => res.json())
+                .then((json) => {
+                    setUpdate(json);
+                    setNtitle(json[0].ntitle);
+                    setNcontent(json[0].ncontent);
+                });
+    }, []);
+
+
+
+
+
+
 
 /*수정하는 값  update 하기*/
 const UpdateNotice = () => {
