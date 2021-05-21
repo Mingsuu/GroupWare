@@ -6,12 +6,12 @@ import Idfind from './Idfind';
 import Passfind from './Passfind';
 import Notice from '../Notice/Notice';
 
+
 const Loginpage = ({history}) => {
     const idRef = useRef();
     const passRef = useRef();
     const [idbox, setIdbox] = useState('');
     const [passbox, setPassbox] = useState('');
-    const [jsonbox, setJsonbox] = useState([]);
     const [idcheck, setIdcheck] = useState(false);
     const [pcheck, setPcheck] = useState(false);
     const [idlist, setIdlist] = useState(['']);
@@ -174,7 +174,6 @@ const Loginpage = ({history}) => {
             console.log("userjson="+json[0].userNAME);
             console.log("userID="+json[0].userID);
             loginalert(json);
-            setJsonbox(json);
             loginsave(json[0].userNAME ,json[0].userID);
             
           });

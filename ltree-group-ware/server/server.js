@@ -156,7 +156,7 @@ app.post('/idCheck', (req, res) => {
 //직원조회 쿼리
 app.post("/u-mgnt", (req, res) => {
 
-    connection.query("SELECT userID, userNAME, userRANK, userSSN, userTELL, userADDR, userDATE, userEXIT, exit_DATE FROM USERS",
+    connection.query("SELECT * FROM USERS",
         function (err, rows, fields) {
             if (err) {
                 console.log("직원조회 실패");
@@ -171,6 +171,83 @@ app.post("/u-mgnt", (req, res) => {
         });
 });
 
+//직원 정보 변경 쿼리
+app.put('/update-user', (req, res) => {
+    const user = req.body;
+    connection.query("UPDATE USERS SET userNAME=(?), userTELL=(?), userEMAIL=(?), userSSN=(?), userADDR=(?), userRANK=(?), update_DATE=NOW() WHERE userID = (?)"
+    , [user.userNAME, user.userTELL, user.userEMAIL, user.userSSN, user.userADDR, user.userRANK, user.userID],
+        function (err, rows, fields) {
+            if (err) {
+                console.log("직원정보 업데이트 실패");
+                console.log(err);
+                connection.rollback();
+            } else {
+                console.log("직원정보 업데이트 성공");
+                console.log(rows);
+                res.send(rows);
+                connection.commit();
+            }
+
+        });
+});
+
+//스케쥴 조회 쿼리
+app.post("/schedule", (req, res) => {
+
+    connection.query("SELECT * FROM schedule",
+        function (err, rows, fields) {
+            if (err) {
+                console.log("스케쥴 조회 실패");
+                console.log(err);
+                connection.rollback();
+            } else {
+                console.log("스케쥴 조회 성공");
+                console.log(rows);
+                res.send(rows);
+                connection.commit();
+            }
+        });
+});
+
+//일정 정보 변경쿼리
+app.put('/update-schedule', (req, res) => {
+    const sch = req.body;
+    connection.query("UPDATE schedule SET s_time=(?), e_time=(?), title=(?), content=(?), completed=(?) WHERE id = (?)"
+    , [sch.s_time.slice(0, 16), sch.e_time.slice(0, 16), sch.title, sch.content, sch.completed, sch.id],
+        function (err, rows, fields) {
+            if (err) {
+                console.log("일정 변경 실패");
+                console.log(err);
+                connection.rollback();
+            } else {
+                console.log("일정 변경 성공");
+                console.log(rows);
+                res.send(rows);
+                connection.commit();
+            }
+
+        });
+});
+
+//일정 생성
+app.post('/insert-schedule', (req, res) => {
+    const sch = req.body;
+    connection.query("INSERT INTO schedule VALUES(id, ?, ?, ?, ?, ?)"
+    , [sch.s_time, sch.e_time, sch.title, sch.content, sch.completed],
+        function (err, rows, fields) {
+            if (err) {
+                console.log("일정 생성 실패");
+                console.log(err);
+                connection.rollback();
+            } else {
+                console.log("일정 생성 성공");
+                console.log(rows);
+                res.send(rows);
+                connection.commit();
+            }
+
+        });
+});
 
 /*업무 게시판 select문 */
 app.post("/Board", (req,res)=>{

@@ -18,7 +18,6 @@
     color:white;
 }
 .midbox {
-    margin-top: 20px;
     width: 100%;
     height: 79.5vh;
     position: relative;
@@ -208,7 +207,7 @@
 .wdatebox,
 .wcontent,
 .wcontentbox {
-    display: inline-block;
+    display: block;
     float:left;
 }
 .wtitle,

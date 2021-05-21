@@ -1,4 +1,4 @@
-import React,{useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import './Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
@@ -6,26 +6,14 @@ import {Link} from 'react-router-dom';
 import Loginbanner from '../Login/Loginbanner';
 
 
-const NoticeWrite = ({history}) => {
+const NoticeWrite = ({ history }) => {
 
-const [wtitle, setWtitle] = useState('');
-const [wcontent,setWcontent] = useState('');
-const [wdate, setWdate] = useState('');
-const wdatelef = useRef();
-const wtitlelef = useRef();
-const wcontentlef = useRef();
-
-const titlechange = (e)=> {
-    setWtitle(e.target.value);
-}
-
-const contentchange = (e) => {
-    setWcontent(e.target.value);
-}
-
-const wdatechange = (e) => {
-    setWdate(e.target.value);
-}
+    const [wtitle, setWtitle] = useState('');
+    const [wcontent, setWcontent] = useState('');
+    const [wdate, setWdate] = useState('');
+    const wdatelef = useRef();
+    const wtitlelef = useRef();
+    const wcontentlef = useRef();
 
 const noticecheck = (e) => {
     e.preventDefault();
@@ -45,6 +33,17 @@ const noticecheck = (e) => {
     
 }
 
+    const titlechange = (e) => {
+        setWtitle(e.target.value);
+    }
+
+    const contentchange = (e) => {
+        setWcontent(e.target.value);
+    }
+
+    const wdatechange = (e) => {
+        setWdate(e.target.value);
+    }
 
 const insertNotice = () => {
     const post = {wt:wtitle,wc:wcontent}
@@ -61,11 +60,6 @@ const insertNotice = () => {
         console.log(json);
         
       });
-
-  };
-
-
-
 
 
     return (
@@ -113,17 +107,11 @@ const insertNotice = () => {
                             </form>
                         </div>
                     </div>
-                </div>
             </div>
-
-            {/* BOTTOM */}
-            {/* <div className="bottom">
-                <h1>copyright 2021 ltree</h1>
-            </div> */}
-
-        </div>
-    );
+        </div> 
+        </div>       
+    )
+}
 };
-
 export default NoticeWrite;
 
