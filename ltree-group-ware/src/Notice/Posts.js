@@ -46,7 +46,7 @@ console.log("databox="+posts);
         {posts.map((post,idx) => (
             
             <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1)}>
-                <Link to ={`/NoticeContent/${post.No1}?/${idx +1}`}>
+                <Link to ={`/NoticeContent/${post.No1}/${idx +1}`}>
                     <td className="no1">{idx +1}</td>
                     <td className="no2">{post.ntitle}</td>
                     <td className="no3">대표</td>

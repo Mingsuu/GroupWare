@@ -24,12 +24,12 @@ function App() {
       <div className="App">
       
       <Switch> 
-          <Route path="/Boardcontent/:No1" component={Boardcontent} exact/>
+          <Route path="/Boardcontent/:No1/:idx" component={Boardcontent} exact/>
           <Route path="/Boardupdate/:No1" component={BoardUpdate} exact/>
           <Route path="/BoardWrite" component={BoardWrite} exact />
           <Route path="/Board" component={Board} exact />
           <Route path="/NoticeUpdate/:No1" component={NoticeUpdate} exact />
-          <Route path="/NoticeContent/:No1" component={NoticeContent} exact/>
+          <Route path="/NoticeContent/:No1/:idx" component={NoticeContent} exact/>
           <Route path="/NoticeWrite" component={NoticeWrite} exact />
           <Route path="/Notice" component={Notice} exact />
           <Route path="/" component={Loginpage} exact/>

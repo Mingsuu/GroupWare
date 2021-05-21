@@ -313,19 +313,10 @@
 .no5 {
     width: 100px;
 }
-.pagebtnbox,
-.pagebtnbigbox{
+.pagebtnbox{
     display: inline-block;
 }
-.pagebtnbigbox{
-    margin-left: 70px;
-}
-.wirtebtn{
-    height: 29px;
-    float: right;
-    margin-top:10px;
-    margin-right: 100px;
-}
+
 
 /*Boardcontent*/
 
@@ -424,4 +415,28 @@
 }
 .logout {
     margin-right: 40px;
+}
+.modu {
+    display:none;
+}
+.admin {
+    display: block;
+    height: 29px;
+    float: right;
+    margin-top:10px;
+    margin-right: 100px;
+}
+.adminpage {
+    display: inline-block;
+    margin-left: 70px;
+}
+.modupage {
+    display: inline-block;
+    margin-left: -20px;
+}
+.modubtn {
+    display: none;
+}
+.adminbtn {
+    display: block;
 }

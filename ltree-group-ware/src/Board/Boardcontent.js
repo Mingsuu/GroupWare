@@ -3,6 +3,7 @@ import '../Notice/Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
 import { Link } from 'react-router-dom';
+import Loginbanner from '../Login/Loginbanner';
 
 const Boardcontent = ({ history, location, match }) => {
 
@@ -52,11 +53,7 @@ const Boardcontent = ({ history, location, match }) => {
         <div className="container">
 
             {/* TOP */}
-            <div className="top">
-                <div className="index-user">관리자</div>
-                <img className="topimg" src={ltree_logo} alt='logo' />
-                <div className="index-login"></div>
-            </div>
+            <Loginbanner/>
 
             {/* MID */}
             <div className="midbox">
@@ -81,7 +78,7 @@ const Boardcontent = ({ history, location, match }) => {
                         <div>
                             <div className="boardbox">
                                 <div className="boardtitlebox">
-                                    <span className="boardnum">{no1[0].No1}</span>
+                                    <span className="boardnum">{match.params.idx}</span>
                                     <span className="boardtitle">{no1[0].btitle}</span>
                                     <span className="boardname">작성자 : 박민수</span>
                                     <span className="boarddate">작성날짜: {no1[0].bdate}</span>

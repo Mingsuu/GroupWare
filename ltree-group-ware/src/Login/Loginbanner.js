@@ -2,6 +2,7 @@ import React from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import ltree_logo from '../Image/ltree_logo.png';
+import { withRouter } from 'react-router-dom';
 
 
 const Loginbanner =({history})=> {
@@ -51,4 +52,4 @@ const Loginbanner =({history})=> {
 
 
 
-export default Loginbanner;
+export default withRouter (Loginbanner);

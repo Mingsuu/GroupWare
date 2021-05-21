@@ -27,7 +27,7 @@ app.use(cors());
 app.post("/Login", (req,res)=>{
     const id = req.body.id;
     const pass = req.body.pass;
-    connection.query("select COUNT(userid) ming,userNAME from USERS where userID=(?) and userPWD=(?)",[id,pass],
+    connection.query("select COUNT(userid) ming,userNAME,userID from USERS where userID=(?) and userPWD=(?)",[id,pass],
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");
@@ -381,6 +381,41 @@ app.post("/ClickAdd1", (req,res)=>{
         }
     })
 });
+
+
+/*DB id 리스트 */
+app.post("/IdList", (req,res)=>{
+    const No1 = req.body.num;
+    connection.query("select userID from users",
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+
+/*DB pass 리스트 */
+app.post("/PassList", (req,res)=>{
+    const No1 = req.body.num;
+    connection.query("select userPWD from users",
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
 
 
 

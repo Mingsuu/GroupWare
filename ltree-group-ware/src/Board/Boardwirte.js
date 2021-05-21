@@ -3,7 +3,7 @@ import '../Notice/Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
 import {Link} from 'react-router-dom';
-
+import Loginbanner from '../Login/Loginbanner';
 
 const BoardWrite = ({history}) => {
 
@@ -72,11 +72,7 @@ const insertNotice = () => {
         <div className="container">
 
             {/* TOP */}
-            <div className="top">
-                <div className="index-user">관리자</div>
-                <img className="topimg" src={ltree_logo} alt='logo' />
-                <div className="index-login"></div>
-            </div>
+            <Loginbanner/>
 
             {/* MID */}
             <div className="midbox">

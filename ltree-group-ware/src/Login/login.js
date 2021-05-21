@@ -1,4 +1,4 @@
-import React, { useState,useRef } from 'react';
+import React, { useState,useRef,useEffect } from 'react';
 import './Loginui.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import { Route,Link,Switch, Router} from 'react-router-dom';
@@ -14,11 +14,81 @@ const Loginpage = ({history}) => {
     const [jsonbox, setJsonbox] = useState([]);
     const [idcheck, setIdcheck] = useState(false);
     const [pcheck, setPcheck] = useState(false);
-  
+    const [idlist, setIdlist] = useState(['']);
+    const [passlist, setPasslist] = useState(['']);
+
+    //DB에 ID 리스트 가져오기//
+    // useEffect(() => {
+
+    //     fetch("http://localhost:3001/IdList", {
+    //       method: "post",
+    //       headers: {
+    //         "content-type": "application/json",
+    //       },
+    //       body: JSON.stringify(),
+    //     })
+    //       .then((res) => res.json())
+    //       .then((json) => {
+    //         console.log("userID="+json);
+    //         console.log("userID1="+JSON.stringify(json));
+    //         setIdlist(json);
+    //         ilist(json);
+            
+    //       });
+    // }, []);
+
+    //DB에 PASS 리스트 가져오기//
+    // useEffect(() => {
+
+    //     fetch("http://localhost:3001/PassList", {
+    //       method: "post",
+    //       headers: {
+    //         "content-type": "application/json",
+    //       },
+    //       body: JSON.stringify(),
+    //     })
+    //       .then((res) => res.json())
+    //       .then((json) => {
+    //         console.log("userPWD="+json);
+    //         console.log("userPWD1="+JSON.stringify(json[0].userPWD));
+    //         setPasslist(json);
+    //         plist(json);
+            
+    //       });
+    // }, []);
+
+    const ilist = (json) => {
+        let lists = '';
+        for(let i = 0; i<json.length; i++){
+            lists = json[i]
+            // lists += JSON.stringify(list[i])
+            // lists = lists.replace(/{/gi, '');
+            console.log("idlists="+ JSON.stringify(lists));
+            // console.log("idtypeof="+lists);
+            setIdlist(lists);
+        }
+        return lists;
+    }
+
+    const plist = (json) => {
+        let lists = '';
+        for(let i = 0; i<json.length; i++){
+            lists += json[i]
+            // lists += JSON.stringify(list[i])
+            // lists = lists.replace(/{/gi, '');
+            console.log("passlists="+ lists);
+            // console.log("passtypeof="+lists);
+            setPasslist(lists);
+        }
+        return lists;
+    }
+
+
+    // console.log("아디리스트확인="+idlist[0]);
+    // console.log("비번리스트확인="+passlist[0]);
 
     const loginalert = (jsonbox) => {
         console.log("login="+jsonbox[0].ming);
-        console.log("name="+jsonbox[0].userNAME);
         if(idbox === ''){
             idRef.current.focus();
             setPcheck(false);
@@ -28,15 +98,45 @@ const Loginpage = ({history}) => {
             passRef.current.focus();
             return setPcheck(true);
         }else if(jsonbox[0].ming === 1){
-            alert("로그인 성공");
             loginsave();
             history.push("/Notice");
-        }else{
+            
+        }else if(jsonbox[0].ming === 0){
             alert("가입된 정보가 없습니다.");
-        }
-        
     }
+};
     
+
+// const loginalert = (jsonbox) => {
+//     console.log("login="+jsonbox[0].ming);
+//     if(idbox === ''){
+//         idRef.current.focus();
+//         setPcheck(false);
+//         return setIdcheck(true);
+//     }else if(passbox === ''){
+//         setIdcheck(false);
+//         passRef.current.focus();
+//         return setPcheck(true);
+//     }else if(idbox === ilist(idlist).userID){
+//             console.log("아이디확인="+idlist.userID);
+//             console.log("아이디확인1="+idbox);
+//     }else if (passbox !== ''){
+//         if (passbox !== plist(passlist).userPWD) {
+//             alert("비밀번호가 틀렸습니다.");
+//             console.log("비밀번호확인="+plist(passlist).userPWD);
+//             passRef.current.focus();
+//         }
+//     }else if(jsonbox[0].ming === 1){
+//         loginsave();
+//         history.push("/Notice");
+        
+//     }else if(jsonbox[0].ming === 0){
+//         alert("가입된 정보가 없습니다.");
+// }
+// };
+
+
+
     const idtext = (e) => {
         setIdbox(e.target.value)
         if(idbox !== ''){
@@ -72,19 +172,24 @@ const Loginpage = ({history}) => {
           .then((json) => {
             console.log(json[0].ming);
             console.log("userjson="+json[0].userNAME);
+            console.log("userID="+json[0].userID);
             loginalert(json);
             setJsonbox(json);
-            loginsave(json[0].userNAME);
+            loginsave(json[0].userNAME ,json[0].userID);
             
           });
       };
 
 
+
+
       /* Login데이터 저장하기*/
-      const loginsave = (loginName) => {
-          const loginid = { name: loginName}
-          console.log("이름="+loginid.name);
-          window.localStorage.setItem("loginName", JSON.stringify(loginid.name));
+      const loginsave = (loginName, loginid) => {
+          const loginname = { name: loginName, id: loginid}
+          console.log("이름="+loginname.name);
+          console.log("아이디="+loginname.id);
+          window.localStorage.setItem("loginName", JSON.stringify(loginname.name));
+          window.localStorage.setItem("loginID", JSON.stringify(loginname.id));
       }
 
     return (

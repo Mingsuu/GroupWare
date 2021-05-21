@@ -15,6 +15,11 @@ const Notice = ({history}) => {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(8);
+    const [idcheck, setIdcheck] = useState('modu');
+    
+
+    const loginID = window.localStorage.getItem("loginID")
+    const userID = loginID.replace(/\"/gi, "");
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -37,6 +42,13 @@ const Notice = ({history}) => {
         fetchPosts();
     }, []);
 
+    useEffect(() => {
+        if(userID === "admin"){
+            setIdcheck("admin")
+        }
+    });
+
+
     console.log("post=" + posts);
 
     const indexOfLastPost = currentPage * postPerPage;
@@ -45,7 +57,7 @@ const Notice = ({history}) => {
 
     //화면전환//
     const paginate = pageNumber => setCurrentPage(pageNumber);
-
+    const writebtn = "wirtebtn"
 
     console.log("loginName="+window.localStorage.getItem("loginName"));
 
@@ -80,17 +92,10 @@ const Notice = ({history}) => {
     return (
 
         <div className="container">
-
+            {/* { userID === "admin"  ?  (
+                <> */}
             {/* TOP */}
-            {/* <div className="top">
-                    <div className="Login-User">
-                        <div className="Userim">{realName} 님</div>
-                        <button className="logout" onClick={alertbox}>로그아웃</button>
-                        <button className="userdata">내정보</button>
-                    </div>
-                    
-                <img className="sujungimg" src={ltree_logo} alt='logo' />
-            </div> */}
+        
             <Loginbanner/>
             {/* MID */}
             <div className="midbox">
@@ -112,14 +117,17 @@ const Notice = ({history}) => {
                         <h1 className="ntitle">공지사항</h1>
                         <div>
                             <Posts posts={currentPosts} loading={loading} />
-                            <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate} />
-                            <Link to="/NoticeWrite"><button className="wirtebtn">글작성</button></Link>
+                            <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate}/>
+                            <Link to="/NoticeWrite"><button className={idcheck}>글작성</button></Link>
                             
                         </div>
                     </div>
 
                 </div>
             </div>
+            {/* </>
+              ) : <div>관리자만 이용 가능합니다.</div>
+              } */}
         </div>
     );
 };

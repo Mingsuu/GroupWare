@@ -10,10 +10,6 @@ const NoticeContent = ({ history, location, match }) => {
 
     const [no1, setNo1] = useState();
 
-    console.log("boardcontentNo1="+match.params.No1);
- 
-    let idx = String(match.params.odx);
-    console.log("boardcontentIDX="+idx);
 
     /* 상세 페이지 정보 뿌리기*/
     useEffect(() => {
@@ -54,7 +50,16 @@ const NoticeContent = ({ history, location, match }) => {
           history.push("/Notice");
       };
 
-     
+    const loginID = window.localStorage.getItem("loginID")
+    const userID = loginID.replace(/\"/gi, "");
+
+    const [admincheck, setAdmincheck] = useState('modubtn');
+
+    useEffect(() => {
+        if(userID === "admin"){
+            setAdmincheck("adminbtn")
+        }
+    });
 
     
 
@@ -88,7 +93,7 @@ const NoticeContent = ({ history, location, match }) => {
                         <div>
                             <div className="boardbox">
                                 <div className="boardtitlebox">
-                                    <span className="boardnum">{match.params.idx +1}</span>
+                                    <span className="boardnum">{match.params.idx}</span>
                                     <span className="boardtitle">제목 : {no1[0].ntitle}</span>
                                     <span className="boardname">작성자 : 박민수</span>
                                     <span className="boarddate">작성날짜: {no1[0].ndate}</span>
@@ -104,8 +109,8 @@ const NoticeContent = ({ history, location, match }) => {
                             </div>
                             <div className="btnbox">
                                 <Link to="/Notice"><button>목록으로</button></Link>
-                                    <button onClick={Noticedelete}>삭제</button>
-                                <Link to={`/NoticeUpdate/${no1[0].No1}`}><button>수정</button></Link>
+                                    <button onClick={Noticedelete} className={admincheck}>삭제</button>
+                                <Link to={`/NoticeUpdate/${no1[0].No1}`}><button className={admincheck}>수정</button></Link>
                             </div>
                         </div>
                         </>
