@@ -214,7 +214,7 @@ app.post("/schedule", (req, res) => {
 app.put('/update-schedule', (req, res) => {
     const sch = req.body;
     connection.query("UPDATE schedule SET s_time=(?), e_time=(?), title=(?), content=(?), completed=(?) WHERE id = (?)"
-    , [sch.s_time, sch.e_time, sch.title, sch.content, sch.completed, sch.id],
+    , [sch.s_time.slice(0, 16), sch.e_time.slice(0, 16), sch.title, sch.content, sch.completed, sch.id],
         function (err, rows, fields) {
             if (err) {
                 console.log("일정 변경 실패");

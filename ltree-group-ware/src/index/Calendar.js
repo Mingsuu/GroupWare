@@ -5,7 +5,7 @@ import Modali, { useModali } from 'modali';
 
 const Calendar = ({ today, history }) => {
 
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 11));
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10));
 
   const [schedules, setSchedules] = useState([{ id: '', s_time: '', e_time: '', title: '', content: '', completed: '' }]);
   const [scheduleDtail, setScheduleDtail] = useState({
@@ -105,8 +105,8 @@ const Calendar = ({ today, history }) => {
       });
       select_schedule();
   }
-  console.log(selectedDate + 'T' + new Date().toString().slice(16, 21))
-  console.log(scheduleDtail.e_time === '' ? selectedDate + 'T' + new Date().toString().slice(16, 19) + ''
+  console.log('시작',selectedDate + 'T' + new Date().toString().slice(16, 21))
+  console.log('종료',scheduleDtail.e_time === '' ? selectedDate + 'T' + new Date().toString().slice(16, 19) + ''
   + ((Number(new Date().toString().slice(19, 21)) + 1) < 10 ? '0' + (Number(new Date().toString().slice(19, 21)) + 1) : Number(new Date().toString().slice(19, 21)) + 1) : scheduleDtail.e_time.slice(0, 16))
   //console.log('시간:',new Date().toISOString().slice(0, 11)+''+(Number(new Date().toString().slice(19, 21))+5));
   const [scheduleModal, toggleScheduleModal] = useModali({
@@ -214,8 +214,8 @@ const Calendar = ({ today, history }) => {
                   setSelectedDate(e.target.className + '');
                   setScheduleDtail({
                     id: '',
-                    s_time: selectedDate + 'T' + new Date().toString().slice(16, 21),
-                    e_time: selectedDate + 'T' + new Date().toString().slice(16, 19) + '' + ((Number(new Date().toString().slice(19, 21)) + 1)),
+                    s_time: e.target.className + 'T' + new Date().toString().slice(16, 21),
+                    e_time: e.target.className + 'T' + new Date().toString().slice(16, 19) + '' + ((Number(new Date().toString().slice(19, 21)) + 1)),
                     title: '',
                     content: '',
                     completed: false
