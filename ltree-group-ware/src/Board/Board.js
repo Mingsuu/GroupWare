@@ -1,29 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import './Notice.css';
+import '../Notice/Notice.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import ltree_logo1 from '../Image/ltree.jpg';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Posts from './Posts';
 import Pagination from './Pagination';
-import Posts from './Posts'
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import '../Notice/Notice.css';
 import Loginbanner from '../Login/Loginbanner';
 
-const Notice = ({history}) => {
+const Board = () => {
     /*페이징처리 연습 */
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(8);
-    const [idcheck, setIdcheck] = useState('modu');
-    
-
-    const loginID = window.localStorage.getItem("loginID")
-    const userID = loginID.replace(/\"/gi, "");
 
     useEffect(() => {
         const fetchPosts = async () => {
-            fetch("http://localhost:3001/Notice", {
+            fetch("http://localhost:3001/Board", {
                 method: "post",
                 headers: {
                     "content-type": "application/json",
@@ -38,16 +32,11 @@ const Notice = ({history}) => {
                     setPosts(res);
                     setLoading(false);
                 });
+
+
         };
         fetchPosts();
     }, []);
-
-    useEffect(() => {
-        if(userID === "admin"){
-            setIdcheck("admin")
-        }
-    });
-
 
     console.log("post=" + posts);
 
@@ -57,46 +46,17 @@ const Notice = ({history}) => {
 
     //화면전환//
     const paginate = pageNumber => setCurrentPage(pageNumber);
-    const writebtn = "wirtebtn"
 
-    console.log("loginName="+window.localStorage.getItem("loginName"));
+   
 
-    // const loginName = window.localStorage.getItem("loginName")
-    // const realName = loginName.replace(/\"/gi, "");
-
-    // //로그아웃 알림창//
-    // const alertbox  = ()=> {
-    //     confirmAlert({
-    //         title: '로그아웃',
-    //         message: '정말로 로그아웃 하시겠습니까?',
-    //         buttons: [
-    //           {
-    //             label: '네',
-    //             onClick: () => {window.localStorage.removeItem('key');
-    //                             window.localStorage.clear();
-    //                             history.push("/");}
-    //           },
-    //           {
-    //             label: '아니요',
-                
-    //           }
-    //         ]
-    //       });
-       
-    // };
-    
-
-
-    
 
     return (
 
         <div className="container">
-            {/* { userID === "admin"  ?  (
-                <> */}
+
             {/* TOP */}
-        
             <Loginbanner/>
+
             {/* MID */}
             <div className="midbox">
 
@@ -114,21 +74,17 @@ const Notice = ({history}) => {
                 {/* MID-RIGHT */}
                 <div className="mid-right">
                     <div className="noticebox">
-                        <h1 className="ntitle">공지사항</h1>
+                        <h1 className="ntitle">업무 게시판</h1>
                         <div>
                             <Posts posts={currentPosts} loading={loading} />
-                            <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate}/>
-                            <Link to="/NoticeWrite"><button className={idcheck}>글작성</button></Link>
-                            
+                            <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate} />
+                            <Link to="/BoardWrite"><button className="wirtebtn">글작성</button></Link>
                         </div>
                     </div>
 
                 </div>
             </div>
-            {/* </>
-              ) : <div>관리자만 이용 가능합니다.</div>
-              } */}
         </div>
     );
 };
-export default Notice;
+export default Board;

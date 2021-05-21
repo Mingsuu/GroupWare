@@ -1,20 +1,21 @@
 
+.top {
+    display: block;
+    margin-bottom: 20px;
+    text-align: left;
+    background: rgb(50,134,84);
+    height:130px;
+}
 
 .index-login {
     text-align: right;
 }
-.index-user {
+.login-user {
     position: absolute;
     left: 90%;
-    margin-top: 40px;
-    font-size: 30px;
+    margin-top: 35px;
+    font-size: 24px;
     color:white;
-}
-.topimg {
-    width: 200px; 
-    height: 120px;
-    margin-left:15px;
-    margin-top:10px;
 }
 .midbox {
     width: 100%;
@@ -31,7 +32,6 @@
     color:black;
 }
 .mid-leftbox {
-    outline: 1px solid #9F9F9F;
     width: 250px;
     height: 100%;
     background-color: rgb(50,134,84);
@@ -71,7 +71,6 @@
 
 .board {
     position: absolute;
-    outline: 1px solid #9F9F9F;
     width: 380px;
     height: 250px;
     background-color: #FFE400;
@@ -87,7 +86,6 @@
 
 }
 .notice-board tr, td ,th {
-    border:1px solid black;
     border-collapse:collapse;
     background-color: white;
     color:black;
@@ -102,7 +100,6 @@
 
 .check {
     position: absolute;
-    outline: 1px solid #9F9F9F;
     width: 380px;
     height: 250px;
     background-color: tomato;
@@ -171,7 +168,6 @@
 .optionbox,
 .searchbox {
     border-radius: 3px;
-    border: 1px solid lightgray;
 }
 .notice_writebtn:hover,
 .searchbox:hover {
@@ -198,7 +194,6 @@
     width: 70px;
     height: 30px;
     border-radius: 4px;
-    border: 1px solid lightgray;
     font-weight: bold;
 }
 .divbox1 button:hover {
@@ -229,7 +224,6 @@
     margin-left: 50px;
     height: 30px;
     border-radius: 6px;
-    border: 1px solid lightgray;
 }
 .wtitlebox {
     margin-left: 50px;
@@ -237,7 +231,6 @@
     height: 30px;
     border-radius: 6px;
     padding-left: 5px;
-    border: 1px solid lightgray;
 }
 .wcontentbox{
     margin-left: 50px;
@@ -246,7 +239,6 @@
     border-radius: 6px;
     padding-left: 5px;
     padding-top: 5px;
-    border: 1px solid lightgray;
     font-size:15px;
 }
 .wcontent {
@@ -262,17 +254,20 @@
     margin:0px;
     width: 742px;
     margin-bottom: 10px;
-    border:1px solid white;
     opacity: 0.5;
     margin-left: 20px;
 }
+.topmenu{
+    margin-left: 1px;
+}
+
+/*Notice pageing*/
 .pagination {
     list-style: none;
     width:300px;
 }
 .pagination li {
     display: inline-block;
-    border:1px solid black;
     width:30px;
     height: 30px;
 }
@@ -306,6 +301,7 @@
 }
 .no2 {
     width: 500px;
+    padding-top:5px;
 }
 .no3 {
     width: 93px;
@@ -316,16 +312,130 @@
 .no5 {
     width: 100px;
 }
-.pagebtnbox,
-.pagebtnbigbox{
+.pagebtnbox{
     display: inline-block;
 }
-.pagebtnbigbox{
-    margin-left: 70px;
+
+
+/*Boardcontent*/
+
+.boardbox{
+    display: inline-block;
+    margin-left: 60px;
+    width:1000px;
+    background-color: white;
 }
-.wirtebtn{
+.boardtitlebox{
+    display: inline-block;
+    width: 1000px;
+    background-color: white;
+}
+.boardbar{
+    background-color:black;
+    margin:0px;
+    margin-bottom: 10px;
+}
+.boardtitle,
+.boardnum,
+.boardname,
+.boarddate,
+.boardupdate{
+    height: 30px;
+    float: left;
+    padding-top: 4px;
+}
+.boardnum{
+    margin-right: 7px;
+    width: 40px;
+}
+.boardtitle{
+    width:380px;
+    text-align: left;
+}
+.boardname{
+    width:150px;
+}
+.boarddate{
+    width: 170px;
+}
+.boardupdate {
+    width: 200px;
+}
+.boardup{
+    width:40px;
+    float: right;
+    padding-top: 4px;
+}
+.boardneyoung{
+    display: inline-block;
+    height: 350px;
+    width: 1000px;
+    background-color: white;
+}
+.neyoung{
+    float: left;
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 900px;
+    height: 350px;
+    text-align: left;
+    font-size: 17px;
+}
+.btnbox{
+    width: 1000px;
+    margin-left: 62px;
+    display: inline-block;
+}
+.btnbox button {
+    float: right;
+    margin-left: 10px;
+    margin-top:10px;
+}
+.bvar{
+    border:1px solid red;
+    display: inline-block;
+}
+/* 오른쪽 위에 로그인 배너*/
+.sujungimg {
+    display: inline-block;
+    margin-left: 20px;
+}
+.Login-User{
+    float: right;
+    margin-top: 30px;
+    margin-right: 50px;
+    width: 200px;
+    text-align: center;
+}
+.Userim{
+    font-size:25px;
+    color:white;
+    margin-bottom: 10px;
+}
+.logout {
+    margin-right: 40px;
+}
+.modu {
+    display:none;
+}
+.admin {
+    display: block;
     height: 29px;
     float: right;
     margin-top:10px;
     margin-right: 100px;
+}
+.adminpage {
+    display: inline-block;
+    margin-left: 70px;
+}
+.modupage {
+    display: inline-block;
+    margin-left: -20px;
+}
+.modubtn {
+    display: none;
+}
+.adminbtn {
+    display: block;
 }

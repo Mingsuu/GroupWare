@@ -27,7 +27,7 @@ app.use(cors());
 app.post("/Login", (req,res)=>{
     const id = req.body.id;
     const pass = req.body.pass;
-    connection.query("select COUNT(userid) ming from USERS where userID=(?) and userPWD=(?)",[id,pass],
+    connection.query("select COUNT(userid) ming,userNAME,userID from USERS where userID=(?) and userPWD=(?)",[id,pass],
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");
@@ -82,8 +82,7 @@ app.post("/Findpass", (req,res)=>{
 app.post("/AddNotice", (req,res)=>{
     const wtitle = req.body.wt;
     const wcontent = req.body.wc;
-    const wdate = req.body.wd;
-    connection.query("insert into Notice values(No1,?, ?, ?)",[wdate,wtitle,wcontent],
+    connection.query("insert into Notice values(No1,NOW(), ?, ?)",[wtitle,wcontent],
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");
@@ -92,14 +91,14 @@ app.post("/AddNotice", (req,res)=>{
             console.log("불러오기 성공");
             res.send(rows);
             console.log(rows);
-            console.log(wdate,wtitle,wcontent);
+            console.log(wtitle,wcontent);
         }
     })
 })
 
 /*공지사항 select문 */
 app.post("/Notice", (req,res)=>{
-    connection.query("select No1,date_format(today,'%Y-%m-%d') as ndate,ntitle,ncontent from Notice",
+    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate from Notice order by sysdate1 desc) t",
     function(err,rows,fields){
         if(err){
             console.log("불러오기 실패");
@@ -249,6 +248,252 @@ app.post('/insert-schedule', (req, res) => {
 
         });
 });
+
+/*업무 게시판 select문 */
+app.post("/Board", (req,res)=>{
+    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,btitle,date_format(sysdate1 ,'%Y-%m-%d') as bdate, click from Board order by sysdate1 desc) t",
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+/*업무 게시판 insert문 */
+app.post("/AddBoard", (req,res)=>{
+    const btitle = req.body.bt;
+    const bcontent = req.body.bc;
+
+    connection.query("insert into Board values(No1,NOW(),NOW(), ? , ?)",[btitle,bcontent],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+
+/*업무 게시판 constents select문 */
+app.post("/Boardcontent", (req,res)=>{
+    const numbox = req.body.num;
+    connection.query("select No1,date_format(sysdate1,'%Y-%m-%d') as bdate,date_format(update1 ,'%y-%m-%d-%h-%i') as update1,btitle,bcontent,click from Board where No1 = ? ",[numbox],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+/*업무 게시판 수정 select 문 */
+app.post("/BoardUpdate", (req,res)=>{
+    const num = req.body.num;
+    connection.query("select No1,date_format(sysdate1,'%Y-%m-%d') as bdate,btitle,bcontent from Board where No1 = ? ",[num],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+
+/*업무 게시판 update문 */
+app.post("/UpdateBoard", (req,res)=>{
+    const btitle = req.body.bt;
+    const bcontent = req.body.bc;
+    const No1 = req.body.no1;
+
+    connection.query("update Board set btitle= ? , bcontent= ? , update1=NOW() where No1 = ?",[btitle,bcontent,No1],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+/* 업무게시판 삭제 로직 */
+app.post("/DeleteBoard", (req,res)=>{
+    const No1 = req.body.no1;
+
+    connection.query("delete from board where No1= ? ",[No1],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+
+/*공지사항 constents select문 */
+app.post("/NoticeContent", (req,res)=>{
+    const numbox = req.body.num;
+    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,ncontent,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate,date_format(update1 ,'%y-%m-%d-%h-%i') as update1 from Notice order by sysdate1 desc) t where No1 = ?",[numbox],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows[0].No1);
+        }
+    })
+});
+
+
+/* 공지사항 삭제 로직 */
+app.post("/DeleteNotice", (req,res)=>{
+    const No1 = req.body.no1;
+
+    connection.query("delete from notice where No1= ? ",[No1],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+
+/*공지사항 수정 select 문 */
+app.post("/NoticeUpdate", (req,res)=>{
+    const num = req.body.num;
+    connection.query("select No1,date_format(sysdate1,'%Y-%m-%d') as ndate,ntitle,ncontent from notice where No1 = ? ",[num],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+
+/*공지사항 update문 */
+app.post("/UpdateNotice", (req,res)=>{
+    const ntitle = req.body.bt;
+    const ncontent = req.body.bc;
+    const No1 = req.body.no1;
+
+    connection.query("update notice set ntitle= ? , ncontent= ? ,update1=NOW() where No1 = ?",[ntitle,ncontent,No1],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+
+/*공지사항 조회수  */
+app.post("/ClickAdd", (req,res)=>{
+    const No1 = req.body.num;
+    connection.query("update notice set click= click + 1  where No1=?",[No1],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+            console.log("숫자="+No1);
+        }
+    })
+});
+
+/*업무 게시판 조회수  */
+app.post("/ClickAdd1", (req,res)=>{
+    const No1 = req.body.num;
+    connection.query("update board set click= click + 1  where No1=?",[No1],
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+            console.log("숫자="+No1);
+        }
+    })
+});
+
+
+/*DB id 리스트 */
+app.post("/IdList", (req,res)=>{
+    const No1 = req.body.num;
+    connection.query("select userID from users",
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+
+/*DB pass 리스트 */
+app.post("/PassList", (req,res)=>{
+    const No1 = req.body.num;
+    connection.query("select userPWD from users",
+    function(err,rows,fields){
+        if(err){
+            console.log("불러오기 실패");
+            console.log("error" +err);
+        }else{
+            console.log("불러오기 성공");
+            res.send(rows);
+            console.log(rows);
+        }
+    })
+});
+
+
 
 
 
