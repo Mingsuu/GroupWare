@@ -15,6 +15,11 @@ const NoticeWrite = ({ history }) => {
     const wtitlelef = useRef();
     const wcontentlef = useRef();
 
+const contentchange = (e) => {
+    setWcontent(e.target.value);
+}
+
+
 const noticecheck = (e) => {
     e.preventDefault();
      if(wtitle === '') {
@@ -32,18 +37,10 @@ const noticecheck = (e) => {
     }
     
 }
-
     const titlechange = (e) => {
         setWtitle(e.target.value);
     }
 
-    const contentchange = (e) => {
-        setWcontent(e.target.value);
-    }
-
-    const wdatechange = (e) => {
-        setWdate(e.target.value);
-    }
 
 const insertNotice = () => {
     const post = {wt:wtitle,wc:wcontent}
@@ -60,6 +57,25 @@ const insertNotice = () => {
         console.log(json);
         
       });
+    const noticecheck = (e) => {
+        e.preventDefault();
+        if (wdate === '') {
+            alert("작성일을 선택해 주세요.");
+        } else if (wtitle === '') {
+            alert("제목을 입력해 주세요.");
+            wtitlelef.current.focus();
+        } else if (wcontent === '') {
+            alert("내용을 입력해 주세요.");
+            wcontentlef.current.focus();
+        } else {
+            insertNotice();
+            setWdate('');
+            setWtitle('');
+            setWcontent('');
+
+        }
+        history.goBack();
+    }
 
 
     return (
@@ -108,10 +124,11 @@ const insertNotice = () => {
                         </div>
                     </div>
             </div>
-        </div> 
-        </div>       
-    )
+        </div>
+        </div>        
+    );
 }
 };
+
 export default NoticeWrite;
 

@@ -1,9 +1,9 @@
 import React, { useState,useRef,useEffect } from 'react';
-import './Loginui.css';
+import './loginui.css';
 import ltree_logo from '../Image/ltree_logo.png';
 import { Route,Link,Switch, Router} from 'react-router-dom';
 import Idfind from './Idfind';
-import Passfind from './Passfind';
+import Passfind from './passfind';
 import Notice from '../Notice/Notice';
 
 
