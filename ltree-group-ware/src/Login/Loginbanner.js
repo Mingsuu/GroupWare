@@ -16,9 +16,6 @@ const Loginbanner =({history})=> {
       console.log("로그인배너 ="+realName);
   })
 
-  
-   
-
     //로그아웃 알림창//
         const alertbox  = ()=> {
             confirmAlert({
@@ -31,15 +28,12 @@ const Loginbanner =({history})=> {
                                     window.localStorage.clear();
                                     history.push("/");
                                     }
-
                   },
                   {
                     label: '아니요',
-                    
                   }
                 ]
               });
-           
         };
 
     return (
@@ -49,12 +43,9 @@ const Loginbanner =({history})=> {
                 <button className="logout" onClick={alertbox}>로그아웃</button>
                 <button className="userdata">내정보</button>
             </div>
-        
             <img className="sujungimg" src={ltree_logo} alt='logo' />
         </div>
     );
-
-
 
 
 

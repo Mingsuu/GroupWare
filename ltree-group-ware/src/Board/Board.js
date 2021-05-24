@@ -48,17 +48,15 @@ const Board = () => {
 
 
     return (
-                <div className="mid-right">
                     <div className="noticebox">
                         <h1 className="ntitle">업무 게시판</h1>
                         <div>
                             <Posts posts={currentPosts} loading={loading} />
                             <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate} />
-                            <Link to="/home/boardwrite"><button className="wirtebtn">글작성</button></Link>
+                            <Link to="/home/boardwrite"><button className="admin">글작성</button></Link>
                         </div>
                     </div>
 
-                </div>
    
     );
 };

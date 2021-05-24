@@ -143,7 +143,8 @@
     background-color: white;
     color:black;
 }
-.notice_writebtn {
+.notice_writebtn,
+.wirtebtn {
     float:right;
     margin-right: 20px;
     width: 70px;
@@ -298,9 +299,16 @@
 .no1 {
     width: 40px;
 }
+.no2t{
+    display: inline-block;
+    width: 502px;
+    height:max-content;
+}
 .no2 {
-    width: 500px;
+    width: 470px;
     padding-top:5px;
+    text-align: left;
+    padding-left: 30px;
 }
 .no3 {
     width: 93px;
@@ -311,10 +319,40 @@
 .no5 {
     width: 100px;
 }
+.no1,
+.no2,
+.no3,
+.no4,
+.no5{
+    display: inline-block;
+    background-color: white;
+    height: 30px;
+}
 .pagebtnbox{
     display: inline-block;
 }
-
+.Linkdiv:link{
+   display: inline-block;
+   height: 20px;
+   margin-top:1px;
+}
+.no2 {
+    height: 27px;
+    margin-bottom:-4px;
+}
+.default-link{
+    text-decoration: none !important;
+  }
+.notlist {
+    border: 1px solid black;
+    background-color: white;
+}
+.notlist1 {
+    border: 1px solid black;
+    background-color: white;
+    padding-top: 5px;
+    margin-left: -1px;
+}
 
 /*Boardcontent*/
 

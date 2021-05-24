@@ -38,6 +38,7 @@ const Notice = ({ history }) => {
         fetchPosts();
     }, []);
 
+    //첫 랜더링을 할때 아이디가 관리자면 글작성버튼 활성화
     useEffect(() => {
         if (userID === "admin") {
             setIdcheck("admin")

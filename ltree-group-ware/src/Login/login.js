@@ -14,7 +14,7 @@ const Loginpage = ({history}) => {
     const [passbox, setPassbox] = useState('');
     const [idcheck, setIdcheck] = useState(false);
     const [pcheck, setPcheck] = useState(false);
-    const [idlist, setIdlist] = useState(['']);
+    const [idlist, setIdlist] = useState('');
     const [passlist, setPasslist] = useState(['']);
 
     //DB에 ID 리스트 가져오기//
@@ -50,7 +50,7 @@ const Loginpage = ({history}) => {
           .then((res) => res.json())
           .then((json) => {
             console.log("비번리스트="+json);
-            console.log("비번리스트1="+JSON.stringify(json[0].userPWD));
+            console.log("비번리스트1="+JSON.stringify(json));
             setPasslist(json);
             plist(json);
             
@@ -58,9 +58,9 @@ const Loginpage = ({history}) => {
     }, []);
 
     const ilist = (json) => {
-        let lists = '';
+        let lists = [];
         for(let i = 0; i<json.length; i++){
-            lists = json[i]
+            lists.push(json[i].userID);
             // lists += JSON.stringify(list[i])
             // lists = lists.replace(/{/gi, '');
             console.log("idlists="+ JSON.stringify(lists));
@@ -69,71 +69,69 @@ const Loginpage = ({history}) => {
         }
         return lists;
     }
-
+    
     const plist = (json) => {
-        let lists = '';
+        let lists = [];
         for(let i = 0; i<json.length; i++){
-            lists = json[i]
+            lists.push(json[i].userPWD);
             // lists += JSON.stringify(list[i])
             // lists = lists.replace(/{/gi, '');
-            console.log("passlists="+JSON.stringify(lists));
+            console.log("passlists="+lists);
             // console.log("passtypeof="+lists);
             setPasslist(lists);
         }
         return lists;
     }
 
-
+    // console.log("ilist="+ilist.lists);
+    // console.log("passlist="+plist.lists);
     // console.log("아디리스트확인="+idlist[0]);
     // console.log("비번리스트확인="+passlist[0]);
 
-    const loginalert = (jsonbox) => {
-        console.log("login="+jsonbox[0].ming);
-        if(idbox === ''){
-            idRef.current.focus();
-            setPcheck(false);
-            return setIdcheck(true);
-        }else if(passbox === ''){
-            setIdcheck(false);
-            passRef.current.focus();
-            return setPcheck(true);
-        }else if(jsonbox[0].ming === 1){
-            loginsave();
-            history.push("/home");
+//     const loginalert = (jsonbox) => {
+//         console.log("login="+jsonbox[0].ming);
+//         if(idbox === ''){
+//             idRef.current.focus();
+//             setPcheck(false);
+//             return setIdcheck(true);
+//         }else if(passbox === ''){
+//             setIdcheck(false);
+//             passRef.current.focus();
+//             return setPcheck(true);
+//         }else if(jsonbox[0].ming === 1){
+//             loginsave();
+//             history.push("/home");
             
-        }else if(jsonbox[0].ming === 0){
-            alert("가입된 정보가 없습니다.");
-    }
-};
+//         }else if(jsonbox[0].ming === 0){
+//             alert("가입된 정보가 없습니다.");
+//     }
+// };
     
 
-// const loginalert = (jsonbox) => {
-//     console.log("login="+jsonbox[0].ming);
-//     if(idbox === ''){
-//         idRef.current.focus();
-//         setPcheck(false);
-//         return setIdcheck(true);
-//     }else if(passbox === ''){
-//         setIdcheck(false);
-//         passRef.current.focus();
-//         return setPcheck(true);
-//     }else if(idbox === ilist(idlist).userID){
-//             console.log("아이디확인="+idlist.userID);
-//             console.log("아이디확인1="+idbox);
-//     }else if (passbox !== ''){
-//         if (passbox !== plist(passlist).userPWD) {
-//             alert("비밀번호가 틀렸습니다.");
-//             console.log("비밀번호확인="+plist(passlist).userPWD);
-//             passRef.current.focus();
-//         }
-//     }else if(jsonbox[0].ming === 1){
-//         loginsave();
-//         history.push("/Notice");
+const loginalert = (jsonbox) => {
+    console.log("login="+jsonbox[0].ming);
+    if(idbox === ''){
+        idRef.current.focus();
+        setPcheck(false);
+        return setIdcheck(true);
+    }else if(passbox === ''){
+        setIdcheck(false);
+        passRef.current.focus();
+        return setPcheck(true);
+    }else if(idlist.find(id => id === idbox) === undefined){
+            alert("아이디가 존재하지 않습니다.");
+            idRef.current.focus();
+    }else if (passlist.find(pass => pass === passbox) === undefined) {
+            alert("비밀번호가 틀렸습니다.");
+            passRef.current.focus();
+    }else if(jsonbox[0].ming === 1){
+        loginsave();
+        history.push("/home");
         
-//     }else if(jsonbox[0].ming === 0){
-//         alert("가입된 정보가 없습니다.");
-// }
-// };
+    }else if(jsonbox[0].ming === 0){
+        alert("가입된 정보가 없습니다.");
+}
+};
 
 
 
