@@ -13,8 +13,8 @@ const Loginbanner =({history})=> {
       const loginName = window.localStorage.getItem("loginName")
       const realName = loginName.replace(/\"/gi, "");
       setNamebox(realName);
-      console.log("로그인배너 ="+realName);
-  })
+      
+  },[])
 
     //로그아웃 알림창//
         const alertbox  = ()=> {

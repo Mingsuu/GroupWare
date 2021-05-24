@@ -454,6 +454,26 @@ app.post('/insert-schedule', (req, res) => {
         });
 });
 
+//일정 삭제
+app.delete('/delete-schedule', (req, res) => {
+    const selectedID = req.body.id;
+    connection.query("DELETE FROM schedule WHERE id = ?"
+    , [selectedID],
+        function (err, rows, fields) {
+            if (err) {
+                console.log("일정 삭제 실패");
+                console.log(err);
+                connection.rollback();
+            } else {
+                console.log("일정 삭제 성공");
+                console.log(rows);
+                res.send(rows);
+                connection.commit();
+            }
+
+        });
+});
+
 
 /*************************************************직원조회 관련************************************************************/
 //직원조회 쿼리

@@ -10,13 +10,12 @@ import Boardcontent from '../Board/Boardcontent';
 import NoticeContent from '../Notice/NoticeContent';
 
 const SelectedView = ({ match, history, location }) => {
-    console.log(match.params.id)
-
+    
     switch (match.params.id) {
 
         case 'notice':
             return (<Notice />);
-        case 'noticewrite':
+        case 'noticeWrite':
             return (<NoticeWrite history={history} />);
         case 'noticeContent':
             return (<NoticeContent history={history} location={location} />);

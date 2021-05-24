@@ -3,11 +3,18 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Modali, { useModali } from 'modali';
 
-const Calendar = ({ today, history }) => {
+const Calendar = ({ today }) => {
 
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10));
-
-  const [schedules, setSchedules] = useState([{ id: '', s_time: '', e_time: '', title: '', content: '', completed: '' }]);
+  const [schedules, setSchedules] = useState([
+    {
+       id: '', 
+       s_time: '', 
+       e_time: '', 
+       title: '', 
+       content: '', 
+       completed: '' 
+      }
+    ]);
   const [scheduleDtail, setScheduleDtail] = useState({
     id: '',
     s_time: '',
@@ -90,6 +97,7 @@ const Calendar = ({ today, history }) => {
 
       });
       select_schedule();
+      toggleScheduleModal();
   }
   const insert_schedule = () => {
     fetch("http://localhost:3001/insert-schedule", {
@@ -104,11 +112,24 @@ const Calendar = ({ today, history }) => {
 
       });
       select_schedule();
+      toggleScheduleModal();
   }
-  console.log('시작',selectedDate + 'T' + new Date().toString().slice(16, 21))
-  console.log('종료',scheduleDtail.e_time === '' ? selectedDate + 'T' + new Date().toString().slice(16, 19) + ''
-  + ((Number(new Date().toString().slice(19, 21)) + 1) < 10 ? '0' + (Number(new Date().toString().slice(19, 21)) + 1) : Number(new Date().toString().slice(19, 21)) + 1) : scheduleDtail.e_time.slice(0, 16))
-  //console.log('시간:',new Date().toISOString().slice(0, 11)+''+(Number(new Date().toString().slice(19, 21))+5));
+  const delete_schedule = () => {
+    fetch("http://localhost:3001/delete-schedule", {
+      method: "delete",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(scheduleDtail),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+
+      });
+      select_schedule();
+      toggleScheduleModal();
+  }
+
   const [scheduleModal, toggleScheduleModal] = useModali({
     animated: true,
     title: '상세 일정',
@@ -120,12 +141,11 @@ const Calendar = ({ today, history }) => {
         </div>
         <div>
           <p>시작일</p>
-          <input type='datetime-local' defaultValue={scheduleDtail.s_time === '' ? selectedDate + 'T' + new Date().toString().slice(16, 21) : scheduleDtail.s_time.slice(0, 16)} />
+          <input type='datetime-local' defaultValue={scheduleDtail.s_time} />
         </div>
         <div>
           <p>종료일</p>
-          <input type='datetime-local' defaultValue={scheduleDtail.e_time === '' ? selectedDate + 'T' + new Date().toString().slice(16, 19) + ''
-            + ((Number(new Date().toString().slice(19, 21)) + 1) < 10 ? '0' + (Number(new Date().toString().slice(19, 21)) + 1) : Number(new Date().toString().slice(19, 21)) + 1) : scheduleDtail.e_time.slice(0, 16)} />
+          <input type='datetime-local' defaultValue={scheduleDtail.e_time} />
         </div>
         <div>
           <p>내용</p>
@@ -142,7 +162,7 @@ const Calendar = ({ today, history }) => {
       <Modali.Button
         label="삭제"
         isStyleDestructive
-        onClick={() => toggleScheduleModal()}
+        onClick={() => delete_schedule()}
       />,
       <Modali.Button
         label="취소"
@@ -207,15 +227,17 @@ const Calendar = ({ today, history }) => {
               "-" +
               (day === "" ? '00' + noday++ : day < 10 ? "0" + day : day);
 
-            // console.log(thisyear + "-" + (month < 9 ? "0" + (month + 1) : (month + 1)) + "-" + (day === "" ? noday++ + '00' : day < 10 ? "0" + day : day));
+           
             return (
-              <div key={dateKey} className={year + '-' + (month < 9 ? "0" + (month + 1) : month + 1) + '-' + (day < 10 ? "0" + day : day)}
+              <div key={dateKey} className={dateKey}
                 onClick={(e) => {
-                  setSelectedDate(e.target.className + '');
+                  console.log(e.target.className + 'T' + new Date().toString().slice(16, 21))
+                  let minute = new Date().toString().slice(19, 21);
                   setScheduleDtail({
                     id: '',
                     s_time: e.target.className + 'T' + new Date().toString().slice(16, 21),
-                    e_time: e.target.className + 'T' + new Date().toString().slice(16, 19) + '' + ((Number(new Date().toString().slice(19, 21)) + 1)),
+                    e_time: e.target.className + 'T' + new Date().toString().slice(16, 19) 
+                    + ((Number(minute) + 1) < 10 ? '0' + (Number(minute) + 1) : Number(minute) + 1),
                     title: '',
                     content: '',
                     completed: false
@@ -240,10 +262,16 @@ const Calendar = ({ today, history }) => {
                         className={schedule.title + ''}
                         key={schedule.id}
                         onClick={(e) => {
-                          setScheduleDtail({ id: schedule.id, s_time: schedule.s_time, e_time: schedule.e_time, title: schedule.title, content: schedule.content, completed: schedule.completed })
+                          setScheduleDtail({ 
+                            id: schedule.id, 
+                            s_time: schedule.s_time.toString().slice(0,16), 
+                            e_time: schedule.e_time.toString().slice(0,16), 
+                            title: schedule.title, 
+                            content: schedule.content, 
+                            completed: schedule.completed 
+                          })
                           toggleScheduleModal();
                           e.stopPropagation();
-
                         }}
                       >
                         {schedule.title}
@@ -283,7 +311,6 @@ const Calendar = ({ today, history }) => {
       changeYear((year) => year + 1);
     }
     makeCalendar(year, month);
-    console.log("next!", year, month, new_month);
   };
   const prevMonth = () => {
     if (month !== 0) {

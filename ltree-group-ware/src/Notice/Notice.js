@@ -54,9 +54,7 @@ const Notice = ({ history }) => {
 
     //화면전환//
     const paginate = pageNumber => setCurrentPage(pageNumber);
-    const writebtn = "wirtebtn"
-
-    console.log("loginName=" + window.localStorage.getItem("loginName"));
+   
 
     return (
 
@@ -66,7 +64,7 @@ const Notice = ({ history }) => {
             <div>
                 <Posts posts={currentPosts} loading={loading} />
                 <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate} />
-                <Link to="/NoticeWrite"><button className={idcheck}>글작성</button></Link>
+                <Link to="/home/noticeWrite"><button className={idcheck}>글작성</button></Link>
 
             </div>
         </div>

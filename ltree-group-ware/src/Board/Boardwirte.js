@@ -80,7 +80,7 @@ const insertNotice = () => {
                                    <div className="wcontent">내용</div>
                                 <textarea className="wcontentbox" placeholder="내용을 입력해 주세요." ref={bcontentlef} value={bcontent} onChange={contentchange}></textarea>
                                </div>
-                               <div className="divbox1"><button onClick={() => {history.goBack();}}>목록으로</button><button onClick={noticecheck}>등록</button></div>
+                               <div className="divbox1"><button onClick={() => {history.push('/home/boarder')}}>목록으로</button><button onClick={noticecheck}>등록</button></div>
                             </form>
                         </div>
                     </div>
