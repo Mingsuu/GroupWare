@@ -1,11 +1,3 @@
-
-.top {
-    display: block;
-    text-align: left;
-    background: rgb(50,134,84);
-    height:130px;
-}
-
 .index-login {
     text-align: right;
 }
@@ -168,9 +160,9 @@
 .searchbox {
     border-radius: 3px;
 }
-.notice_writebtn:hover,
-.searchbox:hover {
-    background-color: gray;
+.admin:hover,
+.admin1:hover {
+    background-color: lightgray;
     color:white;
 }
 /*공지사항 글쓰기 css*/
@@ -284,6 +276,9 @@
 .pagebtn1 {
     width: 30px;
     height: 30px;
+    border:1px solid lightgray;
+    border-radius: 5px;
+    margin-left:-100px;
 }
 .pagebtn1:hover {
     background-color: white;
@@ -294,6 +289,9 @@
 .listbox{
     margin-left: 100px;
     width: 980px;
+}
+.no{
+    background:none;
 }
 .no1 {
     width: 40px;
@@ -413,9 +411,6 @@
     color:white;
     margin-bottom: 10px;
 }
-.logout {
-    margin-right: 40px;
-}
 .modu {
     display:none;
 }
@@ -425,6 +420,17 @@
     float: right;
     margin-top:10px;
     margin-right: 100px;
+    border:1px solid lightgray;
+    border-radius: 5px;
+}
+.admin1 {
+    display: block;
+    height: 29px;
+    float: right;
+    margin-top:-50px;
+    margin-right: 100px;
+    border:1px solid lightgray;
+    border-radius: 5px;
 }
 .adminpage {
     display: inline-block;
@@ -440,16 +446,35 @@
 .adminbtn {
     display: block;
 }
-.logout,
-.userdata {
+.logout{
     background-color: white;
     border:none;
     height: 27px;
     width: 70px;
     border-radius: 5px;
+    margin-right: -33px;
 }
 .logout:hover,
-.userdata:hover{
+.deletebtn:hover{
     background-color: lightgray;
     color:white;
+}
+.Noticechbox {
+    width: 25px;
+    height: 25px;
+    margin-top:5px;
+    margin-right: 10px;
+    border:1px solid lightgray;
+}
+.checkbox {
+    border:1px solid lightgray;
+}
+.deletebtn{
+    width: 50px;
+    height: 30px;
+    border:1px solid lightgray;
+    border-radius: 5px;
+    margin-top:5px;
+    margin-left: 100px;
+    float: left;
 }

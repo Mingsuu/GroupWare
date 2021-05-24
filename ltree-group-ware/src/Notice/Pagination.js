@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState,useEffect } from 'react';
 
 const Pagination = ({postsPerPage, totalPosts, paginate}) => { //쪽수매기기

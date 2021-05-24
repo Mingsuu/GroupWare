@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {useState, useEffect} from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
@@ -41,7 +42,6 @@ const Loginbanner =({history})=> {
             <div className="Login-User">
                 <div className="Userim">{namebox} 님</div>
                 <button className="logout" onClick={alertbox}>로그아웃</button>
-                <button className="userdata">내정보</button>
             </div>
             <img className="sujungimg" src={ltree_logo} alt='logo' />
         </div>

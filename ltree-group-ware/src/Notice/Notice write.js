@@ -1,7 +1,6 @@
+/* eslint-disable */
 import React,{useState, useRef} from 'react';
 import './Notice.css';
-import {Link} from 'react-router-dom';
-import Loginbanner from '../Login/Loginbanner';
 
 
 const NoticeWrite = ({history}) => {

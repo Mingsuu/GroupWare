@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React,{useState, useRef, useEffect} from 'react';
 import '../Notice/Notice.css';
 import {Link} from 'react-router-dom';

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import '../Notice/Notice.css';
 import { Link } from 'react-router-dom';
@@ -24,7 +25,6 @@ const Boardcontent = ({ history, location }) => {
             .then((res) => res.json())
             .then((json) => {
                 setNo1(json);
-                console.log("content=" + no1);
             });
     }, []);
 
@@ -46,8 +46,6 @@ const Boardcontent = ({ history, location }) => {
         history.goBack();
     };
 
-
-    console.log("boardcontentbox=" + no1);
 
     return (
 

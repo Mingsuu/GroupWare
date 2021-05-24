@@ -53,7 +53,7 @@ const Board = () => {
             <div>
                 <Posts posts={currentPosts} loading={loading} />
                 <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate} />
-                <Link to="/home/boardwrite"><button className="admin">글작성</button></Link>
+                <Link to="/home/boardwrite"><button className="admin1">글작성</button></Link>
             </div>
         </div>
     );
