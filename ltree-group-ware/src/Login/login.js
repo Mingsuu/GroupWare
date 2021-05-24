@@ -18,44 +18,44 @@ const Loginpage = ({history}) => {
     const [passlist, setPasslist] = useState(['']);
 
     //DB에 ID 리스트 가져오기//
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     fetch("http://localhost:3001/IdList", {
-    //       method: "post",
-    //       headers: {
-    //         "content-type": "application/json",
-    //       },
-    //       body: JSON.stringify(),
-    //     })
-    //       .then((res) => res.json())
-    //       .then((json) => {
-    //         console.log("userID="+json);
-    //         console.log("userID1="+JSON.stringify(json));
-    //         setIdlist(json);
-    //         ilist(json);
+        fetch("http://localhost:3001/IdList", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(),
+        })
+          .then((res) => res.json())
+          .then((json) => {
+            console.log("아이디리스트="+json);
+            console.log("아이디리스트1="+JSON.stringify(json));
+            setIdlist(json);
+            ilist(json);
             
-    //       });
-    // }, []);
+          });
+    }, []);
 
     //DB에 PASS 리스트 가져오기//
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     fetch("http://localhost:3001/PassList", {
-    //       method: "post",
-    //       headers: {
-    //         "content-type": "application/json",
-    //       },
-    //       body: JSON.stringify(),
-    //     })
-    //       .then((res) => res.json())
-    //       .then((json) => {
-    //         console.log("userPWD="+json);
-    //         console.log("userPWD1="+JSON.stringify(json[0].userPWD));
-    //         setPasslist(json);
-    //         plist(json);
+        fetch("http://localhost:3001/PassList", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(),
+        })
+          .then((res) => res.json())
+          .then((json) => {
+            console.log("비번리스트="+json);
+            console.log("비번리스트1="+JSON.stringify(json[0].userPWD));
+            setPasslist(json);
+            plist(json);
             
-    //       });
-    // }, []);
+          });
+    }, []);
 
     const ilist = (json) => {
         let lists = '';
@@ -73,10 +73,10 @@ const Loginpage = ({history}) => {
     const plist = (json) => {
         let lists = '';
         for(let i = 0; i<json.length; i++){
-            lists += json[i]
+            lists = json[i]
             // lists += JSON.stringify(list[i])
             // lists = lists.replace(/{/gi, '');
-            console.log("passlists="+ lists);
+            console.log("passlists="+JSON.stringify(lists));
             // console.log("passtypeof="+lists);
             setPasslist(lists);
         }
@@ -99,7 +99,7 @@ const Loginpage = ({history}) => {
             return setPcheck(true);
         }else if(jsonbox[0].ming === 1){
             loginsave();
-            history.push("/Notice");
+            history.push("/home");
             
         }else if(jsonbox[0].ming === 0){
             alert("가입된 정보가 없습니다.");

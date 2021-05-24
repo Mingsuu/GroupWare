@@ -12,12 +12,13 @@ const Home = ({ match }) => {
         <div className="container">
 
             {/* TOP */}
-            <Loginbanner/>
+                <Loginbanner/>
             {/* MID */}
             <div className="midbox">
 
                 {/* MID-LEFT */}
                 <div className="mid-left">
+
                     <div className="left-ul2">
                         <ul className="left-ul1">
                             
@@ -28,6 +29,7 @@ const Home = ({ match }) => {
                                 <Link to={`${match.path}/users`}><li >직원 조회</li></Link>
                         </ul>
                     </div>
+
                 </div>
 
                 {/* MID-RIGHT */}

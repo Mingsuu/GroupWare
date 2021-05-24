@@ -1,7 +1,5 @@
 import React,{useState, useRef} from 'react';
 import '../Notice/Notice.css';
-import ltree_logo from '../Image/ltree_logo.png';
-import ltree_logo1 from '../Image/ltree.jpg';
 import {Link} from 'react-router-dom';
 import Loginbanner from '../Login/Loginbanner';
 
@@ -9,8 +7,7 @@ const BoardWrite = ({history}) => {
 
 const [btitle, setBtitle] = useState('');
 const [bcontent,setBcontent] = useState('');
-const [bdate, setBdate] = useState('');
-const bdatelef = useRef();
+
 const btitlelef = useRef();
 const bcontentlef = useRef();
 
@@ -20,10 +17,6 @@ const titlechange = (e)=> {
 
 const contentchange = (e) => {
     setBcontent(e.target.value);
-}
-
-const bdatechange = (e) => {
-    setBdate(e.target.value);
 }
 
 const noticecheck = (e) => {
@@ -36,7 +29,6 @@ const noticecheck = (e) => {
         bcontentlef.current.focus();
     }else{
         insertNotice();
-        setBdate('');
         setBtitle('');
         setBcontent('');
         history.push("/Board");
@@ -71,25 +63,7 @@ const insertNotice = () => {
 
         <div className="container">
 
-            {/* TOP */}
-            <Loginbanner/>
-
-            {/* MID */}
-            <div className="midbox">
-
-                {/* MID-LEFT */}
-                <div className="mid-leftbox">
-                    <div className="mid-leftbox1">
-                        <ul>
-                            <li className="Menu">공지사항</li>
-                            <li className="Menu">업무 게시판</li>
-                            <li className="Menu">직원 조회</li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* MID-RIGHT */}
-                <div className="mid-right">
+           
                     <div className="noticebox">
                         <h1 className="ntitle">업무 게시판</h1>
                         <div>
@@ -108,19 +82,12 @@ const insertNotice = () => {
                                    <div className="wcontent">내용</div>
                                 <textarea className="wcontentbox" placeholder="내용을 입력해 주세요." ref={bcontentlef} value={bcontent} onChange={contentchange}></textarea>
                                </div>
-                               <div className="divbox1"><Link to="/Board"><button>목록으로</button></Link><button onClick={noticecheck}>등록</button></div>
+                               <div className="divbox1"><button onClick={() => {history.push('/home/boarder');console.log(history)}}>목록으로</button><button onClick={noticecheck}>등록</button></div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            {/* BOTTOM */}
-            {/* <div className="bottom">
-                <h1>copyright 2021 ltree</h1>
-            </div> */}
-
-        </div>
+           
     );
 };
 

@@ -49,10 +49,10 @@ app.post("/Findid", (req,res)=>{
     connection.query("select userID from USERS where userNAME=(?) and userSSN=(?)",[nbox,sbox],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("아이디 찾기 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("아이디 찾기 성공");
             res.send(rows);
             console.log(rows);
             console.log(nbox,sbox);
@@ -67,10 +67,10 @@ app.post("/Findpass", (req,res)=>{
     connection.query("select userPWD from USERS where USERID =(?) and userTELL =(?)",[pfbox,tfbox],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("비밀번호 찾기 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("비밀번호 찾기 성공");
             res.send(rows);
             console.log(rows);
             console.log(pfbox,tfbox);
@@ -93,10 +93,10 @@ app.post("/AddNotice", (req,res)=>{
                       +"  0)",[wtitle,wcontent],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("공지사항 생성 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("공지사항 생성 성공");
             res.send(rows);
             console.log(rows);
             console.log(wtitle,wcontent);
@@ -109,10 +109,10 @@ app.post("/Notice", (req,res)=>{
     connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate from Notice order by sysdate1 desc) t",
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("공지사항 불러오기 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("공지사항 불러오기 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -262,10 +262,10 @@ app.post("/Board", (req,res)=>{
     connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,btitle,date_format(sysdate1 ,'%Y-%m-%d') as bdate, click from Board order by sysdate1 desc) t",
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("게시판 불러오기 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("게시판 불러오기 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -280,10 +280,10 @@ app.post("/AddBoard", (req,res)=>{
     connection.query("insert into Board values(No1,NOW(),NOW(), ? , ?,0)",[btitle,bcontent],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("게시판 생성 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("게시판 생성 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -297,10 +297,10 @@ app.post("/Boardcontent", (req,res)=>{
     connection.query("select No1,date_format(sysdate1,'%Y-%m-%d') as bdate,date_format(update1 ,'%y-%m-%d-%h-%i') as update1,btitle,bcontent,click from Board where No1 = ? ",[numbox],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("게시판 상세페이지 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("게시판 상세페이지 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -313,10 +313,10 @@ app.post("/BoardUpdate", (req,res)=>{
     connection.query("select No1,date_format(sysdate1,'%Y-%m-%d') as bdate,btitle,bcontent from Board where No1 = ? ",[num],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("게시판 수정데이터 불러오기 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("게시판 수정데이터 불러오기 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -333,10 +333,10 @@ app.post("/UpdateBoard", (req,res)=>{
     connection.query("update Board set btitle= ? , bcontent= ? , update1=NOW() where No1 = ?",[btitle,bcontent,No1],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("게시판 수정 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("게시판 수정 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -350,10 +350,10 @@ app.post("/DeleteBoard", (req,res)=>{
     connection.query("delete from board where No1= ? ",[No1],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("게시판 삭제 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("게시판 삭제 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -367,10 +367,10 @@ app.post("/NoticeContent", (req,res)=>{
     connection.query("select*from(select No1,ntitle,ncontent,click,date_format(sysdate1 ,'%Y-%m-%d')as ndate,date_format(update1 ,'%y-%m-%d-%h-%i') as update1 from Notice order by sysdate1 desc) t where No1 = ?",[numbox],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("공지사항 상세페이지 불러오기 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("공지사항 상세페이지 불러오기 성공");
             res.send(rows);
             console.log(rows[0].No1);
         }
@@ -385,10 +385,10 @@ app.post("/DeleteNotice", (req,res)=>{
     connection.query("delete from notice where No1= ? ",[No1],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("공지사항 삭제 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("공지사항 삭제 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -402,10 +402,10 @@ app.post("/NoticeUpdate", (req,res)=>{
     connection.query("select No1,date_format(sysdate1,'%Y-%m-%d') as ndate,ntitle,ncontent from notice where No1 = ? ",[num],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("공지사항 수정데이터 불러오기 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("공지사항 수정데이터 불러오기 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -422,10 +422,10 @@ app.post("/UpdateNotice", (req,res)=>{
     connection.query("update notice set ntitle= ? , ncontent= ? ,update1=NOW() where No1 = ?",[ntitle,ncontent,No1],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("공지사항 수정 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("공지사항 수정 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -439,10 +439,10 @@ app.post("/ClickAdd", (req,res)=>{
     connection.query("update notice set click= click + 1  where No1=?",[No1],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("공지사항 조회수 변경 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("공지사항 조회수 변경 성공");
             res.send(rows);
             console.log(rows);
             console.log("숫자="+No1);
@@ -456,10 +456,10 @@ app.post("/ClickAdd1", (req,res)=>{
     connection.query("update board set click= click + 1  where No1=?",[No1],
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("게시판 조회수 변경 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("게시판 조회수 변경 성공");
             res.send(rows);
             console.log(rows);
             console.log("숫자="+No1);
@@ -474,10 +474,10 @@ app.post("/IdList", (req,res)=>{
     connection.query("select userID from users",
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("직원 아디디 불러오기 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("직원 아이디 불러오기 성공");
             res.send(rows);
             console.log(rows);
         }
@@ -491,10 +491,10 @@ app.post("/PassList", (req,res)=>{
     connection.query("select userPWD from users",
     function(err,rows,fields){
         if(err){
-            console.log("불러오기 실패");
+            console.log("비밀번호 불러오기 실패");
             console.log("error" +err);
         }else{
-            console.log("불러오기 성공");
+            console.log("비밀번호 불러오기 성공");
             res.send(rows);
             console.log(rows);
         }
