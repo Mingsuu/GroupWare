@@ -33,7 +33,7 @@ console.log("databox="+posts);
     <table className="listbox">
         {/* { posts !== '' ? (
         <> */}
-        <table className ="topmenu">
+        <thead className ="topmenu">
             <tr >
                 <th className="no1">번호</th>
                 <th className="no2">제목</th>
@@ -41,24 +41,23 @@ console.log("databox="+posts);
                 <th className="no4">작성날짜</th>
                 <th className="no5">조회수</th>
             </tr>
-        </table>
-
+        </thead>
+        <tbody>
         {posts.map((post,idx) => (
             
             <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1)}>
-                <Link to ={`/NoticeContent/${post.No1}/${idx +1}`}>
+                
                     <td className="no1">{idx +1}</td>
-                    <td className="no2">{post.ntitle}</td>
+                    <td className="no2"><Link to ={`/home/noticeContent/?postNo=${post.No1}&no=${idx +1}`}>{post.ntitle}</Link></td>
                     <td className="no3">대표</td>
                     <td className="no4">{post.ndate}</td>
                     <td className="no5">{post.click}</td>
-                </Link>
+                
             </tr>
 
         ))}
-        {/* </>
-    ) : '공지사항 게시물이 존재하지 않습니다.'
-}*/}
+        </tbody>
+        
     </table> 
     
 

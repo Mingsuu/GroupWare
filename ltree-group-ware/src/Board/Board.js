@@ -48,7 +48,7 @@ const Board = () => {
 
 
     return (
-                <div className="mid-right">
+                
                     <div className="noticebox">
                         <h1 className="ntitle">업무 게시판</h1>
                         <div>
@@ -58,7 +58,7 @@ const Board = () => {
                         </div>
                     </div>
 
-                </div>
+                
    
     );
 };

@@ -1,10 +1,10 @@
 
 .top {
     display: block;
-    border: 1px solid #bcbcbc;
+    border: none;
     text-align: left;
-    background: linear-gradient(rgb(50,134,84),rgb(77,89,147));
-    height:130px;
+    background-color: #006934;
+    height:140px;
 }
 
 .index-login {
@@ -16,23 +16,25 @@
     margin-top: 40px;
     font-size: 30px;
 }
-.topimg {
-    width: 200px; 
-    height: 120px;
-    margin-left:15px;
-    margin-top:10px;
-}
-
 .mid-left {
-    outline: 1px solid #9F9F9F;
+    outline: none;
     position: absolute;
     top: 0px;
-    width: 250px;
-    height: 100%;
-    background-color: #00D8FF;
+    width: 280px;
+    height: 85vh;
+    background-color: #006934;
+}
+.left-ul2 {
+    width: 245px;
+    height: 655px;
+    margin-left: 15px;
+    background-color: white;
+    border-radius: 4px;
+    padding-top: 3px;
 }
 .mid-left ul li {
-    font-size: 30px;
+    font-size: 23px;
+    margin-bottom: 15px;
 }
 .mid-left ul li {
     text-align: left;

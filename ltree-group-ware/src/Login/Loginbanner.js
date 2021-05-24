@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-import ltree_logo from '../Image/ltree_logo.png';
+import ltree_logo from '../Image/ltreetitle.png';
 import { withRouter } from 'react-router-dom';
 
 
 const Loginbanner =({history})=> {
-    const loginName = window.localStorage.getItem("loginName")
-    const realName = loginName.replace(/\"/gi, "");
+
+  const [namebox,setNamebox] = useState('');
+
+  useEffect( () => {
+      const loginName = window.localStorage.getItem("loginName")
+      const realName = loginName.replace(/\"/gi, "");
+      setNamebox(realName);
+      console.log("로그인배너 ="+realName);
+  })
 
     //로그아웃 알림창//
         const alertbox  = ()=> {
@@ -21,30 +28,24 @@ const Loginbanner =({history})=> {
                                     window.localStorage.clear();
                                     history.push("/");
                                     }
-
                   },
                   {
                     label: '아니요',
-                    
                   }
                 ]
               });
-           
         };
 
     return (
         <div className="top">
             <div className="Login-User">
-                <div className="Userim">{realName} 님</div>
+                <div className="Userim">{namebox} 님</div>
                 <button className="logout" onClick={alertbox}>로그아웃</button>
                 <button className="userdata">내정보</button>
             </div>
-        
             <img className="sujungimg" src={ltree_logo} alt='logo' />
         </div>
     );
-
-
 
 
 

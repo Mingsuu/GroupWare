@@ -1,7 +1,6 @@
 
 .top {
     display: block;
-    margin-bottom: 20px;
     text-align: left;
     background: rgb(50,134,84);
     height:130px;
@@ -144,7 +143,8 @@
     background-color: white;
     color:black;
 }
-.notice_writebtn {
+.notice_writebtn,
+.wirtebtn {
     float:right;
     margin-right: 20px;
     width: 70px;
@@ -316,7 +316,6 @@
     display: inline-block;
 }
 
-
 /*Boardcontent*/
 
 .boardbox{
@@ -398,7 +397,10 @@
 /* 오른쪽 위에 로그인 배너*/
 .sujungimg {
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 40px;
+    margin-top:20px;
+    width:200px;
+    height: 85px;
 }
 .Login-User{
     float: right;
@@ -408,7 +410,7 @@
     text-align: center;
 }
 .Userim{
-    font-size:25px;
+    font-size:34px;
     color:white;
     margin-bottom: 10px;
 }
@@ -438,4 +440,17 @@
 }
 .adminbtn {
     display: block;
+}
+.logout,
+.userdata {
+    background-color: white;
+    border:none;
+    height: 27px;
+    width: 70px;
+    border-radius: 5px;
+}
+.logout:hover,
+.userdata:hover{
+    background-color: lightgray;
+    color:white;
 }
