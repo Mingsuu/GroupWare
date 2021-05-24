@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useRef, useEffect } from 'react';
 import '../Notice/Notice.css';
 import { Link } from 'react-router-dom';
@@ -19,7 +20,26 @@ const NoticeUpdate = ({ history, match }) => {
         setNcontent(e.target.value);
     }
 
-    
+
+    /* 상세 페이지 정보 뿌리기*/
+    useEffect(() => {
+        console.log("No11=" + match.params.No1);
+        const post = { num: match.params.No1 };
+        fetch("http://localhost:3001/NoticeContent", {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(post),
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                setUpdate(json);
+                setNtitle(json[0].ntitle);
+                setNcontent(json[0].ncontent);
+            });
+    }, []);
+
 
     const updatecheck = (e) => {
         e.preventDefault();
@@ -37,28 +57,6 @@ const NoticeUpdate = ({ history, match }) => {
         }
 
     }
-
-    /*수정버튼 클릭시 그해당하는 데이터값 select */
-    useEffect(() => {
-        console.log("No1=" + match.params.No1);
-        const post = { num: match.params.No1 };
-        fetch("http://localhost:3001/NoticeUpdate", {
-            method: "post",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(post),
-        })
-            .then((res) => res.json())
-            .then((json) => {
-                setUpdate(json);
-                setNtitle(json[0].ntitle);
-                setNcontent(json[0].ncontent);
-                console.log("ntitle=" + ntitle);
-                console.log("ncontent=" + ncontent);
-                console.log("updatejson=" + json[0].ntitle);
-            });
-    }, []);
 
     /*수정하는 값  update 하기*/
     const UpdateNotice = () => {
@@ -90,7 +88,7 @@ const NoticeUpdate = ({ history, match }) => {
                     <h1 className="ntitle">업무 게시판</h1>
                     <div>
                         <form className="formbox">
-                           
+
                             <hr className="bar" />
                             <div className="divbox">
                                 <div className="wtitle">제목</div>

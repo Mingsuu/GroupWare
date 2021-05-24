@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import '../Notice/Notice.css';
 import { Link } from 'react-router-dom';
@@ -30,7 +31,7 @@ const NoticeContent = ({ history, location }) => {
 
 
 
-    /* 클릭한 페이지 삭제 */
+    /* 체크한 목록 삭제 */
     const Noticedelete = () => {
         const post = { no1: query.postNo }
         fetch("http://localhost:3001/DeleteNotice", {
@@ -86,7 +87,6 @@ const NoticeContent = ({ history, location }) => {
                             </div>
                             <div className="btnbox">
                                 <button onClick={()=>history.goBack()}>목록으로</button>
-                                <button onClick={Noticedelete} className={admincheck}>삭제</button>
                                 <Link to={`/NoticeUpdate/${no1[0].No1}`}><button className={admincheck}>수정</button></Link>
                             </div>
                         </div>

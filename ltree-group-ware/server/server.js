@@ -1,3 +1,4 @@
+
 const express = require("express");
 const app = express();
 const port = 3001; 
@@ -203,9 +204,8 @@ app.post("/NoticeContent", (req,res)=>{
 
 /* 공지사항 삭제 로직 */
 app.post("/DeleteNotice", (req,res)=>{
-    const No1 = req.body.no1;
-
-    connection.query("delete from notice where No1= ? ",[No1],
+    const check = req.body.check;
+    connection.query("delete from notice where No1 in (?)",[check],
     function(err,rows,fields){
         if(err){
             console.log("공지사항 삭제 실패");
