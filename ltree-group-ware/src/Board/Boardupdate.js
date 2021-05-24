@@ -123,7 +123,7 @@ const insertBoard = () => {
                                    <div className="wcontent">내용</div>
                                     <textarea className="wcontentbox" placeholder="내용을 입력해 주세요." ref={bcontentlef} value={bcontent} onChange={contentchange}></textarea>
                                </div>
-                               <div className="divbox1"><Link to="/Board"><button>목록으로</button></Link><button onClick={updatecheck}>수정완료</button></div>
+                               <div className="divbox1"><Link to="/home/boarder"><button>목록으로</button></Link><button onClick={updatecheck}>수정완료</button></div>
                             </form>
                         </div>
                         </>
