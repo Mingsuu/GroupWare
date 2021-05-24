@@ -1,9 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../Notice/Notice.css';
-import ltree_logo from '../Image/ltree_logo.png';
-import ltree_logo1 from '../Image/ltree.jpg';
 import { Link } from 'react-router-dom';
-import Loginbanner from '../Login/Loginbanner';
 
 
 const NoticeUpdate = ({ history, match }) => {
@@ -11,8 +8,6 @@ const NoticeUpdate = ({ history, match }) => {
     const [update, setUpdate] = useState('');
     const [ntitle, setNtitle] = useState('');
     const [ncontent, setNcontent] = useState('');
-    const [ndate, setNdate] = useState('');
-    const bdatelef = useRef();
     const btitlelef = useRef();
     const bcontentlef = useRef();
 
@@ -25,24 +20,23 @@ const NoticeUpdate = ({ history, match }) => {
     }
 
 
-
     /* 상세 페이지 정보 뿌리기*/
     useEffect(() => {
-        console.log("No11="+match.params.No1);
-            const post = {num:match.params.No1};
-            fetch("http://localhost:3001/NoticeContent", {
-                method: "post",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(post),
-            })
-                .then((res) => res.json())
-                .then((json) => {
-                    setUpdate(json);
-                    setNtitle(json[0].ntitle);
-                    setNcontent(json[0].ncontent);
-                });
+        console.log("No11=" + match.params.No1);
+        const post = { num: match.params.No1 };
+        fetch("http://localhost:3001/NoticeContent", {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(post),
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                setUpdate(json);
+                setNtitle(json[0].ntitle);
+                setNcontent(json[0].ncontent);
+            });
     }, []);
 
 
@@ -56,7 +50,6 @@ const NoticeUpdate = ({ history, match }) => {
             bcontentlef.current.focus();
         } else {
             UpdateNotice();
-            setNdate('');
             setNtitle('');
             setNcontent('');
             history.push("/Notice");
@@ -94,10 +87,7 @@ const NoticeUpdate = ({ history, match }) => {
                     <h1 className="ntitle">업무 게시판</h1>
                     <div>
                         <form className="formbox">
-                            {/* <div className="divbox">
-                                   <div className="wdate">작성일</div>
-                                   <input className="wdatebox" type="date" onChange={bdatechange} value={ndate} ref={bdatelef} placeholder={update[0].bdate}></input>
-                               </div> */}
+
                             <hr className="bar" />
                             <div className="divbox">
                                 <div className="wtitle">제목</div>

@@ -6,8 +6,10 @@ import DefaultView from './DefaultView';
 import NoticeWrite from '../Notice/Notice write';
 import Board from '../Board/Board';
 import BoardWrite from '../Board/Boardwirte';
+import Boardcontent from '../Board/Boardcontent';
+import NoticeContent from '../Notice/NoticeContent';
 
-const SelectedView = ({ match, history }) => {
+const SelectedView = ({ match, history, location }) => {
     console.log(match.params.id)
 
     switch (match.params.id) {
@@ -16,10 +18,14 @@ const SelectedView = ({ match, history }) => {
             return (<Notice />);
         case 'noticewrite':
             return (<NoticeWrite history={history} />);
+        case 'noticeContent':
+            return (<NoticeContent history={history} location={location} />);
         case 'boarder':
             return (<Board />);
         case 'boardwrite':
-            return (<BoardWrite history={history}/>);
+            return (<BoardWrite history={history} />);
+        case 'boardercontent':
+            return (<Boardcontent history={history} location={location} />);
         case 'schedule':
             return (<Calendar today={new Date()} />);
         case 'users':

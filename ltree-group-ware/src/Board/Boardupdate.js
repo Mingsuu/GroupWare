@@ -1,7 +1,5 @@
 import React,{useState, useRef, useEffect} from 'react';
 import '../Notice/Notice.css';
-import ltree_logo from '../Image/ltree_logo.png';
-import ltree_logo1 from '../Image/ltree.jpg';
 import {Link} from 'react-router-dom';
 import Loginbanner from '../Login/Loginbanner';
 
@@ -11,8 +9,6 @@ const BoardUpdate = ({history,match}) => {
 const [update, setUpdate] = useState('');
 const [btitle, setBtitle] = useState('');
 const [bcontent,setBcontent] = useState('');
-const [bdate, setBdate] = useState('');
-const bdatelef = useRef();
 const btitlelef = useRef();
 const bcontentlef = useRef();
 
@@ -24,9 +20,6 @@ const contentchange = (e) => {
     setBcontent(e.target.value);
 }
 
-const bdatechange = (e) => {
-    setBdate(e.target.value);
-}
 
 const updatecheck = (e) => {
     e.preventDefault();
@@ -38,10 +31,10 @@ const updatecheck = (e) => {
         bcontentlef.current.focus();
     }else{
         insertBoard();
-        setBdate('');
+        
         setBtitle('');
         setBcontent('');
-        history.push("/Board");
+        history.goBack();
     }
    
 }
@@ -118,10 +111,7 @@ const insertBoard = () => {
                         <h1 className="ntitle">업무 게시판</h1>
                         <div>
                             <form className="formbox">
-                                {/* <div className="divbox">
-                                   <div className="wdate">작성일</div>
-                                   <input className="wdatebox" type="date" onChange={bdatechange} value={bdate} ref={bdatelef} placeholder={update[0].bdate}></input>
-                               </div> */}
+                                
                                <hr className="bar"/>
                                <div className="divbox">
                                    <div className="wtitle">제목</div>

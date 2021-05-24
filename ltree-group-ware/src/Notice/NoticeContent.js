@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import '../Notice/Notice.css';
 import { Link } from 'react-router-dom';
+import queryString from 'query-string';
 
-const NoticeContent = ({ history, location, match }) => {
+const NoticeContent = ({ history, location }) => {
 
     const [no1, setNo1] = useState();
 
+    const query = queryString.parse(location.search);
 
     /* 상세 페이지 정보 뿌리기*/
     useEffect(() => {
-        console.log("No11=" + match.params.No1);
-        const post = { num: match.params.No1 };
+        console.log("No11=" + query.postNo);
+        const post = { num: query.postNo };
         fetch("http://localhost:3001/NoticeContent", {
             method: "post",
             headers: {
@@ -30,7 +32,7 @@ const NoticeContent = ({ history, location, match }) => {
 
     /* 클릭한 페이지 삭제 */
     const Noticedelete = () => {
-        const post = { no1: match.params.No1 }
+        const post = { no1: query.postNo }
         fetch("http://localhost:3001/DeleteNotice", {
             method: "post",
             headers: {
@@ -43,7 +45,7 @@ const NoticeContent = ({ history, location, match }) => {
                 console.log("boardUpdate=" + json);
 
             });
-        history.push("/Notice");
+        history.goBack();
     };
 
     const loginID = window.localStorage.getItem("loginID")
@@ -68,7 +70,7 @@ const NoticeContent = ({ history, location, match }) => {
                         <div>
                             <div className="boardbox">
                                 <div className="boardtitlebox">
-                                    <span className="boardnum">{match.params.idx}</span>
+                                    <span className="boardnum">{query.no}</span>
                                     <span className="boardtitle">제목 : {no1[0].ntitle}</span>
                                     <span className="boardname">작성자 : 박민수</span>
                                     <span className="boarddate">작성날짜: {no1[0].ndate}</span>
@@ -83,7 +85,7 @@ const NoticeContent = ({ history, location, match }) => {
                                 </div>
                             </div>
                             <div className="btnbox">
-                                <Link to="/Notice"><button>목록으로</button></Link>
+                                <button onClick={()=>history.goBack()}>목록으로</button>
                                 <button onClick={Noticedelete} className={admincheck}>삭제</button>
                                 <Link to={`/NoticeUpdate/${no1[0].No1}`}><button className={admincheck}>수정</button></Link>
                             </div>

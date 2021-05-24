@@ -24,7 +24,7 @@ const Home = ({ match }) => {
                             
                                 <Link to='/home'><li >홈</li></Link>
                                 <Link to={`${match.path}/notice`}><li >공지사항</li></Link>
-                                <Link to={`${match.path}/notice`}><li >업무 게시판</li></Link>
+                                <Link to={`${match.path}/boarder`}><li >업무 게시판</li></Link>
                                 <Link to={`${match.path}/schedule`}><li >일정표</li></Link>
                                 <Link to={`${match.path}/users`}><li >직원 조회</li></Link>
                         </ul>
@@ -47,4 +47,3 @@ const Home = ({ match }) => {
 };
 
 export default Home;
-

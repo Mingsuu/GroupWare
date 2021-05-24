@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Modali, { useModali } from 'modali';
 import './UserMenagement.css';
 
-
-
 const UserMenagement = () => {
 
     const [users, setUsers] = useState([{
