@@ -7,13 +7,15 @@ import Posts from './Posts'
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 
-const Notice = ({ history }) => {
+const Notice = () => {
     /*페이징처리 연습 */
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1); //현재페이지 기본값으로 1를 넣어준다 이유는 첫페이지는 1페이지가 기본이니까
     const [postPerPage] = useState(8); //페이지당 게시할수 있는 갯수를 정하는것 8개면 한페이지에 8개목록만 보이게 한다는뜻
     const [idcheck, setIdcheck] = useState('modu');
+    const [adminpage, setAdminpage] = useState('modupage1');
+    const [chekbutton,setCheckbutton] = useState('checkbutton');
 
 
     const loginID = window.localStorage.getItem("loginID")
@@ -43,6 +45,8 @@ const Notice = ({ history }) => {
     useEffect(() => {
         if (userID === "admin") {
             setIdcheck("admin")
+            setAdminpage("adminpage1")
+            setCheckbutton("Noticechbox");
         }
     });
 
@@ -63,8 +67,8 @@ const Notice = ({ history }) => {
         <div className="noticebox">
             <h1 className="ntitle">공지사항</h1>
             <div>
-                <Posts posts={currentPosts} loading={loading} /> {/*위에서 8개씩 짜른 페이지를 프롭스로 보낸다.즉 8개 목록으로 자른 배열을 보낸다*/}
-                <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate} />
+                <Posts posts={currentPosts} loading={loading} btn={idcheck} check={chekbutton} /> {/*위에서 8개씩 짜른 페이지를 프롭스로 보낸다.즉 8개 목록으로 자른 배열을 보낸다*/}
+                <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate} pageclass={adminpage} />
                 <Link to="/home/noticeWrite"><button className={idcheck}>글작성</button></Link>
             </div>
         </div>
