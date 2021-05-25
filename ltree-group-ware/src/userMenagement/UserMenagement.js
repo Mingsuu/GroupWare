@@ -107,7 +107,7 @@ const UserMenagement = () => {
 
     const loadUsers = (user) => {
         if (eoc === '입사일') {
-            console.log("EXIT="+user.userEXIT);
+            
             if (user.userEXIT == null) {
                 return (
                     <tr key={user.userID}>
@@ -122,17 +122,21 @@ const UserMenagement = () => {
                 return (
                     <tr key={user.userID}>
                         <td onClick={selectUser} className='user-detail-link'>{user.userNAME}</td><td>{user.userRANK}</td><td>{user.userTELL}</td>
-                        <td>{user.userADDR}</td><td className="mgnt-exit">{user.userSSN}</td><td>{user.userDATE}</td>
+                        <td>{user.userADDR}</td><td className="mgnt-exit">{user.userSSN.split('-')[0]}</td><td>{user.userDATE}</td>
                     </tr>
                 );
             }
         }
     }
 
+    const loginID = window.localStorage.getItem("loginID").replace(/\"/gi, "");
+
     const selectUser = (e) => {
+       if(loginID === 'ddd') {
         const selected = users.find(user => e.target.childNodes[0].nodeValue === user.userNAME);
         setFindUser(selected);
         toggleModal();
+       }
     }
 
 

@@ -87,7 +87,7 @@ const NoticeContent = ({ history, location }) => {
                             </div>
                             <div className="btnbox">
                                 <button onClick={()=>history.goBack()}>목록으로</button>
-                                <Link to={`NoticeUpdate/${no1[0].No1}`}><button className={admincheck}>수정</button></Link>
+                                <Link to={`/home/noticeUpdate/?no=${no1[0].No1}`}><button className={admincheck}>수정</button></Link>
                             </div>
                         </div>
                     </>
