@@ -22,7 +22,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      
       <Switch> 
           <Route path="/Boardcontent/:No1/:idx" component={Boardcontent} exact/>
           <Route path="/Boardupdate/:No1" component={BoardUpdate} exact/>

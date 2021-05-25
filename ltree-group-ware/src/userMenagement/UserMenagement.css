@@ -3,6 +3,11 @@
     text-decoration: underline;
     cursor: pointer;
 }
+.u-mgnt {
+    display: inline-block;
+    margin-left:-180px;
+    margin-top:-10px;
+}
 
 .detail-tbody input {
     border: 1px solid white;
@@ -10,7 +15,8 @@
 }
 .mgnt-table{
     width: 920px;
-    margin-left: -90px;
+    margin-left: 18px;
+    margin-top:-20px;
 }
 .mgnt-title {
     float:left;
@@ -20,8 +26,7 @@
     font-size:30px;
 }
 .mgnt-btnbox {
-    width: 828px;
-    display: inline-block;
+    width: 930px;
 }
 .mgnt-btnbox button {
     float: right;
@@ -32,6 +37,7 @@
     border:none;
     font-size:15px;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 .mgnt-btnbox button:hover {
     background-color: lightgray;

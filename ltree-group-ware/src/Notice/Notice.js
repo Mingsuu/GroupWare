@@ -66,7 +66,6 @@ const Notice = ({ history }) => {
                 <Posts posts={currentPosts} loading={loading} /> {/*위에서 8개씩 짜른 페이지를 프롭스로 보낸다.즉 8개 목록으로 자른 배열을 보낸다*/}
                 <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate} />
                 <Link to="/home/noticeWrite"><button className={idcheck}>글작성</button></Link>
-
             </div>
         </div>
 

@@ -12,7 +12,7 @@
     width: 100%;
     height: 100vh;
     position: relative;
-    background-image: url(../Image/ltree.jpg);
+    background-color: white;
     background-size: cover;
 }
 .ntitle{
@@ -103,10 +103,6 @@
     vertical-align: bottom;
      
 }
-.container {
-    height:71vh;
-}
-
 .notice-board-no {
     width: 80px;
     height: 40px;
