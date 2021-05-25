@@ -1,7 +1,7 @@
 /* eslint-disable*/
 import React, { useState,useRef,useEffect } from 'react';
 import './loginui.css';
-import ltree_logo from '../Image/ltree_logo.png';
+import ltree_logo from '../Image/ltreetitle.png';
 import { Link } from 'react-router-dom';
 
 
@@ -86,7 +86,7 @@ const Loginpage = ({ history }) => {
             passRef.current.focus();
             return setPcheck(true);
         } else if (idlist.find(id => id === idbox) === undefined) {
-            alert("아이디가 존재하지 않습니다.");
+            alert("아이디가 틀렸거나 가입된 정보가 없습니다.");
             idRef.current.focus();
         } else if (passlist.find(pass => pass === passbox) === undefined) {
             alert("비밀번호가 틀렸습니다.");
@@ -159,7 +159,7 @@ const Loginpage = ({ history }) => {
         <div className="loginbox">
             <div className="loginbox1">
                 <div className="loginlogo">
-                    <img src={ltree_logo} alt='logo' width='250' height='165' />
+                    <img src={ltree_logo} alt='logo' width='250' height='110' />
                 </div>
                 <input id="id" className="idbox" placeholder="사용자 계정" value={idbox} onChange={idtext} ref={idRef}></input>
                 {idcheck && <span className="red" style={{ color: 'tomato' }}>아이디를 입력해주세요.</span>}
@@ -170,7 +170,6 @@ const Loginpage = ({ history }) => {
                     <Link to="/Idfind"><span className="idfind">아이디 찾기</span></Link>
                     <Link to="/Passwordfind"><span className="passfind">비밀번호 찾기</span></Link><br />
                     <Link to="/SignUp"><span className="join">회원가입</span></Link>
-                    <div>{window.localStorage.getItem("loginName")}</div>
                 </div>
             </div>
         </div>

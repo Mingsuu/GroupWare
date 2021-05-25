@@ -362,6 +362,7 @@ const Container = styled.div`
   flex-direction: column;
   display: flex;
   font-size: 20px;
+  margin-left:-100px;
 `;
 const Header = styled.div`
   display: flex;

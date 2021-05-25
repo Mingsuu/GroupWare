@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
-const Posts = ({ posts, loading, history }) => {
+const Posts = ({ posts, loading, btn, check }) => {
     const [checknum, setChecknum] = useState([]);
     const [checkList, setCheckList] = useState([])
-
+    const [delbtn, setDelbtn] = useState('');
     useEffect(() => {
         let checklist = []
         posts.map((post, i) => {
@@ -18,6 +18,7 @@ const Posts = ({ posts, loading, history }) => {
         return <h2>Loading....</h2>
     }
 
+    console.log("delbtn="+delbtn);
     const ClickAdd = (No1) => {
         const post = { num: No1 }
         fetch("http://localhost:3001/ClickAdd", {
@@ -72,7 +73,9 @@ const Posts = ({ posts, loading, history }) => {
         <> */}
                 <thead className="topmenu">
                     <tr >
-                        <input type="checkbox" className="Noticechbox" onChange={checkAll} checked={checkList.length === checknum.length} />
+                        <th>
+                            <input type="checkbox" className="Noticechbox" onChange={checkAll} checked={checkList.length === checknum.length} />
+                        </th>
                         <th className="no1">번호</th>
                         <th className="no2">제목</th>
                         <th className="no3">작성자</th>
@@ -84,7 +87,7 @@ const Posts = ({ posts, loading, history }) => {
                     {posts.map((post, idx) => (
                         <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1)}>
                             <td className="no">
-                                <input type="checkbox" className="Noticechbox" onChange={(e) => onChangeEach(e, post.No1)} checked={checkList.includes(post.No1)} />
+                                <input type="checkbox" className={check} onChange={(e) => onChangeEach(e, post.No1)} checked={checkList.includes(post.No1)} />
                             </td>
                             <td className="no1">{idx + 1}</td>
                             <td className="no2"><Link to={`/home/noticeContent/?postNo=${post.No1}&no=${idx + 1}`}>{post.ntitle}</Link></td>
@@ -95,7 +98,7 @@ const Posts = ({ posts, loading, history }) => {
                     ))}
                 </tbody>
             </table>
-            <button className="deletebtn" onClick={Noticedelete}>삭제</button>
+            <button className={btn} onClick={Noticedelete}>삭제</button>
         </>
     );
 };
