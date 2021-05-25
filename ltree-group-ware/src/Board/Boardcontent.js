@@ -43,7 +43,7 @@ const Boardcontent = ({ history, location }) => {
                 console.log("boardUpdate=" + json);
 
             });
-        history.push();
+        history.goBack();
     };
 
 

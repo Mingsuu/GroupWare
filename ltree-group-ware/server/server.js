@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 const port = 3001; 
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const mysql = require("mysql"); // mysql 모듈 사용
 
 
@@ -195,7 +194,7 @@ app.post("/Notice", (req,res)=>{
 /*공지사항 constents select문 */
 app.post("/NoticeContent", (req,res)=>{
     const numbox = req.body.num;
-    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,ncontent,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate,date_format(update1 ,'%y-%m-%d-%h-%i') as update1 from Notice order by sysdate1 desc) t where No1 = ?",[numbox],
+    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,ncontent,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate,date_format(update1 ,'%y-%m-%d/%h:%i') as update1 from Notice order by sysdate1 desc) t where No1 = ?",[numbox],
     function(err,rows,fields){
         if(err){
             console.log("공지사항 상세페이지 불러오기 실패");
