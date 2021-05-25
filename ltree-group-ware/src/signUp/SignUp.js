@@ -76,6 +76,7 @@ function SignUp({ history }) {
                         console.log(json)
                     });
                 alert('회원가입에 성공하였습니다.');
+                history.goBack();
             } else {
                 history.push('/')
             }

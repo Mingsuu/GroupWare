@@ -3,20 +3,26 @@ const express = require("express");
 const app = express();
 const port = 3001; 
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const mysql = require("mysql"); // mysql 모듈 사용
 
 
 var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root", //mysql의 id
-    password: "1111", //mysql의 password
-    database: "groupware", //사용할 데이터베이스 각자 바꿔서 사용해요!!
+    host: "umj7-022.cafe24.com",
+    user: "ltreetest", 
+    password: "ltreetestdb6161", 
+    database: "ltreetest",
+    multipleStatements: true,
+    typeCast: function (field, next) {
+        if (field.type == 'VAR_STRING') {
+            return field.string();
+        }
+        return next();
+    } 
 });
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(cors());
 
 
@@ -79,7 +85,7 @@ app.post("/Findpass", (req,res)=>{
 /*DB id 리스트 */
 app.post("/IdList", (req,res)=>{
     const No1 = req.body.num;
-    connection.query("select userID from users",
+    connection.query("SELECT userID FROM USERS",
     function(err,rows,fields){
         if(err){
             console.log("직원 아이디 불러오기 실패");
@@ -95,7 +101,7 @@ app.post("/IdList", (req,res)=>{
 /*DB pass 리스트 */
 app.post("/PassList", (req,res)=>{
     const No1 = req.body.num;
-    connection.query("select userPWD from users",
+    connection.query("SELECT userPWD FROM USERS",
     function(err,rows,fields){
         if(err){
             console.log("비밀번호 불러오기 실패");
@@ -188,7 +194,7 @@ app.post("/Notice", (req,res)=>{
 /*공지사항 constents select문 */
 app.post("/NoticeContent", (req,res)=>{
     const numbox = req.body.num;
-    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,ncontent,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate,date_format(update1 ,'%y-%m-%d-%h-%i') as update1 from Notice order by sysdate1 desc) t where No1 = ?",[numbox],
+    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,ncontent,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate,date_format(update1 ,'%y-%m-%d/%h:%i') as update1 from Notice order by sysdate1 desc) t where No1 = ?",[numbox],
     function(err,rows,fields){
         if(err){
             console.log("공지사항 상세페이지 불러오기 실패");
@@ -205,7 +211,7 @@ app.post("/NoticeContent", (req,res)=>{
 /* 공지사항 삭제 로직 */
 app.post("/DeleteNotice", (req,res)=>{
     const check = req.body.check;
-    connection.query("delete from notice where No1 in (?)",[check],
+    connection.query("DELETE FROM Notice WHERE No1 in (?)",[check],
     function(err,rows,fields){
         if(err){
             console.log("공지사항 삭제 실패");
@@ -222,7 +228,7 @@ app.post("/DeleteNotice", (req,res)=>{
 /*공지사항 수정 select 문 */
 app.post("/NoticeUpdate", (req,res)=>{
     const num = req.body.num;
-    connection.query("select No1,date_format(sysdate1,'%Y-%m-%d') as ndate,ntitle,ncontent from notice where No1 = ? ",[num],
+    connection.query("SELECT No1,date_format(sysdate1,'%Y-%m-%d') as ndate,ntitle,ncontent FROM Notice WHERE No1 = ? ",[num],
     function(err,rows,fields){
         if(err){
             console.log("공지사항 수정데이터 불러오기 실패");
@@ -242,7 +248,7 @@ app.post("/UpdateNotice", (req,res)=>{
     const ncontent = req.body.bc;
     const No1 = req.body.no1;
 
-    connection.query("update notice set ntitle= ? , ncontent= ? ,update1=NOW() where No1 = ?",[ntitle,ncontent,No1],
+    connection.query("UPDATE Notice set ntitle= ? , ncontent= ? ,update1=NOW() WHERE No1 = ?",[ntitle,ncontent,No1],
     function(err,rows,fields){
         if(err){
             console.log("공지사항 수정 실패");
@@ -259,7 +265,7 @@ app.post("/UpdateNotice", (req,res)=>{
 /*공지사항 조회수  */
 app.post("/ClickAdd", (req,res)=>{
     const No1 = req.body.num;
-    connection.query("update notice set click= click + 1  where No1=?",[No1],
+    connection.query("UPDATE Notice set click= click + 1  WHERE No1=?",[No1],
     function(err,rows,fields){
         if(err){
             console.log("공지사항 조회수 변경 실패");
@@ -364,7 +370,7 @@ app.post("/UpdateBoard", (req,res)=>{
 app.post("/DeleteBoard", (req,res)=>{
     const No1 = req.body.no1;
 
-    connection.query("delete from board where No1= ? ",[No1],
+    connection.query("DELETE FROM Board WHERE No1= ? ",[No1],
     function(err,rows,fields){
         if(err){
             console.log("게시판 삭제 실패");
@@ -380,7 +386,7 @@ app.post("/DeleteBoard", (req,res)=>{
 /*업무 게시판 조회수  */
 app.post("/ClickAdd1", (req,res)=>{
     const No1 = req.body.num;
-    connection.query("update board set click= click + 1  where No1=?",[No1],
+    connection.query("UPDATE Board set click= click + 1  WHERE No1=?",[No1],
     function(err,rows,fields){
         if(err){
             console.log("게시판 조회수 변경 실패");
