@@ -156,7 +156,7 @@ app.post('/idCheck', (req, res) => {
 app.post("/AddNotice", (req,res)=>{
     const wtitle = req.body.wt;
     const wcontent = req.body.wc;
-    connection.query("insert into Notice values(No1,NOW(), ?, ?, 0)",[wtitle,wcontent],
+    connection.query("insert into Notice values(No1,NOW(), NOW(), ?, ?, 0)",[wtitle,wcontent],
     function(err,rows,fields){
         if(err){
             console.log("공지사항 생성 실패");

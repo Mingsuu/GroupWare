@@ -43,7 +43,7 @@ const Boardcontent = ({ history, location }) => {
                 console.log("boardUpdate=" + json);
 
             });
-        history.goBack();
+        history.push();
     };
 
 
@@ -74,7 +74,7 @@ const Boardcontent = ({ history, location }) => {
                         <div className="btnbox">
                             <button onClick={()=>history.goBack()}>목록으로</button>
                             <button onClick={deleteBoard}>삭제</button>
-                            <Link to={`/BoardUpdate/${no1[0].No1}`}><button>수정</button></Link>
+                            <Link to={`/home/boarderUpdate/?no=${no1[0].No1}`}><button>수정</button></Link>
                         </div>
                     </div>
                 </>
