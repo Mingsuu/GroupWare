@@ -68,7 +68,7 @@ const Loginpage = ({ history }) => {
             alert("아이디가 틀렸거나 가입된 정보가 없습니다.");
             idRef.current.focus();
         } else if (passlist.find(pass => pass === passbox) === undefined) {
-            alert("비밀번호가 틀렸습니다.");
+            alert("비밀번호가 일치하지않습니다.");
             passRef.current.focus();
         } else if (jsonbox[0].ming === 1) {
             loginsave();

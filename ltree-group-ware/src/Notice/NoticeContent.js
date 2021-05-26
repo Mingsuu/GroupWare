@@ -37,7 +37,6 @@ const NoticeContent = ({ history, location }) => {
     });
 
 
-
     return (
 
             <div className="noticebox">

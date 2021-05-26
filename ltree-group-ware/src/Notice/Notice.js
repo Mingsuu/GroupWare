@@ -8,7 +8,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 
 const Notice = () => {
-    
+
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1); //현재페이지 기본값으로 1를 넣어준다 이유는 첫페이지는 1페이지가 기본이니까
@@ -21,7 +21,7 @@ const Notice = () => {
     const paginate = pageNumber => setCurrentPage(pageNumber);
     const indexOfLastPost = currentPage * postPerPage;  // 현재페이지 * 페이지당 보여지는 목록갯수 2개 페이지면 16개 3개면 8개 3개니까 24개
     const indexOfFristPost = indexOfLastPost - postPerPage; // ex) 8-8= 0 , 16-8 = 8, 24-8= 16 ... 8개 목록씩 계산
-    const currentPosts = posts.slice(indexOfFristPost, indexOfLastPost); // 현재페이지 ex) 0부터 8까지 페이지를 짤라라 // 8자리부터 8까지
+    const currentPosts = posts.slice(indexOfFristPost, indexOfLastPost); // 현재페이지 ex) 0부터 8까지 페이지를 짤라라 // 8,16, 16,24
 
     const loginID = window.localStorage.getItem("loginID")
     const userID = loginID.replace(/\"/gi, "");
