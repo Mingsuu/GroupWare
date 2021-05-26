@@ -66,10 +66,10 @@ const UserMenagement = () => {
         animated: true,
         title: '인적사항 수정',
         message:
-            <table>
+            <table className='user-detail-table'>
                 <thead>
                     <tr>
-                        <td colSpan='3'>상세 정보</td>
+                        <td colSpan='3' >상세 정보</td>
                     </tr>
                 </thead>
                 <tbody className='detail-tbody'>
@@ -132,7 +132,7 @@ const UserMenagement = () => {
     const loginID = window.localStorage.getItem("loginID").replace(/\"/gi, "");
 
     const selectUser = (e) => {
-       if(loginID === 'ddd') {
+       if(loginID === 'admin') {
         const selected = users.find(user => e.target.childNodes[0].nodeValue === user.userNAME);
         setFindUser(selected);
         toggleModal();

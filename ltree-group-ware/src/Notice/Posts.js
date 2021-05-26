@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
-const Posts = ({ posts, loading, btn, check }) => {
+const Posts = ({ posts, loading, btn, check, currentPage }) => {
     const [checknum, setChecknum] = useState([]);
     const [checkList, setCheckList] = useState([])
     const [delbtn, setDelbtn] = useState('');
@@ -69,8 +69,7 @@ const Posts = ({ posts, loading, btn, check }) => {
     return (
         <>
             <table className="listbox">
-                {/* { posts !== '' ? (
-        <> */}
+               
                 <thead className="topmenu">
                     <tr >
                         <th>
@@ -84,18 +83,21 @@ const Posts = ({ posts, loading, btn, check }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {posts.map((post, idx) => (
+                    {posts.map((post, idx) => {
+                        let num = (currentPage*8-8)+ idx + 1;
+                        
+                        return(
                         <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1)}>
                             <td className="no">
                                 <input type="checkbox" className={check} onChange={(e) => onChangeEach(e, post.No1)} checked={checkList.includes(post.No1)} />
                             </td>
-                            <td className="no1">{idx + 1}</td>
-                            <td className="no2"><Link to={`/home/noticeContent/?postNo=${post.No1}&no=${idx + 1}`}>{post.ntitle}</Link></td>
+                            <td className="no1">{num}</td>
+                            <td className="no2"><Link to={`/home/noticeContent/?postNo=${post.No1}&no=${num}`}>{post.ntitle}</Link></td>
                             <td className="no3">대표</td>
                             <td className="no4">{post.ndate}</td>
                             <td className="no5">{post.click}</td>
                         </tr>
-                    ))}
+                    )})}
                 </tbody>
             </table>
             <button className={btn} onClick={Noticedelete}>삭제</button>

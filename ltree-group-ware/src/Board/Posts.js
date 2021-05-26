@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const Posts = ({ posts, loading }) => {
+const Posts = ({ posts, loading, currentPage }) => {
 
     const ClickAdd = (No1) => {
         const post = { num: No1 }
@@ -37,15 +37,17 @@ const Posts = ({ posts, loading }) => {
                 </tr>
             </thead>
             <tbody>
-                {posts.map((post, idx) => (
+                {posts.map((post, idx) => {
+                    let num = (currentPage*8-8)+idx + 1;
+                    return(
                     <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1)}>
-                        <td className="no1" >{idx + 1}</td>
-                        <td className="no2" ><Link to={`/home/boardercontent/?postNo=${post.No1}&no=${idx + 1}`}>{post.btitle}</Link></td>
+                        <td className="no1" >{num}</td>
+                        <td className="no2" ><Link to={`/home/boardercontent/?postNo=${post.No1}&no=${num}`}>{post.btitle}</Link></td>
                         <td className="no3">직원</td>
                         <td className="no4">{post.bdate}</td>
                         <td className="no5">{post.click}</td>
                     </tr>
-                ))}
+                )})}
             </tbody>
         </table>
     );
