@@ -12,6 +12,12 @@ const Board = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postPerPage] = useState(8);
 
+    //화면전환//
+   const paginate = pageNumber => setCurrentPage(pageNumber);
+   const indexOfLastPost = currentPage * postPerPage;
+   const indexOfFristPost = indexOfLastPost - postPerPage;
+   const currentPosts = posts.slice(indexOfFristPost, indexOfLastPost);
+
     useEffect(() => {
         const fetchPosts = async () => {
             fetch("http://localhost:3001/Board", {
@@ -23,29 +29,17 @@ const Board = () => {
             })
                 .then((res) => res.json())
                 .then((json) => {
-
                     setLoading(true);
                     const res = json;
                     setPosts(res);
                     setLoading(false);
                 });
-
-
         };
         fetchPosts();
     }, []);
 
     console.log("post=" + posts);
-
-    const indexOfLastPost = currentPage * postPerPage;
-    const indexOfFristPost = indexOfLastPost - postPerPage;
-    const currentPosts = posts.slice(indexOfFristPost, indexOfLastPost);
-
-    //화면전환//
-    const paginate = pageNumber => setCurrentPage(pageNumber);
-
-
-
+    
 
     return (
         <div className="noticebox">

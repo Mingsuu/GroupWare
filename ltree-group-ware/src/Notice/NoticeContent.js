@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 
 const NoticeContent = ({ history, location }) => {
-
+    const [admincheck, setAdmincheck] = useState('modubtn');
     const [no1, setNo1] = useState();
-
     const query = queryString.parse(location.search);
+    const loginID = window.localStorage.getItem("loginID")
+    const userID = loginID.replace(/\"/gi, "");
 
     /* 상세 페이지 정보 뿌리기*/
     useEffect(() => {
@@ -28,32 +29,7 @@ const NoticeContent = ({ history, location }) => {
             });
     }, []);
 
-
-
-
-    /* 체크한 목록 삭제 */
-    const Noticedelete = () => {
-        const post = { no1: query.postNo }
-        fetch("http://localhost:3001/DeleteNotice", {
-            method: "post",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(post),
-        })
-            .then((res) => res.json())
-            .then((json) => {
-                console.log("boardUpdate=" + json);
-
-            });
-        history.goBack();
-    };
-
-    const loginID = window.localStorage.getItem("loginID")
-    const userID = loginID.replace(/\"/gi, "");
-
-    const [admincheck, setAdmincheck] = useState('modubtn');
-
+    /*로그인한사람이 관리자인지 판별 */
     useEffect(() => {
         if (userID === "admin") {
             setAdmincheck("adminbtn")
@@ -73,10 +49,10 @@ const NoticeContent = ({ history, location }) => {
                                 <div className="boardtitlebox">
                                     <span className="boardnum">{query.no}</span>
                                     <span className="boardtitle">제목 : {no1[0].ntitle}</span>
-                                    <span className="boardname">작성자 : 박민수</span>
+                                    <span className="boardname">작성자 : {no1[0].writer}</span>
                                     <span className="boarddate">작성날짜: {no1[0].ndate}</span>
                                     <span className="boardupdate">수정날짜: {no1[0].update1}</span>
-                                    <span className="boardup">H:{no1[0].click}</span>
+                                    <span className="boardup">C:{no1[0].click}</span>
                                 </div>
                                 <hr className="boardbar" />
                                 <div className="boardneyoung">

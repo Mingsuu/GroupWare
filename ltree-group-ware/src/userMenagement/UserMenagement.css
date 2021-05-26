@@ -27,6 +27,9 @@
 }
 .mgnt-btnbox {
     width: 923px;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 10px;
 }
 .mgnt-btnbox button {
     float: right;
@@ -66,6 +69,6 @@
 .mgnt-yyyy {
     font-size:15px;
     font-weight: bold;
-    background-color: rgb(9,62,156);
+    background-color: black;
     color:white;
 }

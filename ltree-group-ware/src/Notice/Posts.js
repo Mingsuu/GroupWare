@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 const Posts = ({ posts, loading, btn, check }) => {
     const [checknum, setChecknum] = useState([]);
     const [checkList, setCheckList] = useState([])
-    const [delbtn, setDelbtn] = useState('');
+    const loginName = window.localStorage.getItem("loginName")
+    const realName = loginName.replace(/\"/gi, "");
+
     useEffect(() => {
         let checklist = []
         posts.map((post, i) => {
@@ -14,12 +16,9 @@ const Posts = ({ posts, loading, btn, check }) => {
         setChecknum(checklist)
     }, [posts]);
 
-    if (loading) {
-        return <h2>Loading....</h2>
-    }
-
-    console.log("delbtn="+delbtn);
-    const ClickAdd = (No1) => {
+    /* 공지사항클릭시 조회수 증가 내가작성한 게시물은 증가 X  */
+    const ClickAdd = (No1,writer) => {
+        if(writer !== realName){
         const post = { num: No1 }
         fetch("http://localhost:3001/ClickAdd", {
             method: "post",
@@ -33,21 +32,9 @@ const Posts = ({ posts, loading, btn, check }) => {
                 console.log("NoticeClick=" + json);
                 console.log("Number=" + No1);
             });
+        };
     };
 
-    const checkAll = (e) => {
-        setCheckList(e.target.checked ? checknum : [])
-    }
-    const onChangeEach = (e, no1) => {
-        // 체크할 시 CheckList에 id값 넣기
-        if (e.target.checked) {
-            setCheckList([...checkList, no1]);
-            console.log("체크리스트=" + checkList);
-            // 체크 해제할 시 CheckList에서 해당 id값이 `아닌` 값만 배열에 넣기
-        } else {
-            setCheckList(checkList.filter((checkedId) => checkedId !== no1));
-        }
-    }
 
     /* 클릭한 페이지 삭제 */
         const Noticedelete = () => {
@@ -65,6 +52,27 @@ const Posts = ({ posts, loading, btn, check }) => {
                 });
             window.location.reload();
         };
+    console.log("포스트="+posts);
+    
+    const checkAll = (e) => {
+        setCheckList(e.target.checked ? checknum : [])
+    }
+    
+    const onChangeEach = (e, no1) => {
+        // 체크할 시 CheckList에 id값 넣기
+        if (e.target.checked) {
+            setCheckList([...checkList, no1]);
+            console.log("체크리스트=" + checkList);
+            // 체크 해제할 시 CheckList에서 해당 id값이 `아닌` 값만 배열에 넣기
+        } else {
+            setCheckList(checkList.filter((checkedId) => checkedId !== no1));
+        }
+    }
+
+    if (loading) {
+        return <h2>Loading....</h2>
+    }
+
 
     return (
         <>
@@ -85,13 +93,13 @@ const Posts = ({ posts, loading, btn, check }) => {
                 </thead>
                 <tbody>
                     {posts.map((post, idx) => (
-                        <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1)}>
+                        <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1,post.writer)}>
                             <td className="no">
                                 <input type="checkbox" className={check} onChange={(e) => onChangeEach(e, post.No1)} checked={checkList.includes(post.No1)} />
                             </td>
                             <td className="no1">{idx + 1}</td>
                             <td className="no2"><Link to={`/home/noticeContent/?postNo=${post.No1}&no=${idx + 1}`}>{post.ntitle}</Link></td>
-                            <td className="no3">대표</td>
+                            <td className="no3">{post.writer}</td>
                             <td className="no4">{post.ndate}</td>
                             <td className="no5">{post.click}</td>
                         </tr>

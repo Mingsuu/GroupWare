@@ -362,7 +362,7 @@ const Container = styled.div`
   flex-direction: column;
   display: flex;
   font-size: 20px;
-  margin-left:-100px;
+  margin-left:-130px;
 `;
 const Header = styled.div`
   display: flex;
@@ -382,7 +382,6 @@ const Header = styled.div`
     display: inline-flex;
     background: transparent;
     border: none;
-    color: #444078;
     font-size: 1.2em;
     padding: 4px;
     &:hover {

@@ -162,7 +162,8 @@ app.post('/idCheck', (req, res) => {
 app.post("/AddNotice", (req,res)=>{
     const wtitle = req.body.wt;
     const wcontent = req.body.wc;
-    connection.query("insert into Notice values(No1,NOW(),NOW(), ?, ?, 0)",[wtitle,wcontent],
+    const wname = req.body.wn;
+    connection.query("insert into Notice values(No1,NOW(),NOW(), ?, ?, 0, ?)",[wtitle,wcontent,wname],
     function(err,rows,fields){
         if(err){
             console.log("공지사항 생성 실패");
@@ -171,14 +172,14 @@ app.post("/AddNotice", (req,res)=>{
             console.log("공지사항 생성 성공");
             res.send(rows);
             console.log(rows);
-            console.log(wtitle,wcontent);
+            console.log(wtitle,wcontent,wname);
         }
     })
 })
 
 /*공지사항 select문 */
 app.post("/Notice", (req,res)=>{
-    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate from Notice order by sysdate1 desc) t",
+    connection.query("select No1,ntitle,click,writer,date_format(sysdate1 ,'%Y-%m-%d') as ndate from Notice order by sysdate1 desc",
     function(err,rows,fields){
         if(err){
             console.log("공지사항 불러오기 실패");
@@ -194,7 +195,7 @@ app.post("/Notice", (req,res)=>{
 /*공지사항 constents select문 */
 app.post("/NoticeContent", (req,res)=>{
     const numbox = req.body.num;
-    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,ntitle,ncontent,click,date_format(sysdate1 ,'%Y-%m-%d') as ndate,date_format(update1 ,'%y-%m-%d/%h:%i') as update1 from Notice order by sysdate1 desc) t where No1 = ?",[numbox],
+    connection.query("select No1,ntitle,writer,ncontent,click,writer,date_format(sysdate1 ,'%Y-%m-%d') as ndate,date_format(update1 ,'%y-%m-%d/%h:%i') as update1 from Notice where No1 = ?",[numbox],
     function(err,rows,fields){
         if(err){
             console.log("공지사항 상세페이지 불러오기 실패");
@@ -202,7 +203,7 @@ app.post("/NoticeContent", (req,res)=>{
         }else{
             console.log("공지사항 상세페이지 불러오기 성공");
             res.send(rows);
-            console.log(rows[0].No1);
+            console.log(rows[0].No1,rows[0].writer);
         }
     })
 });
@@ -223,24 +224,6 @@ app.post("/DeleteNotice", (req,res)=>{
         }
     })
 });
-
-
-/*공지사항 수정 select 문 */
-app.post("/NoticeUpdate", (req,res)=>{
-    const num = req.body.num;
-    connection.query("SELECT No1,date_format(sysdate1,'%Y-%m-%d') as ndate,ntitle,ncontent FROM Notice WHERE No1 = ? ",[num],
-    function(err,rows,fields){
-        if(err){
-            console.log("공지사항 수정데이터 불러오기 실패");
-            console.log("error" +err);
-        }else{
-            console.log("공지사항 수정데이터 불러오기 성공");
-            res.send(rows);
-            console.log(rows);
-        }
-    })
-});
-
 
 /*공지사항 update문 */
 app.post("/UpdateNotice", (req,res)=>{
@@ -282,7 +265,7 @@ app.post("/ClickAdd", (req,res)=>{
 /*************************************************게시판 관련************************************************************/
 /*업무 게시판 select문 */
 app.post("/Board", (req,res)=>{
-    connection.query("select *, @row_num:= @row_num + 1 as rownu from(select @row_num:= 0 as rowNum,No1,btitle,date_format(sysdate1 ,'%Y-%m-%d') as bdate, click from Board order by sysdate1 desc) t",
+    connection.query("select No1,btitle,click,writer,date_format(sysdate1 ,'%Y-%m-%d') as bdate from Board order by sysdate1 desc",
     function(err,rows,fields){
         if(err){
             console.log("게시판 불러오기 실패");
@@ -299,8 +282,8 @@ app.post("/Board", (req,res)=>{
 app.post("/AddBoard", (req,res)=>{
     const btitle = req.body.bt;
     const bcontent = req.body.bc;
-
-    connection.query("insert into Board values(No1,NOW(),NOW(), ? , ?, 0)",[btitle,bcontent],
+    const bname = req.body.writer;
+    connection.query("insert into Board values(No1,NOW(),NOW(), ? , ?, 0, ?)",[btitle,bcontent,bname],
     function(err,rows,fields){
         if(err){
             console.log("게시판 생성 실패");
@@ -317,29 +300,13 @@ app.post("/AddBoard", (req,res)=>{
 /*업무 게시판 constents select문 */
 app.post("/Boardcontent", (req,res)=>{
     const numbox = req.body.num;
-    connection.query("select No1,date_format(sysdate1,'%Y-%m-%d') as bdate,date_format(update1 ,'%y-%m-%d-%h-%i') as update1,btitle,bcontent,click from Board where No1 = ? ",[numbox],
+    connection.query("select No1,btitle,writer,bcontent,click,writer,date_format(sysdate1 ,'%Y-%m-%d') as bdate,date_format(update1 ,'%y-%m-%d-%h-%i') as update1 from Board where No1 = ? ",[numbox],
     function(err,rows,fields){
         if(err){
             console.log("게시판 상세페이지 실패");
             console.log("error" +err);
         }else{
             console.log("게시판 상세페이지 성공");
-            res.send(rows);
-            console.log(rows);
-        }
-    })
-});
-
-/*업무 게시판 수정 select 문 */
-app.post("/BoardUpdate", (req,res)=>{
-    const num = req.body.num;
-    connection.query("select No1,date_format(sysdate1,'%Y-%m-%d') as bdate,btitle,bcontent from Board where No1 = ? ",[num],
-    function(err,rows,fields){
-        if(err){
-            console.log("게시판 수정데이터 불러오기 실패");
-            console.log("error" +err);
-        }else{
-            console.log("게시판 수정데이터 불러오기 성공");
             res.send(rows);
             console.log(rows);
         }

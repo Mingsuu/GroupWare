@@ -11,41 +11,13 @@ const BoardUpdate = ({ history, location }) => {
     const [bcontent, setBcontent] = useState('');
     const btitlelef = useRef();
     const bcontentlef = useRef();
-
-    const titlechange = (e) => {
-        setBtitle(e.target.value);
-    }
-
-    const contentchange = (e) => {
-        setBcontent(e.target.value);
-    }
-
-
-    const updatecheck = (e) => {
-        e.preventDefault();
-        if (btitle === '') {
-            alert("제목을 입력해 주세요.");
-            btitlelef.current.focus();
-        } else if (bcontent === '') {
-            alert("내용을 입력해 주세요.");
-            bcontentlef.current.focus();
-        } else {
-            insertBoard();
-            setBtitle('');
-            setBcontent('');
-            history.push('/home/boarder');
-        }
-
-    }
-
-    
     const query = queryString.parse(location.search);
 
     /*수정버튼 클릭시 그해당하는 데이터값 select */
     useEffect(() => {
-        console.log("test",history, location)
+        console.log("test", history, location)
         const post = { num: query.no };
-        fetch("http://localhost:3001/BoardUpdate", {
+        fetch("http://localhost:3001/Boardcontent", {
             method: "post",
             headers: {
                 "content-type": "application/json",
@@ -66,7 +38,7 @@ const BoardUpdate = ({ history, location }) => {
     /*수정하는 값  update 하기*/
     const insertBoard = () => {
         const post = { bt: btitle, bc: bcontent, no1: query.no }
-        
+
         fetch("http://localhost:3001/UpdateBoard", {
             method: "post",
             headers: {
@@ -78,9 +50,32 @@ const BoardUpdate = ({ history, location }) => {
             .then((json) => {
                 console.log("boardUpdate=" + json);
             });
-
     };
 
+
+    const titlechange = (e) => {
+        setBtitle(e.target.value);
+    }
+
+    const contentchange = (e) => {
+        setBcontent(e.target.value);
+    }
+
+    const updatecheck = (e) => {
+        e.preventDefault();
+        if (btitle === '') {
+            alert("제목을 입력해 주세요.");
+            btitlelef.current.focus();
+        } else if (bcontent === '') {
+            alert("내용을 입력해 주세요.");
+            bcontentlef.current.focus();
+        } else {
+            insertBoard();
+            setBtitle('');
+            setBcontent('');
+            history.push('/home/boarder');
+        }
+    }
 
     return (
         <div className="noticebox">
@@ -100,7 +95,7 @@ const BoardUpdate = ({ history, location }) => {
                                 <div className="wcontent">내용</div>
                                 <textarea className="wcontentbox" placeholder="내용을 입력해 주세요." ref={bcontentlef} value={bcontent} onChange={contentchange}></textarea>
                             </div>
-                            <div className="divbox1"><button onClick={()=>history.push('/home/boarder')}>목록으로</button><button onClick={updatecheck}>수정완료</button></div>
+                            <div className="divbox1"><button onClick={() => history.push('/home/boarder')}>목록으로</button><button onClick={updatecheck}>수정완료</button></div>
                         </form>
                     </div>
                 </>

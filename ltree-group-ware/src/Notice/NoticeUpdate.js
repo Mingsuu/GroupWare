@@ -11,20 +11,10 @@ const NoticeUpdate = ({ history, location }) => {
     const [ncontent, setNcontent] = useState('');
     const btitlelef = useRef();
     const bcontentlef = useRef();
-
-    const titlechange = (e) => {
-        setNtitle(e.target.value);
-    }
-
-    const contentchange = (e) => {
-        setNcontent(e.target.value);
-    }
-
-
     const query = queryString.parse(location.search);
+
     /* 상세 페이지 정보 뿌리기*/
     useEffect(() => {
-        
         const post = { num: query.no };
         fetch("http://localhost:3001/NoticeContent", {
             method: "post",
@@ -41,7 +31,7 @@ const NoticeUpdate = ({ history, location }) => {
             });
     }, []);
 
-
+    /*수정시 벨리데이션 체크 */
     const updatecheck = (e) => {
         e.preventDefault();
         if (ntitle === '') {
@@ -54,7 +44,7 @@ const NoticeUpdate = ({ history, location }) => {
             UpdateNotice();
             setNtitle('');
             setNcontent('');
-            history.goBack();
+            history.push('/home/notice');
         }
 
     }
@@ -73,11 +63,16 @@ const NoticeUpdate = ({ history, location }) => {
             .then((res) => res.json())
             .then((json) => {
                 console.log("boardUpdate=" + json);
-
             });
-
     };
 
+    const titlechange = (e) => {
+        setNtitle(e.target.value);
+    }
+
+    const contentchange = (e) => {
+        setNcontent(e.target.value);
+    }
 
 
     return (
@@ -89,7 +84,6 @@ const NoticeUpdate = ({ history, location }) => {
                     <h1 className="ntitle">업무 게시판</h1>
                     <div>
                         <form className="formbox">
-
                             <hr className="bar" />
                             <div className="divbox">
                                 <div className="wtitle">제목</div>

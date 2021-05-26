@@ -1,17 +1,17 @@
 @font-face {
-    font-family: 'GongGothicMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
  *{
-    font-family: 'GongGothicMedium';
+    font-family: 'GmarketSansLight';
 }
 .top {
     display: block;
     border: none;
     text-align: left;
-    background-image: url(http://ltree.co.kr/wp-content/uploads/2021/05/63building.jpg);
+    background-color:black;
     height:140px;
     border-bottom: 5px solid white;
 }
@@ -28,27 +28,27 @@
     outline: none;
     position: absolute;
     top: 0px;
-    width: 280px;
+    width: 200px;
     height: 100vh;
-    background-image: url(http://ltree.co.kr/wp-content/uploads/2021/05/63building.jpg);
+    background-color:black;
     border-right: 5px solid white;
 }
 .left-ul2 {
-    width: 245px;
-    height: 700px;
-    margin-left: 15px;
+    width: 185px;
+    height: 730px;
+    margin-left: 5px;
     background-color: white;
     border-radius: 4px;
     padding-top: 3px;
-    margin-top:20px;
+    margin-top:10px;
 }
 .left-ul1 {
     list-style: none;
     margin-left: -20px;
 }
 .mid-left ul li {
-    font-size: 23px;
-    margin-bottom: 15px;
+    font-size: 20px;
+    margin-bottom: 35px;
 }
 .mid-left ul li {
     text-align: left;

@@ -2,7 +2,11 @@ import { Link } from 'react-router-dom';
 
 const Posts = ({ posts, loading }) => {
 
-    const ClickAdd = (No1) => {
+    const loginName = window.localStorage.getItem("loginName")
+    const realName = loginName.replace(/\"/gi, "");
+
+    const ClickAdd = (No1,writer) => {
+        if(writer !== realName){
         const post = { num: No1 }
         fetch("http://localhost:3001/ClickAdd1", {
             method: "post",
@@ -16,9 +20,8 @@ const Posts = ({ posts, loading }) => {
                 console.log("NoticeClick=" + json);
                 console.log("Number=" + No1);
             });
+        }
     };
-
-
 
     if (loading) {
         return <h2>Loading....</h2>
@@ -38,10 +41,10 @@ const Posts = ({ posts, loading }) => {
             </thead>
             <tbody>
                 {posts.map((post, idx) => (
-                    <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1)}>
+                    <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1,post.writer)}>
                         <td className="no1" >{idx + 1}</td>
                         <td className="no2" ><Link to={`/home/boardercontent/?postNo=${post.No1}&no=${idx + 1}`}>{post.btitle}</Link></td>
-                        <td className="no3">직원</td>
+                        <td className="no3">{post.writer}</td>
                         <td className="no4">{post.bdate}</td>
                         <td className="no5">{post.click}</td>
                     </tr>

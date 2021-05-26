@@ -14,7 +14,6 @@ const Pagination = ({postsPerPage, totalPosts, paginate}) => {
             <button onClick={()=> paginate(number)} href='!#' className='pagebtn1'>
               {number}
             </button>
-
           </li>
         ))}
       </ul>

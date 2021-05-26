@@ -85,7 +85,7 @@
 }
 .notice-board ,th {
     border-collapse:collapse;
-    background-color: rgb(9,62,156);
+    background-color: black;
     color: white;
     border-radius: 1px;
     height: 30px;
@@ -349,6 +349,7 @@
     display: inline-block;
     width: 1000px;
     background-color: white;
+    padding-top: 10px;
 }
 .boardbar{
     background-color:black;
@@ -367,6 +368,7 @@
 .boardnum{
     margin-right: 7px;
     width: 40px;
+    padding-top:8px;
 }
 .boardtitle{
     width:360px;
@@ -384,8 +386,9 @@
 }
 .boardup{
     width:40px;
+    height: 30px;
     float: right;
-    padding-top: 4px;
+    padding-top: 8px;
 }
 .boardneyoung{
     display: inline-block;

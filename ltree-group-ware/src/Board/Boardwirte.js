@@ -5,17 +5,25 @@ const BoardWrite = ({history}) => {
 
 const [btitle, setBtitle] = useState('');
 const [bcontent,setBcontent] = useState('');
-
 const btitlelef = useRef();
 const bcontentlef = useRef();
+const loginName = window.localStorage.getItem("loginName")
+const realName = loginName.replace(/\"/gi, "");
 
-const titlechange = (e)=> {
-    setBtitle(e.target.value);
-}
-
-const contentchange = (e) => {
-    setBcontent(e.target.value);
-}
+const insertNotice = () => {
+    const post = {bt:btitle,bc:bcontent,bn:realName}
+    fetch("http://localhost:3001/AddBoard", {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(post),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+      });
+  };
 
 const noticecheck = (e) => {
     e.preventDefault();
@@ -31,31 +39,15 @@ const noticecheck = (e) => {
         setBcontent('');
         history.goBack();
     }
-   
 }
 
+const titlechange = (e)=> {
+    setBtitle(e.target.value);
+}
 
-const insertNotice = () => {
-    const post = {bt:btitle,bc:bcontent}
-    
-    fetch("http://localhost:3001/AddBoard", {
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(post),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        
-      });
-
-  };
-
-
-
-
+const contentchange = (e) => {
+    setBcontent(e.target.value);
+}
 
     return (
 
@@ -66,10 +58,6 @@ const insertNotice = () => {
                         <h1 className="ntitle">업무 게시판</h1>
                         <div>
                             <form className="formbox">
-                                {/* <div className="divbox">
-                                   <div className="wdate">작성일</div>
-                                   <input className="wdatebox" type="date" onChange={bdatechange} value={bdate} ref={bdatelef}></input>
-                               </div> */}
                                <hr className="bar"/>
                                <div className="divbox">
                                    <div className="wtitle">제목</div>
