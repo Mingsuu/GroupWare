@@ -7,7 +7,7 @@ const mysql = require("mysql"); // mysql 모듈 사용
 
 
 var connection = mysql.createConnection({
-    host: "umj7-022.cafe24.com",
+    host: "ltreetest.cafe24.com",
     user: "ltreetest", 
     password: "ltreetestdb6161", 
     database: "ltreetest",

@@ -45,7 +45,7 @@ const Board = () => {
         <div className="noticebox">
             <h1 className="ntitle">업무 게시판</h1>
             <div>
-                <Posts posts={currentPosts} loading={loading} />
+                <Posts posts={currentPosts} loading={loading} currentPage={currentPage} />
                 <Pagination postsPerPage={postPerPage} totalPosts={posts.length} paginate={paginate} />
                 <Link to="/home/boardwrite"><button className="admin1">글작성</button></Link>
             </div>
