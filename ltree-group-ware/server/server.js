@@ -282,7 +282,7 @@ app.post("/Board", (req,res)=>{
 app.post("/AddBoard", (req,res)=>{
     const btitle = req.body.bt;
     const bcontent = req.body.bc;
-    const bname = req.body.writer;
+    const bname = req.body.bn;
     connection.query("insert into Board values(No1,NOW(),NOW(), ? , ?, 0, ?)",[btitle,bcontent,bname],
     function(err,rows,fields){
         if(err){

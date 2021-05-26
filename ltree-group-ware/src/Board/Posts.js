@@ -43,10 +43,10 @@ const Posts = ({ posts, loading, currentPage }) => {
                 {posts.map((post, idx) => {
                     let num = (currentPage*8-8)+idx + 1;
                     return(
-                    <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1)}>
+                    <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1,post.writer)}>
                         <td className="no1" >{num}</td>
                         <td className="no2" ><Link to={`/home/boardercontent/?postNo=${post.No1}&no=${num}`}>{post.btitle}</Link></td>
-                        <td className="no3">직원</td>
+                        <td className="no3">{post.writer}</td>
                         <td className="no4">{post.bdate}</td>
                         <td className="no5">{post.click}</td>
                     </tr>

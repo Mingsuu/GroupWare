@@ -18,6 +18,8 @@ const Posts = ({ posts, loading, btn, check, currentPage }) => {
 
     /* 공지사항클릭시 조회수 증가 내가작성한 게시물은 증가 X  */
     const ClickAdd = (No1,writer) => {
+        console.log("작성자="+writer);
+        console.log("진짜이름="+realName);
         if(writer !== realName){
         const post = { num: No1 }
         fetch("http://localhost:3001/ClickAdd", {
@@ -95,13 +97,13 @@ const Posts = ({ posts, loading, btn, check, currentPage }) => {
                         let num = (currentPage*8-8)+ idx + 1;
                         
                         return(
-                        <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1)}>
+                        <tr key={post.No1} className="notlist" onClick={() => ClickAdd(post.No1,post.writer)}>
                             <td className="no">
                                 <input type="checkbox" className={check} onChange={(e) => onChangeEach(e, post.No1)} checked={checkList.includes(post.No1)} />
                             </td>
                             <td className="no1">{num}</td>
                             <td className="no2"><Link to={`/home/noticeContent/?postNo=${post.No1}&no=${num}`}>{post.ntitle}</Link></td>
-                            <td className="no3">대표</td>
+                            <td className="no3">{post.writer}</td>
                             <td className="no4">{post.ndate}</td>
                             <td className="no5">{post.click}</td>
                         </tr>
