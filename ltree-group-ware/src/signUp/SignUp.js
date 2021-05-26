@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React, { useState, useEffect, useRef } from 'react';
-import ltree_logo from '../Image/ltree_logo.png';
+import ltree_logo from '../Image/ltreetitle.png';
 import './SignUp.css';
 
 function SignUp({ history }) {
@@ -138,7 +138,7 @@ function SignUp({ history }) {
     return (
         <div className="signup">
             <div className="loginlogo1"><br />
-                <img src={ltree_logo} alt='logo' width='250' height='165' />
+                <img src={ltree_logo} alt='logo' width='250' height='110' />
             </div>
 
             <div className="inputSign">
