@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import './Home.css';
 import DefaultView from './DefaultView';
 import { Link, Route } from 'react-router-dom';
@@ -6,31 +6,48 @@ import SelectedView from './SelectedView';
 import Loginbanner from '../Login/Loginbanner';
 
 const Home = ({ match }) => {
+    const [ScrollY,setScrollY] = useState(0);
+    const [divStatus, setDivStatus] = useState(false);
+    
+    const handleFollow = () => {
+        setScrollY(window.pageYOffset); // window 스크롤값을 ScrollY에 저장
+        if(ScrollY < 50){
+            setDivStatus(true);
+        }else {
+            setDivStatus(false);
+        }
+    }
+    useEffect(()=> {
+        const watch = () =>{
+            window.addEventListener('scroll', handleFollow);
+        }
+        watch();
+        return () => {
+            window.removeEventListener('scroll',handleFollow);
+        }
+    })
+
+    useEffect(() => {
+        console.log("ScrollY="+ScrollY);
+    },[ScrollY])
+
 
     return (
 
-        <div className="container">
+        <div className="container" >
 
             {/* TOP */}
+                
                 <Loginbanner/>
+                <div className="fixed"></div>
+                <div className={divStatus ? "bannerbox active" : "bannerbox"}>
+                    <div className="hi">Good Morning LTREE~</div>
+                </div>
+                
             {/* MID */}
             <div className="midbox">
 
                 {/* MID-LEFT */}
-                <div className="mid-left">
-
-                    <div className="left-ul2">
-                        <ul className="left-ul1">
-                            
-                                <Link to='/home'><li >홈</li></Link>
-                                <Link to={`${match.path}/notice`}><li >공지사항</li></Link>
-                                <Link to={`${match.path}/boarder`}><li >업무 게시판</li></Link>
-                                <Link to={`${match.path}/schedule`}><li >일정표</li></Link>
-                                <Link to={`${match.path}/users`}><li >직원 조회</li></Link>
-                        </ul>
-                    </div>
-
-                </div>
 
                 {/* MID-RIGHT */}
                 <div className="mid-right">

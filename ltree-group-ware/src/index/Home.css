@@ -1,4 +1,10 @@
 @font-face {
+    font-family: 'Cafe24Shiningstar';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Shiningstar.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: 'GmarketSansLight';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
     font-weight: normal;
@@ -11,9 +17,15 @@
     display: block;
     border: none;
     text-align: left;
-    background-color:black;
-    height:140px;
-    border-bottom: 5px solid white;
+    background-color:white;
+    height:53px;
+    border-bottom: 3px solid black;
+    width: 100%;
+    z-index: 10;
+    position:fixed;
+}
+.fixed {
+    height: 56px;
 }
 .index-login {
     text-align: right;
@@ -24,43 +36,76 @@
     margin-top: 40px;
     font-size: 30px;
 }
-.mid-left {
-    outline: none;
-    position: absolute;
-    top: 0px;
-    width: 200px;
-    height: 100vh;
-    background-color:black;
-    border-right: 5px solid white;
-}
 .left-ul2 {
-    width: 185px;
-    height: 730px;
     margin-left: 5px;
-    background-color: white;
+    margin-top:14px;
     border-radius: 4px;
-    padding-top: 3px;
-    margin-top:10px;
+    display: inline-block;
+    float: left;
 }
 .left-ul1 {
     list-style: none;
-    margin-left: -20px;
+    font-weight: bold;
+    color:black;
+    display: inline-block;
+    margin:0;
 }
-.mid-left ul li {
-    font-size: 20px;
-    margin-bottom: 35px;
+.left-ul1 li{
+    display: inline-block;
+    margin-right: 40px;
 }
-.mid-left ul li {
-    text-align: left;
+.bannerimg{
+    width:122px;
+    height: 45px;
+    margin-left: 30px;
+    float: left;
+    margin-right: 50px;
+    margin-top:2px;
 }
+.Login-User{
+    float: right;
+    margin-right: 50px;
+    width: 200px;
+    text-align: center;
+    margin-top: 15px;
+}
+.Userim{
+    font-size:14px;
+    color:black;
+    margin-right: 20px;
+    display: inline-block;
+}
+.bannerbox{
+    /* height: 300px;
+    background-image : url("../Image/banner1.jpg");
+    margin-bottom: 10px;
+    position:fixed;
+    transform: opacity 1s; */
+  opacity: 1; 
+  bottom: 40px; 
+  width: 100%; 
+  height: 300px;
+  border: 0 none;
+  background-image : url("../Image/banner1.jpg");
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -0.06em;
+  box-shadow: 1px 1px 6px 3px rgba(0,0,0,0.3);
+  transition: opacity 0.3s ease-in;
+  margin-bottom: 20px;
+}
+.bannerbox.active {
+    z-index: 10; 
+    opacity: 1; 
+  }
+.hi {
+    font-family: "Cafe24Shiningstar";
+    font-size: 100px;
+    padding-top:20px;
+  }
 .mid-right {
-    position: absolute;
-    top: 0px;
-    left: 600px;
-    width: 380px;
-    height: 500px;
+    display: inline-block;
 }
-
 .notice {
     position: absolute;
     outline: 1px solid #9F9F9F;
@@ -68,7 +113,6 @@
     height: 530px;
     background-color:cadetblue;
     right: 20%;
-
 }
 
 .board {

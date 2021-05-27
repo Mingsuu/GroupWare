@@ -10,7 +10,7 @@
 }
 .midbox {
     width: 100%;
-    height: 100vh;
+    height: 800px;
     position: relative;
     background-color: lightgray;
     background-size: cover;
@@ -22,32 +22,6 @@
     padding-left: 20px;
     color:black;
 }
-.mid-leftbox {
-    width: 250px;
-    height: 100%;
-    background-color: rgb(50,134,84);
-    float: left;
-}
-.mid-leftbox1 {
-    width: 235px;
-    height: 577px;
-    margin-left: 7px;
-    margin-top:-7px;
-    background-color: white;
-}
-.mid-leftbox ul li {
-    font-size: 25px;
-    text-align: left;
-    margin-bottom: 6px;
-    margin-top:15px;
-}
-.mid-right {
-    position: absolute;
-    top: 0px;
-    left: 600px;
-    width: 380px;
-    height: 500px;
-}
 
 .noticebox {
     width: 1180px;
@@ -56,7 +30,6 @@
     border:none;
     right: 20%;
     display: inline-block;
-    margin-left: -300px;
 }
 
 .board {
@@ -420,25 +393,7 @@
     display: inline-block;
 }
 /* 오른쪽 위에 로그인 배너*/
-.sujungimg {
-    display: inline-block;
-    margin-left: 40px;
-    margin-top:20px;
-    width:200px;
-    height: 85px;
-}
-.Login-User{
-    float: right;
-    margin-top: 30px;
-    margin-right: 50px;
-    width: 200px;
-    text-align: center;
-}
-.Userim{
-    font-size:34px;
-    color:white;
-    margin-bottom: 10px;
-}
+
 .modu {
     display:none;
 }

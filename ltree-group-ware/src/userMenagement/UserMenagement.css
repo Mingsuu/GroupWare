@@ -4,9 +4,12 @@
     cursor: pointer;
 }
 .u-mgnt {
+    width: 1180px;
+    height: 530px;
+    background-color:none;
+    border:none;
     display: inline-block;
-    margin-left:-180px;
-    margin-top:-10px;
+    margin-left:230px;
 }
 
 .detail-tbody input {
@@ -26,7 +29,7 @@
     font-size:30px;
 }
 .mgnt-btnbox {
-    width: 923px;
+    width: 680px;
     display: inline-block;
     margin-bottom: 10px;
     margin-left: 10px;
