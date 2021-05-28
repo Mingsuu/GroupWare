@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Home.css';
 import DefaultView from './DefaultView';
 import { Link, Route } from 'react-router-dom';
@@ -7,7 +7,25 @@ import Loginbanner from '../Login/Loginbanner';
 
 
 const Home = ({ match }) => {
+
+    const [weather, setWeather] = useState('');
+    const getWeather = () => {
+        fetch("http://localhost:3001/weather", {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(),
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                setWeather(json);              
+            });
+    }
     
+
+    
+    console.log(weather);
     return (
 
         <div className="container">
