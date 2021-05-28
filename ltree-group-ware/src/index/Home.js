@@ -6,6 +6,7 @@ import SelectedView from './SelectedView';
 import Loginbanner from '../Login/Loginbanner';
 import Clock from 'react-live-clock';
 
+
 const Home = ({ match }) => {
     const [ScrollY,setScrollY] = useState(10);
     const [divStatus, setDivStatus] = useState(false);
@@ -33,6 +34,24 @@ const Home = ({ match }) => {
     },[ScrollY])
 
 
+    const [weather, setWeather] = useState('');
+    const getWeather = () => {
+        fetch("http://localhost:3001/weather", {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(),
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                setWeather(json);              
+            });
+    }
+    
+
+    
+    console.log(weather);
     return (
 
         <div className="container" >
