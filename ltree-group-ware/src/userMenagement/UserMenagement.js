@@ -75,17 +75,17 @@ const UserMenagement = () => {
                 <tbody className='detail-tbody'>
                     <tr>
                         <td rowSpan='2'>사진</td>
-                        <td>이름 : <input value={findUser.userNAME} onChange={changeUserInfo} className='userNAME' /></td>
-                        <td>전화번호 : <input value={findUser.userTELL} onChange={changeUserInfo} className='userTELL'/></td>
+                        <td>이름 : <input value={findUser.userNAME} onChange={changeUserInfo} className='userNAME' readOnly/></td>
+                        <td>*전화번호 : <input value={findUser.userTELL} onChange={changeUserInfo} className='userTELL'/></td>
                     </tr>
                     <tr>
-                        <td>이메일 : <input value={findUser.userEMAIL} onChange={changeUserInfo} className='userEMAIL'/></td>
-                        <td>주민번호 : <input value={findUser.userSSN} onChange={changeUserInfo} className='userSSN' /></td>
+                        <td>*이메일 : <input value={findUser.userEMAIL} onChange={changeUserInfo} className='userEMAIL'/></td>
+                        <td>주민번호 : <input value={findUser.userSSN} onChange={changeUserInfo} className='userSSN' readOnly/></td>
                     </tr>
                     <tr>
-                        <td>직급 : <input value={findUser.userRANK || ''} onChange={changeUserInfo} className='userRANK' /> </td>
-                        <td>주소 : <input value={findUser.userADDR} onChange={changeUserInfo} className='userADDR'/></td>
-                        <td>입사일 : <input value={findUser.userDATE} onChange={changeUserInfo} className='userDATE'/> </td>
+                        <td>*직급 : <input value={findUser.userRANK || ''} onChange={changeUserInfo} className='userRANK' /> </td>
+                        <td>*주소 : <input value={findUser.userADDR} onChange={changeUserInfo} className='userADDR'/></td>
+                        <td>입사일 : <input value={findUser.userDATE} onChange={changeUserInfo} className='userDATE' readOnly/> </td>
                     </tr>
                 </tbody>
             </table>,

@@ -5,8 +5,9 @@ import { Link, Route } from 'react-router-dom';
 import SelectedView from './SelectedView';
 import Loginbanner from '../Login/Loginbanner';
 
-const Home = ({ match }) => {
 
+const Home = ({ match }) => {
+    
     return (
 
         <div className="container">
