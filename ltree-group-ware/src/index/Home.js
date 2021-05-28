@@ -4,9 +4,10 @@ import DefaultView from './DefaultView';
 import { Link, Route } from 'react-router-dom';
 import SelectedView from './SelectedView';
 import Loginbanner from '../Login/Loginbanner';
+import Clock from 'react-live-clock';
 
 const Home = ({ match }) => {
-    const [ScrollY,setScrollY] = useState(0);
+    const [ScrollY,setScrollY] = useState(10);
     const [divStatus, setDivStatus] = useState(false);
     
     const handleFollow = () => {
@@ -42,6 +43,10 @@ const Home = ({ match }) => {
                 <div className="fixed"></div>
                 <div className={divStatus ? "bannerbox active" : "bannerbox"}>
                     <div className="hi">Good Morning LTREE~</div>
+                    <div className="clockbox">
+                        <Clock format={`MM 월 DD 일`} ticking={true} timezone={'ROK'} /><br/>
+                        <Clock format={`HH : mm : ss`} ticking={true} timezone={'ROK'} />
+                    </div>
                 </div>
                 
             {/* MID */}
