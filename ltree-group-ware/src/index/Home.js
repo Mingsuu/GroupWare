@@ -5,7 +5,11 @@ import { Route } from 'react-router-dom';
 import SelectedView from './SelectedView';
 import Loginbanner from '../Login/Loginbanner';
 import Clock from 'react-live-clock';
-import snow from '../Image/눈.gif'
+import snow from '../Image/눈.gif';
+import rain from '../Image/비옴4.gif'
+import sun from '../Image/맑음.gif';
+import cloud from '../Image/구름많음.gif';
+import dark from '../Image/흐림.gif';
 
 
 const Home = ({ match }) => {
