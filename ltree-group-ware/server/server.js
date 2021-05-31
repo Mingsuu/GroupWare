@@ -4,7 +4,7 @@ const app = express();
 const port = 3001;
 const cors = require("cors");
 const mysql = require("mysql"); // mysql 모듈 사용
-const request = require('request');
+const rp = require('request-promise');
 
 var connection = mysql.createConnection({
     host: "ltreetest.cafe24.com",
@@ -33,28 +33,34 @@ app.post("/weather", (req, res) => {
     let todayDate = new Date().toISOString().slice(0, 10).replace(/-/gi, "");
     let currentTime = new Date().toString();
     let ObservationTime = Number(currentTime.slice(19, 21)) < 30 ?
-        (currentTime.slice(16, 18) - 1) + currentTime.slice(19, 21) : currentTime.slice(16, 18) + currentTime.slice(19, 21);
+        (currentTime.slice(16, 18) - 1 < 10 ? "0" + (currentTime.slice(16, 18) - 1) : currentTime.slice(16, 18) - 1) 
+        + currentTime.slice(19, 21) : currentTime.slice(16, 18) + currentTime.slice(19, 21);
 
     const url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService/getUltraSrtFcst';
     var queryParams = '?' + encodeURIComponent('ServiceKey') + '=' + sKey;
     queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1');
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('25');
+    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('20');
     queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('JSON');
     queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent(todayDate);
     queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent(ObservationTime);
     queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent('61');
     queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent('125');
 
-    let data = 'dd';
-
-    request({
-        url: url + queryParams,
-        method: 'GET'
-    }, function (error, response, body) {
-        data = JSON.parse(body);
-    });
-
-    setTimeout(()=>{console.log(data.response.body.items)},[300])
+    var options = {
+        uri: url+queryParams,
+        headers: {
+            'User-Agent': 'Request-Promise'
+        },
+        json: true 
+    };
+    rp(options)
+        .then(function (data) {
+            
+            res.send(data.response.body.items);
+        })
+        .catch(function (err) {
+            console.log('data', err);
+        });
 })
 
 
