@@ -368,6 +368,15 @@
     border:1px solid red;
     display: inline-block;
 }
+.boardbtn {
+    display: none;
+}
+.itsMe {
+    display: block;
+}
+.boardbtn {
+    display: none;
+}
 /* 오른쪽 위에 로그인 배너*/
 
 .modu {

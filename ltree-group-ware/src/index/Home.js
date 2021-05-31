@@ -7,22 +7,11 @@ import Loginbanner from '../Login/Loginbanner';
 import Clock from 'react-live-clock';
 
 
+
 const Home = ({ match }) => {
     
 
-    useEffect(()=> {
-        fetch("http://localhost:3001/weather", {
-            method: "post",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(),
-        })
-            .then((res) => res.json())
-            .then((json) => {
-                console.log(json.item[4].fcstValue)
-            });
-    },[])
+   
     
     
    
