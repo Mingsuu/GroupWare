@@ -7,8 +7,12 @@ import queryString from 'query-string';
 
 const Boardcontent = ({ history, location }) => {
     const [no1, setNo1] = useState();
+    const [jbox,setJbox] = useState();
+    const [boardbtn, setBoardbtn] = useState('boardbtn');
     const query = queryString.parse(location.search);
-
+    const loginNAME = window.localStorage.getItem("loginName")
+    const userNAME = loginNAME.replace(/\"/gi, "");
+    
     /* 상세 페이지 정보 뿌리기*/
     useEffect(() => {
         console.log("No1=" + query.postNo);
@@ -23,8 +27,17 @@ const Boardcontent = ({ history, location }) => {
             .then((res) => res.json())
             .then((json) => {
                 setNo1(json);
+                setJbox(json[0].writer);
             });
     }, []);
+
+    
+     /*로그인한사람이 자기자신인지 판별 */
+     useEffect(() => {
+        if (jbox === userNAME) {
+            setBoardbtn("itsMe")
+        }
+    });
 
     /* 클릭한 페이지 삭제 */
     const deleteBoard = () => {
@@ -70,8 +83,8 @@ const Boardcontent = ({ history, location }) => {
                         </div>
                         <div className="btnbox">
                             <button onClick={() => history.goBack()}>목록으로</button>
-                            <button onClick={deleteBoard}>삭제</button>
-                            <Link to={`/home/boarderUpdate/?no=${no1[0].No1}`}><button>수정</button></Link>
+                            <button onClick={deleteBoard} className={boardbtn} >삭제</button>
+                            <Link to={`/home/boarderUpdate/?no=${no1[0].No1}`}><button className={boardbtn}>수정</button></Link>
                         </div>
                     </div>
                 </>

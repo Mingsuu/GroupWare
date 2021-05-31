@@ -1,6 +1,6 @@
 import React,{ useState, useRef} from 'react';
 import './loginui.css';
-import ltree_logo from '../Image/ltree_logo.png';
+import ltree_logo from '../Image/ltreetitle.png';
 import {Link} from 'react-router-dom';
 
 const Passfind =() => {
@@ -69,7 +69,7 @@ const Passfind =() => {
         <div className="loginbox">
             <div className="loginbox1">
                 <div className="loginlogo">
-                    <img src={ltree_logo} width='250' height='165' alt='logo'/>
+                    <img src={ltree_logo} width='250' height='110' alt='logo'/>
                 </div>
                
                 <div className="findbox">

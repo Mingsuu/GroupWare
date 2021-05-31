@@ -1,6 +1,6 @@
 import React,{ useState, useRef} from 'react';
 import './loginui.css';
-import ltree_logo from '../Image/ltree_logo.png';
+import ltree_logo from '../Image/ltreetitle.png';
 import {Link} from 'react-router-dom';
 
 
@@ -76,7 +76,7 @@ const Idfind =() => {
         <div className="loginbox">
             <div className="loginbox1">
                 <div className="loginlogo">
-                    <img src={ltree_logo} alt='logo' width='250' height='165'/>
+                    <img src={ltree_logo} alt='logo'width='250' height='110' />
                 </div>
                
                 <div className="findbox">
@@ -86,7 +86,7 @@ const Idfind =() => {
                         onKeyPress={keypress} onChange={snnchange} ref={snnRef}  value={snnbox}></input><br/>
                     {snncheck && <span className="red2" style={{color : 'tomato'}}>주민번호를 입력해주세요.</span>}
                     <button className="findbtn" onClick={findid}>아이디 찾기</button><br/>
-                    <Link to="/Passwordfind"><sapn className="passfind">비밀번호 찾기</sapn></Link><br/>
+                    <Link to="/Passwordfind"><span className="passfind">비밀번호 찾기</span></Link><br/>
                     <Link to="/"><span className="loginpage">로그인</span></Link>
                 </div>
             </div>
