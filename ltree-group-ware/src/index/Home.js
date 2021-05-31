@@ -5,15 +5,28 @@ import { Route } from 'react-router-dom';
 import SelectedView from './SelectedView';
 import Loginbanner from '../Login/Loginbanner';
 import Clock from 'react-live-clock';
-
+import snow from '../Image/눈.gif';
+import rain from '../Image/비옴4.gif'
+import sun from '../Image/맑음.gif';
+import cloud from '../Image/구름많음.gif';
+import dark from '../Image/흐림.gif';
 
 
 const Home = ({ match }) => {
     
-
-   
-    
-    
+    useEffect(()=> {
+        fetch("http://localhost:3001/weather", {    //기상청api를 사용하여 날씨정보 받아오기
+            method: "post",
+            headers: { 
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(),
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                console.log(json.item[4].fcstValue)
+            });
+    },[])
    
     return (
 
